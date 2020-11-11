@@ -1,0 +1,22 @@
+{
+ "polysig": {
+      "miniDapp": "polysig.minidapp",
+      "icon": "polysig.png",
+      "conf": "minidapp.conf"
+  },
+  "block": {
+      "miniDapp": "block.minidapp",
+      "icon": "block.png",
+      "conf": "minidapp.conf"
+  },
+    "wallet": {
+      "miniDapp": "wallet.minidapp",
+      "icon": "wallet.png",
+      "conf": "minidapp.conf"
+  },
+    "coinmaster": {
+      "miniDapp": "coinmaster.minidapp",
+      "icon": "coin.png",
+      "conf": "minidapp.conf"
+  }
+}
