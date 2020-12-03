@@ -18,5 +18,10 @@
       "miniDapp": "coinmaster.minidapp",
       "icon": "coin.png",
       "conf": "minidapp.conf"
-  }
+  },
+  "futurecash": {
+    "miniDapp": "futurecash.minidapp",
+    "icon": "cash.png",
+    "conf": "minidapp.conf"
+  } 
 }
