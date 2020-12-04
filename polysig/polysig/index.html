@@ -1,0 +1,1417 @@
+<!DOCTYPE html>
+<!-- PolySig, Version 0.81 -->
+<!-- Created by Elias Nemr -->
+<!-- Minima, Global -->
+<!-- github.com/eliasnemr -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <base href=".">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/styles.css">
+        <link rel="stylesheet" href="css/custom.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <script>
+            $(document).ready(function() {
+                // Help Collapsible 
+                $('.collapsible').collapsible();
+                // Init Minima
+                Minima.init(function(msg){
+                    if (msg.event == "connected") {
+                        const TABLE = 'CREATE TABLE IF NOT EXISTS CONTRACTS (id int NOT NULL, address VARCHAR(160), timestamp VARCHAR(160), keys VARCHAR(160) NOT NULL, users VARCHAR(160) NOT NULL, type VARCHAR(160) NOT NULL);SELECT * FROM CONTRACTS';
+                        Minima.sql(TABLE, function(res){
+                            if (res.status) {
+                                // console.log('Created Contracts SQL Table');
+                            }
+                        });
+                    }
+                });
+            });
+        </script>
+        <script>
+            // Transitions
+            document.addEventListener("DOMContentLoaded", function(){
+                let input = {id: "", signees: "", min: "", users: [], keys: [], inputs: [], total: 0, script: "", proof: ""}; 
+                const menu = document.getElementById("start-menu-title");
+                const createBtn = document.getElementById("btnWrap1");
+                const provideBtn = document.getElementById("btnWrap2");
+                
+                // Handy Functions
+                function copyText(id) {
+
+                    var str = document.getElementById(id).value;
+
+                    const el = document.createElement('textarea');
+                    el.value = str;
+                    document.body.appendChild(el);
+                    el.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(el);
+
+                    /* Alert the copied text */
+                    M.toast({html: "Copied to clipboard.", classes: "success"});
+
+                }
+                function copyBase64(data) {
+
+                    const el = document.createElement('textarea');
+                    el.value = data;
+                    document.body.appendChild(el);
+                    el.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(el);
+
+                    M.toast({html: "Copied Package to Clipboard", classes: "success"});
+                    
+                }
+
+                setTimeout(() => {
+                    menu.classList.add("scale-in");
+                    createBtn.classList.add("scale-in");
+                    provideBtn.classList.add("scale-in");
+                }, 300);
+                // Back Buttons
+                $('#homeBtn').on('click', function(){
+                    
+                    $('#s-menu').css("display", "block");
+                    $('#s-help').css("display", "none");
+
+                });
+                $('#homeBtn2').on('click', function(){
+
+                    $('#s-menu').css("display", "block");
+                    $('#s-create').css("display", "none");
+
+                });
+                $('#homeBtn3').on('click', function(){
+
+                    $('#s-create').css('display', 'block');
+                    $('#s-stage1').addClass('hide');
+
+                });
+                $('#homeBtn4').on('click', function(){
+
+                    $('#s-stage1-2').addClass('hide');
+                    $('#s-stage1').removeClass('hide');
+                });
+                $('#homeBtn5').on('click', function(){
+                    $('#s-contracts').addClass('hide');
+                    $('#s-menu').css('display', 'block');
+                });
+                $('#createBtn').on('click', function(){
+
+                    $('#s-menu').css("display", "none");
+                    $('#s-create').css("display", "block");
+
+                });
+                // Stage 1
+                $('#proceedBtn').on('click', function(){
+                
+                    $('#participants > ul:last-child').empty();
+                    // reset
+                    input.signees = 0;
+                    input.min = 0;
+                    let confirmed = false;
+                    let users = $('#users').val();
+                    let minimum = $('#minimum').val();
+                    users = parseInt(users);
+                    minimum = parseInt(minimum);
+
+                    $('#modalCreate').modal({
+                        dismissible: false,
+                        opacity: 0.2,
+                        onOpenStart: function() {
+
+                            $('#confirm').on('click', function(){
+                                confirmed = true;
+                            });
+
+                            if(users >= 2 &&  minimum <= users) {
+                                $('#confirm').removeClass('hide');
+                                $('#m-contractHeader').text('Continue?');
+                                $('#m-contractHeader').css("color", "rgb(86,138,119)");
+                                $('#m-contractType').text('This is a ' + minimum +'/'+ users + " multi-signature contract.");
+                            } else {
+                                $('#confirm').addClass('hide');
+                                $('#m-contractHeader').text('Invalid Contract.');
+                                $('#m-contractHeader').css("color", "rgb(173,74,83)");
+                                $('#m-contractType').text("You need at least 2 Signees and less than or equal amounts of minimum signatures to unlock this contract.");
+                            }
+
+                        },
+                        onCloseEnd: function() {
+                            if(confirmed) {
+                                input.signees = users; // input field
+                                input.min = minimum; // input field
+
+                                // empty on leave...   
+                                $('#users').val(""); // empty input field
+                                $('#minimum').val(""); // empty input field
+
+                                let json = JSON.stringify(input);
+                                Minima.file.save(json, "inputs.txt", function(res){
+                                    if (res.success) {
+                                        // change view 
+                                        $('#s-create').css("display", "none");
+                                        $('#s-stage1').removeClass('hide');
+                                        // add input fields for users
+                                        for (let i = 0; i < input.signees; i++) {
+                                            let markup = 
+                                                    '<li class="collection-item user-item">'+
+                                                        '<div class="card blue-grey darken-1">'+
+                                                            '<div class="card-image">'+
+                                                                '<i class="material-icons">portrait</i>'+
+                                                            '</div>'+
+                                                            '<div class="card-content">'+
+                                                                '<div class="input-field">'+
+                                                                    '<input id="name'+i+'" type="text" max="256"/>'+
+                                                                    '<label for="name'+i+'">Name</label>'+
+                                                                '</div>'+
+                                                                '<div class="input-field">'+
+                                                                    '<input id="key'+i+'" type="text" max="256"/>'+
+                                                                    '<label for="key'+i+'">Public key</label>'+
+                                                                '</div>'+
+                                                            '</div>'+
+                                                        '</div>'+
+                                                    '</li>';
+                                            $('#participants > ul:last-child').append(markup);
+                                        }
+                                    } else {
+                                        M.toast({html: "Minima is offline!"});
+                                    }
+                                });
+                            }
+                        }
+                    }); 
+                });
+                // Stage 2
+                $('#proceedBtnStage1').on('click', function(){
+                // reset
+                    input.users = [];
+                    input.keys = [];
+                    $('#participants ul').find('li input[type="text"]').each(function() {
+                        if($(this)[0].id.substring(0,4) == "name"){
+                            // SAVE USERS
+                            input.users.push($(this)[0].value);
+                        } else if($(this)[0].id.substring(0,3) == "key") {
+                            // SAVE KEYS
+                            input.keys.push($(this)[0].value);
+                        }
+                    });
+                    let json = JSON.stringify(input);
+                    Minima.file.save(json, "inputs.txt", function(res){
+                        if(res.success) { 
+                            $('#participants ul').find('li input[type="text"]').each(function() {
+                                // clear inputs
+                                $(this)[0].value = "";  
+                            });
+
+                            $('#s-stage1').addClass('hide');
+                            $('#s-stage1-2').removeClass('hide');
+
+                            if($('#multiSigScript').length > 0) {
+                                $('#multiSigScript > :last-child').remove();
+                            }
+
+                            Minima.file.load("inputs.txt", function(file){
+                                if(file.success) {
+                                    const keys = JSON.parse(file.data);
+                                    let script = "";
+                                    let allKeys = "";
+                                    input.keys.forEach((id, i) => {
+                                        if(input.keys.length == i+1) {
+                                            allKeys += id;
+                                        } else {
+                                            allKeys += id + " ";
+                                        }
+                                    });
+                                    script = "RETURN MULTISIG("+input.min+" "+allKeys+")";
+                                    // SAVE SCRIPT 
+                                    input.script = script;
+                                    Minima.cmd('newscript "'+script+'"', function(res){
+                                        if(res.status) {
+                                            const markup = 
+                                            "<div class='row'>"+
+                                                "<div class='col s12'>"+
+                                                    "<div id='scriptWrapper'>"+
+                                                        "<div>"+
+                                                            "<p>"+script+"</p>"+
+                                                            "<i class='material-icons'>arrow_forward</i>"+
+                                                            "<input id='proofAddress' class='center-align' disabled value='"+res.response.address.hexaddress+"'/>"+
+                                                        "</div>"+
+                                                    "</div>"+
+                                                "</div>"+
+                                            "</div>";
+                                            
+                                            $('#copyPackageWrapper').removeClass('hide');
+                                           
+                                            $('#multiSigScript').append(markup);
+
+                                            input.proof = res.response.address.hexaddress;
+                                        }
+                                    });
+                                    
+
+                                }
+
+                            });
+                        }
+                    });
+                });
+                // Stage 3
+                $(document).on('click', "#copyAddress", function(){
+                // Create random ID
+                    const id = Math.floor(Math.random()*1000000000);
+                    input.id = id;
+                    // creating json package
+                    let data = {
+                        id: id, // TRANSACTION ID
+                        type: "", // PACKAGE TYPE
+                        message: "", // MESSAGE
+                        keys: [], // PUBLIC KEYS OF USERS
+                        users: [], // NAME OF USERS
+                        hexaddress: "", // HEXADDRESS OF SCRIPT
+                        script: "", // ACTUAL SCRIPT
+                        min: 0, // MINIMUM SIGNATURES NEEDED
+                        signees: "" // AMOUNT OF SIGNATURES
+                    }
+
+                    // set the json package.
+                    data.type = "toScript";
+                    data.message = "You are about to save a new script address in your script address";
+                    data.keys = input.keys;
+                    data.users = input.users;
+                    data.script = input.script;
+                    data.min = input.min;
+                    data.signees = input.signees;
+                    data.hexaddress = input.proof;
+                    // stringify the json package.
+                    data = JSON.stringify(data);
+                    // convert to base64.
+                    data = btoa(data);
+                    // copy to clipboard.
+                    copyBase64(data);
+                    
+                    // continue..
+                    $('#s-stage1-2').addClass('hide');
+                    $('#s-stage3-5').removeClass('hide');
+                    
+                });
+                // Stage 3.5
+                $(document).on('click', '#endStageBtn1', function(){
+
+                    // amount user wants to spend
+                    let amnt = 0;
+
+                    // signees
+                    let signee = "";
+
+                    // amount to send
+                    amnt = $('#toSend').val();
+                    // id
+                    let id = input.id;
+
+                    let json = JSON.stringify(input);
+                    Minima.file.save(json, 'inputs.txt', function(){});
+
+                    
+                    // Create and post transaction
+                    const txn = 'txncreate '+id+';'+
+                                'txnauto '+id+' '+amnt+' '+input.proof+' '+'0x00';
+                              
+                    input.keys.forEach((key, i) => {
+                        signee += 
+                        '<li class="collection-item contract-item"><div>Signee #'+i+'&mdash;'+input.users[i]+'</div><a id="users" class="secondary-content">'+key+'</a></li>';
+                    });
+                              
+                    // Create Transaction...
+                    Minima.cmd(txn, function(res) {
+                        // check all responses..
+                        if (Minima.util.checkAllResponses(res)) {
+
+                            M.toast({html: "Completed Contract...", classes:"success"});
+                            let markup =
+                                    '<div class="row">'+
+                                        '<div class="col s12">'+
+                                            '<div class="card contract-card">'+
+                                                '<div class="card-image">'+
+                                                    '<span class="card-title contractId">#'+id+'</span>'+'<br>'+
+                                                '</div>'+
+                                                '<div class="card-content">'+
+                                                    '<div class="contract-amnt">'+
+                                                        '<h4>'+
+                                                            amnt+
+                                                        '</h4>'+
+                                                        '<p>This is the total amount you are using in your contract.</p>'+
+                                                    '</div>'+
+                                                    '<ul class="collection">'+
+                                                        '<li class="collection-item"><div>Participating Users</div><a id="users" class="secondary-content">'+input.users+'</a></li>'+
+                                                        '<li class="collection-item"><div>Minimum required signee(s)</div><a id="users" class="secondary-content">'+input.min+'</a></li>'+
+                                                    '</ul>'+
+                                                    '<ul class="collection with-header collection-keys">'+
+                                                        '<li class="collection-header contract-header">Signee(s)</li>'+
+                                                        signee+
+                                                    '</ul>'+
+                                                '</div>'+
+                                            '</div>'+
+                                        '</div>'+
+                                    '</div>';
+
+                            $('#contractWrap').append(markup);
+                                                        
+                            $('#s-stage3-5').addClass('hide');
+                            $('#s-stage4').removeClass('hide');
+
+                        } else {
+                            M.toast({html: "Transaction failed to post..."});
+                        }
+
+                    });
+
+                });
+                // Stage 4
+                $('#postBtn').on('click', function() {
+                    // Hide form
+                    $('#s-stage4').addClass('hide');
+                    // Back to main menu 
+                    $('#s-menu').css('display', 'block');
+                
+                    Minima.file.load("inputs.txt", function(res){
+                        // load from inputs
+                        if (res.success) {
+                            var data = JSON.parse(res.data);
+                            // Post it
+                            Minima.cmd('txnpost '+ data.id, function(resp){
+                                // if successful show message, add to sql, then delete from txnlist
+                                if (resp.status) {
+                                    M.toast({html: 'Success! Contract posted!', classes: 'success'});
+                                    const INSERT = "INSERT INTO CONTRACTS VALUES ('";
+                                    Minima.cmd('txnlist ' + input.id, function(respo) {
+                                        if (respo.status) {
+                                            let users = JSON.stringify(input.users);
+                                            let keys = JSON.stringify(input.keys);
+                                            let date = Date.now().toString();
+                                            let type = "This is a "+input.min+"/"+input.signees+" MultiSig Contract";
+                                            Minima.sql(INSERT+input.id+"', '"+input.proof+"', '"+date+"', '"+keys+"', '"+users+"', '"+type+"')", function(response){
+                                                if (response.status) {
+                                                    Minima.cmd('txndelete '+input.id, function(){});
+                                                }
+                                            });
+                                        }
+                                    });
+                                }
+                            });
+                        }
+                    }); 
+                });
+
+                /** Contracts Functionalities */
+                $('#provideBtn').on('click', function() {
+                    $('#s-menu').css("display", "none");
+                    $('#s-contracts').removeClass("hide");
+
+                    $('#contract').empty();
+
+                    Minima.sql("SELECT * FROM CONTRACTS", function(res){
+                        //console.log(res);
+                        if (res.status && res.response.rows.length > 0) {
+                            $('#contracts > ul > .collection-header').html('Contracts <div id="dd-editBtn" style="float:right;" class="dropdown-trigger btn-flat" data-target="dd-edit">Edit</div>');
+                            $('#contracts > ul > .collection-header').css("color", "rgb(188,192,194)");
+                            $('#contracts > ul > .collection-header').css("font-size", "1.5rem");
+                            // retrieve data and fill activities
+                            res.response.rows.forEach((row, i) => {
+                                
+                                let markup = 
+                                            '<li class="collection-item hideDeleteForever">'+
+                                                '<div id="'+row.ID+'" class="card blue-grey darken-1">'+
+                                                    '<div class="card-content white-text">'+
+                                                        '<span class="card-title"><span id="brand">#</span>'+row.ID+'</span>'+
+                                                        '<span id="deleteForever" href="#dd-editModal" class="right modal-trigger"><i style="color: rgb(0,0,0); cursor: pointer;" class="material-icons">delete</i></span>'+
+                                                        '<p id="contractType">'+row.TYPE+'</p>'+
+                                                        '<p id="timestamp">'+ moment(parseInt(row.TIMESTAMP)).format("MMMM Do YYYY &#8212; HH:mm:ss a") +'</p>'+
+                                                    '</div>'+
+                                                    '<div class="card-action">'+
+                                                        '<a id="'+row.ID+'" class="viewContract">View Contract</a>'+
+                                                    '</div>'+
+                                                '</div>'+
+                                            '</li>';
+                                $('#contract').append(markup);
+                                
+                            });
+
+
+                        } else {
+                            $('#contracts > ul > .collection-header').text("No contracts found!");
+                            $('#contracts > ul > .collection-header').css("color", "#736AB6");
+                            $('#contracts > ul > .collection-header').css("font-weight", "800");
+
+                        }
+
+                    });
+                    
+                    
+                   
+
+                });
+                $(document).on('click', '.viewContract', function(){
+
+                    let id = $(this).attr('id');
+                    // Show details of this txnlist..
+                    Minima.sql('SELECT * FROM CONTRACTS WHERE ID='+id, function(res){
+                        console.log(res);
+                        if (res.status && res.response.rows.length > 0) {
+                            $('#contract').addClass('hide');
+                            $('#contract-details').removeClass('hide');
+
+                            let row = res.response.rows[0];
+                            let users = JSON.parse(row.USERS);
+                            let signees = JSON.parse(row.KEYS);
+                            let signee = "";
+
+                            signees.forEach((key, i) => {
+                                signee += 
+                                '<li class="collection-item contract-item"><div>Signee #'+i+'&mdash;'+users[i]+'</div><a id="users" class="secondary-content">'+key+'</a></li>';
+                            });
+
+                            Minima.cmd('coins relevant address:'+row.ADDRESS, function(res) {
+
+                                if (res.status && res.response.coins.length > 0){
+                                    let coin = res.response.coins[0].data;
+                                    
+                                    let markup = 
+                                            '<li class="collection-item contract">'+
+                                                '<div class="card contract-card">'+
+                                                    '<div class="card-image">'+
+                                                        '<span class="card-title contractId">#'+row.ID+'</span>'+'<br>'+
+                                                    '</div>'+
+                                                    '<div class="card-content">'+
+                                                        '<span class="backContract"> <i class="material-icons">chevron_left</i></span>'+
+                                                        '<p id="contractType">'+row.TYPE+'</p>'+
+                                                        '<p id="timestamp">'+ moment(parseInt(row.TIMESTAMP)).format("MMMM Do YYYY &#8212; HH:mm:ss a") +'</p>'+
+                                                        '<hr>'+
+                                                        '<div class="row details">'+
+                                                            '<div class="col s12">'+
+                                                                '<ul class="collection with header">'+
+                                                                    '<li class="collection-header"> Details </li>'+
+                                                                    '<li class="collection-item"><div> PARTICIPATING USERS </div> <a class="secondary-content">'+users+'</a> </li>'+
+                                                                    '<li class="collection-item"><div> Available Spend </div> <a class="secondary-content">'+coin.coin.amount+'</a> </li>'+
+                                                                    '<li class="collection-item"><div> Is Spent </div> <a class="secondary-content">'+coin.spent+'</a> </li>'+
+                                                                    '<li class="collection-item"><div> Script Address </div> <a class="secondary-content">'+coin.coin.address+'</a> </li>'+
+                                                                '</ul>'+
+                                                                '<ul class="collection with-header collection-keys">'+
+                                                                    '<li class="collection-header contract-header">Signee(s)</li>'+
+                                                                    signee+
+                                                                '</ul>'+
+                                                            '</div>'+
+                                                        '</div>'+                                                    
+                                                    '</div>'+
+                                                    '<div class="card-action">'+
+                                                        '<a id="'+row.ID+'" class="spendContract">Spend</a>'+
+                                                    '</div>'+
+                                                '</div>'+
+                                            '</li>';
+                                    
+                                    $('#contract-details').append(markup);
+                                } else {
+                                    M.toast({html: "Waiting for network to process this transaction..."});
+                                    $('#contract').removeClass('hide');
+                                    $('#contract-details').addClass('hide');
+                                }
+                            });
+                            
+                        }
+                    });
+
+                });
+                $(document).on('click', '.backContract', function() {
+                    $('#contract-details').empty();
+                    $('#contract').removeClass('hide');
+                });
+                $(document).on('click', '.spendContract', function(){
+                    let id = $(this).attr('id');
+
+                    if ($('.contract-spend').length > 0) {
+                        $('.contract-spend').remove();
+                    }
+
+                    $('.spendContract').replaceWith('<a id="'+id+'" class="createTransaction">Create</a>');
+
+                    
+                    // For spending transaction...
+                    let amount = 0;
+                    let recipAddress = "";
+
+                    let markup = 
+                                '<ul class="collection with-header contract-spend">'+
+                                    '<li class="collection-header"> TXN Details </li>'+
+                                    '<li class="collection-item input-field">'+
+                                        '<input id="recipAddress" type="text" />'+ 
+                                        '<label for="recipAddress">Recipient Wallet Address</label>'+
+                                    '</li>'+
+                                    '<li class="collection-item input-field">'+
+                                        '<input id="spendAmount" type="number" />'+ 
+                                        '<label for="spendAmount">Amount To Spend</label>'+
+                                    '</li>'+
+                                '<ul>';
+
+                    $('.contract .details').after(markup)
+                        
+                });
+                $(document).on('click', '.createTransaction', function(){
+                    
+                    let id = $(this).attr('id');
+                    let amount = $('#spendAmount').val();
+                    let recipAddress = $('#recipAddress').val();
+                    let users = [];
+
+                    // let's spend this transaction
+
+                    Minima.sql('SELECT * FROM CONTRACTS WHERE ID='+id, function(res){
+                        
+                        let row = res.response.rows[0];
+                        users = row.USERS;
+                        keys = row.KEYS;
+                        
+                        Minima.cmd('coins relevant address:'+row.ADDRESS, function(res){
+                            //input -> [id] [coinid] [position]
+                            //output -> [id] [amount] [address] [tokenID] (position)
+                            
+                            let coinid = res.response.coins[0].data.coin.coinid;
+                            let scriptAddr = res.response.coins[0].data.coin.address;
+                            let change = new Decimal(res.response.coins[0].data.coin.amount).minus(new Decimal(amount)).valueOf();
+
+                            let txn = "";
+                            if (change > 0) {
+                                txn = 'txncreate '+id+';'+
+                                'txninput '+id+' '+coinid+' '+'0;'+
+                                'txnoutput '+id+' '+amount+' '+recipAddress+' '+'0x00'+' '+'0;'+
+                                'txnoutput '+id+' '+change+' '+scriptAddr+' '+'0x00'+' '+'1';
+                            } else {
+                                txn = 'txncreate '+id+';'+
+                                'txninput '+id+' '+coinid+' '+'0;'+
+                                'txnoutput '+id+' '+amount+' '+recipAddress+' '+'0x00'+' '+'0';
+                            }
+
+                            Minima.cmd(txn, function(res){
+                                
+                                if (Minima.util.checkAllResponses(res)){
+
+                                    Minima.cmd('txnexport '+id, function(res) {
+
+                                        let exportedTXN = res.response.transaction;
+
+                                        let markup = 
+                                        '<ul class="collection with-header contract-exp">'+
+                                            '<li class="collection-header"> TXN Export </li>'+
+                                            '<li class="collection-item input-field">'+
+                                                '<input id="exportTXN" type="text" disabled value="'+exportedTXN+'" />'+ 
+                                                '<label class="active" for="exportTXN">Exported Transaction</label>'+
+                                            '</li>'+    
+                                        '<ul>'+
+                                        '<div class="row">'+
+                                            '<div class="col s12">'+
+                                                '<a id="copyExportBtn" class="btn-flat waves-effect waves-light waves-block polyBtn">Copy Package</a>'+
+                                            '</div>'+
+                                        '</div>';
+
+                                        M.updateTextFields();
+
+                                        $('.contract-spend:last-child').replaceWith(markup);
+
+                                        $('.createTransaction').replaceWith('<a id="'+id+'" class="hide postTransaction">Post</a>');
+                                
+                                        $(document).on('click', '#copyExportBtn', function() {
+                                            // creating json package
+                                            let data = {
+                                                id: "",
+                                                type: "",
+                                                message: "",
+                                                keys: [],
+                                                users: [],
+                                                hexaddress: "",
+                                                amount: 0,
+                                                recipAddress: "",
+                                                txn: ""
+                                            }
+
+                                            data.type = "toSign";
+                                            data.message = "You are about to sign a transaction, are you sure?";
+                                            data.keys = keys;
+                                            data.id = id;
+                                            data.hexaddress = scriptAddr;
+                                            data.amount = amount;
+                                            data.recipAddress = recipAddress;
+                                            data.users = users;
+                                            data.txn = exportedTXN;
+
+                                            data = JSON.stringify(data);
+                                            data = btoa(data);
+                                            copyBase64(data);
+
+
+                                            let markup =
+                                            '<ul class="collection with-header contract-imp">'+
+                                                '<li class="collection-header" style="font-size:1.2rem !important;"> After your participant(s) have signed.. let us import, add our public key and post! </li>'+
+                                                '<li class="collection-item input-field">'+
+                                                    '<input id="importTXN" type="text"/>'+ 
+                                                    '<label class="" for="importTXN">Import the final transaction</label>'+
+                                                '</li>'+     
+                                            '<ul>';
+
+                                            $('.postTransaction').removeClass('hide');
+
+                                            $('.contract-exp:last-child').replaceWith(markup);
+
+                                        });
+
+
+                                    });
+
+                                }
+
+                            });
+                        }); 
+                    });
+                });
+                // Post Transaction
+                $(document).on('click', '.postTransaction', function(){
+                    // Importing Package... 
+                    let finalPkg = $('#importTXN').val();
+                    // what key should I sign with...
+                    let whatKey = "";
+                    // UX post
+                    let markup = 
+                    '<ul class="collection with-header contract-posted">'+
+                        '<li class="collection-header" style="font-size:1.2rem !important;"> Posting... </li>'+
+                    '<ul>';
+                    $('.contract-imp').replaceWith(markup);
+                    // hide post btn
+                    $('.postTransaction').addClass('hide');
+                    // convert base64 to string
+                    let data = atob(finalPkg);
+                    
+                    // parse string
+                    if (JSON.parse(data)) {
+                        data = JSON.parse(data);
+                        let allKeys = JSON.parse(data.keys);
+                        Minima.cmd('keys', function(res){
+                            if (res.status) {
+                                res.response.publickeys.forEach(index => {
+                                    allKeys.forEach(key => {
+                                        if (key == index.publickey) {
+                                            whatKey = key;
+                                        }
+                                    });
+                                });
+
+                                // create the transaction
+                                const txn = 
+                                            'txnimport '+data.id+' '+data.txn+';'+
+                                            'txnsign '+data.id+' '+whatKey+';'+
+                                            'txnpost '+data.id+' '+';'+
+                                            'txndelete '+data.id;
+                                // do the posting txn
+                                Minima.cmd(txn, function(res){
+
+                                    if (Minima.util.checkAllResponses(res)){  
+                                        M.toast({html: "You have signed and posted this transaction successfully!", classes: "success"});
+
+                                        let markup = '<ul class="collection with-header"><li class="collection-header">Posted!</li></ul>';
+                                        $('.contract-posted').replaceWith(markup);
+
+                                        $('.contract-posted').remove();
+                                    } 
+                                });
+                            }
+                        });
+                    }
+                        
+
+                });
+                // Toggle on/off
+                $(document).on('click', '#deleteForeverBtn', function(){
+                    $('#contracts #contract').children().toggleClass('hideDeleteForever');
+                });
+                // delete contract row
+                $(document).on('click', '#deleteForever', function(){
+
+
+                    let confirmed = false;
+                    let id = $(this).parent().parent().attr('id');
+
+                    $('#dd-editModal').modal({
+                        dismissible: false,
+                        opacity: 0.2,
+                        onOpenStart: function() {
+                            $('#dd-editModal .modal-content > h4').html("You will <span style='font-weight:bold'>stop</span> tracking this contract, are you sure?");
+                            $('#dd-editModal .modal-content > p').html("Contract with ID: "+id);
+                            $('#dd-editModal #confirm').on('click', function(){
+                                confirmed = true;
+                            });
+                        },
+                        onCloseEnd: function() {
+                            if(confirmed) {
+                                Minima.sql('DELETE FROM CONTRACTS WHERE ID='+id, function(res){
+                                    
+                                    if(res.status){
+                                        confirmed = false;
+                                        $('#contracts #contract').addClass('hide');
+                                        $('#contracts #contract').removeClass('hide');
+
+                                    }
+                                });
+                            }
+                        }
+                    });
+
+                    $('#dd-editModal').modal('open');
+                    
+                    
+                    
+
+                });
+                $(document).on('click', '#dd-editBtn', function(){
+                    $('.dropdown-trigger').dropdown();
+                    
+                    $('.dropdown-trigger').dropdown('open');
+                });
+
+                $(document).on('click', '#backToContracts', function(){
+                    $('#contract-details').empty();
+                    $('#contract').removeClass("hide");
+                    $('#contract-details').addClass("hide");
+                })
+            
+                /** TOOLS */
+                $('#tools').on('click', function() {
+
+                    $('#toolsMenu').toggleClass('active');
+                    
+                    if ($('#toolsMenu').hasClass('active')) {
+                        $('#tools').text("Hide Tools");
+                    } else {
+                        $('#tools').text("Tools");
+
+                    }
+
+                });
+                $('#toolsClose').on('click', function(){
+                    
+                    $('#toolsMenu').toggleClass('active');
+                    
+                    if ($('#toolsMenu').hasClass("active")) {
+                        $('#tools').text("Hide Tools");
+                    } else {
+                        $('#tools').text("Tools");
+                    }
+                    
+                    
+                });
+                // Generate Key
+                $(document).on('click', '#copyCoin', function(){
+                    
+                    var id = $('#pubKey').val();
+
+                    if (id.length > 0) {
+                        const el = document.createElement('textarea');
+                        el.value = id;
+                        document.body.appendChild(el);
+                        el.select();
+                        document.execCommand('copy');
+                        document.body.removeChild(el);
+    
+                        /* Alert the copied text */
+                        M.toast({html: "Copied to clipboard.", classes: "success"});
+                    } else {
+                        M.toast({html: "Nothing to copy."});
+
+                    }
+
+                    return false;
+
+                    
+                });
+                $('#genBtn').on('click', function(){
+                    
+                    if ($('#generateTool').hasClass('hide') && !$('#importDataTool').hasClass('hide')) {
+                        $('#importDataTool').addClass('hide');
+                        $('#generateTool').removeClass('hide');
+                    } else {
+                        $('#generateTool').removeClass('hide');
+                    }
+                });
+                $('#newKey').on('click', function(){
+
+                    Minima.cmd('keys new', function(res){
+
+                        if (res.status) {
+
+                            $('#pubKey').val(res.response.key.publickey);
+
+                            M.updateTextFields();
+
+                        }
+
+                    }); 
+
+                });
+                $(document).on('click', '#genClose', function() {
+                    $('#generateTool').addClass("hide");
+                })
+                
+                // IMPORT PACKAGES TOOL
+                $('#importDataBtn').on('click', function() {
+                    
+                    if (!$('#generateTool').hasClass('hide')) {
+                        $('#importDataTool').removeClass('hide');
+                        $('#generateTool').addClass('hide');
+                    } else {
+                        $('#importDataTool').removeClass('hide');
+
+                    }
+
+                    if ($('#importDataTool > :last-child').length == 0) {
+                        // if other tools open.. get rid of them
+                        if ($('#generateTool').length > 0) {
+                            $('#generateTool').addClass('hide');
+                        }
+                
+                        let markup = 
+                                    '<div class="row">'+
+                                        '<div class="col s12">'+
+                                            '<span><a id="impDataClose" class="left exit">&#10005;</a></span>'+
+                                        '</div>'+
+                                    '</div>'+
+                                    '<div class="row">'+
+                                        '<div class="input-field col s12">'+
+                                            '<input id="importData" type="text">'+
+                                            '<label for="importData">Insert your import data here...</label>'+
+                                        '</div>'+
+                                    '</div>'+
+                                    '<div class="row">'+
+                                        '<div class="col s12">'+
+                                            '<div id="importPkgBtn" class="modal-trigger btn-flat waves-effect waves-light waves-block polyBtn" href="#">Import Data Package</div>'+
+                                            '<div id="clearImport" class="btn-flat waves-effect waves-light waves-block">Clear</div>'+
+                                        '</div>'+
+                                    '</div>';
+                        // Add input form
+                        $('#importDataTool').append(markup);
+                    }
+                });
+                $(document).on('click', '#impDataClose', function(){
+                    $('#importDataTool').addClass('hide');
+                    $('#importDataTool').empty();
+                });
+                $(document).on('click', '#importPkgBtn', function(){
+                    
+                    let data = $('#importData').val();
+                    let isConfirmed = false;
+                    // check transaction type
+                    if (data.length > 0) {
+
+                        data = atob(data);
+
+                        if (JSON.parse(data)) {
+                            data = JSON.parse(data);
+
+                            if(data.type == "toScript") {
+                                $('#toScriptModal').modal({
+                                    dismissible: false,
+                                    opacity: 0.2,
+                                    onOpenStart: function(){
+                                            
+                                        $('#toScriptModal > .modal-content > h4').html("You are about to import a <span style='font-weight:600;'>Script Address</span>, are you sure?");
+                                        $('#toScriptModal #users').text(data.users);
+                                        $('#toScriptModal #scriptAddr').text(data.hexaddress);
+                                        $('#toScriptModal #signees').text(data.keys);
+
+                                        $('#impConfirmBtn').on('click', function(){
+
+                                            isConfirmed = true;
+
+                                        });
+                                        
+                                    },
+                                    onCloseEnd: function() {
+                                        
+                                        if(isConfirmed) {
+                                            Minima.cmd('newscript "'+data.script+'"', function(res){
+                                                if (res.status) {
+
+                                                    let users = JSON.stringify(data.users);
+                                                    let keys = JSON.stringify(data.keys);
+                                                    let date = Date.now().toString();
+                                                    let type = "This is a "+data.min+"/"+data.signees+" MultiSig Contract";
+
+                                                    const INSERT = "INSERT INTO CONTRACTS VALUES ('";
+                                                    Minima.sql(INSERT+data.id+"', '"+data.hexaddress+"', '"+date+"', '"+keys+"', '"+users+"', '"+type+"')", function(response){
+                                                        console.log(response);
+                                                        if (response.status) {
+                                                            M.toast({html: "You are now tracking this contract.  You can find it in your contracts!", classes: "success"});
+                                                            isConfirmed = false;
+                                                        }
+                                                    });
+                                                }
+                                            });
+                                        }
+                                    }
+                                });
+                                // open when ready
+                                $('#toScriptModal').modal('open');
+                            } else if (data.type == "toSign") {
+                                $('#toSignModal').modal({
+                                    dismissible: false,
+                                    opacity: 0.2,
+                                    onOpenStart: function(){
+                                        
+                                        $('#toSignModal > .modal-content > h4').html("You are about to sign a <span style='font-weight:600;'>Contract Transaction</span>, are you sure?");
+                                        $('#toSignModal #users').text(JSON.parse(data.users));
+                                        $('#toSignModal #scriptAddr').text(data.hexaddress);
+                                        $('#toSignModal #usersKeys').text(JSON.parse(data.keys));
+                                        $('#toSignModal #spend').text(data.amount);
+                                        $('#toSignModal #recipAddr').text(data.recipAddress);
+
+                                        $('#impSignBtn').on('click', function(){
+
+                                            isConfirmed = true;
+
+                                        });
+                                        
+                                    },
+                                    onCloseEnd: function() {
+                                        
+                                        if(isConfirmed) {
+                                            let allKeys = JSON.parse(data.keys);
+                                            let whatKey = ""; // what key should I sign with... 
+                                            Minima.cmd('keys', function(res){
+                                                if (res.status) {
+                                                    res.response.publickeys.forEach(index => {
+                                                        allKeys.forEach(key => {
+                                                            if (key == index.publickey) {
+                                                                whatKey = key;
+                                                            }
+                                                        });
+                                                    });
+                                                    if(whatKey.length > 0) {
+                                                        Minima.cmd('txnimport '+data.id+' '+data.txn+';'+'txnsign '+data.id+' '+whatKey+';'+'txnexport '+data.id, function(res){
+                                                            if (Minima.util.checkAllResponses(res)){
+            
+                                                                data.txn = res[2].response.transaction;
+                            
+                                                                data = JSON.stringify(data);
+                                                                data = btoa(data);
+                                                                copyBase64(data);
+                                                                isConfirmed = false;
+                                                                M.toast({html: "Signed and package copied to your clipboard!"});
+                                                                
+            
+                                                                
+                                                            } else {
+                                                                M.toast({html: "Something went wrong!"});
+                                                            }
+            
+                                                        });
+                                                    } else {
+                                                        M.toast({html: "No key entered!"});
+                                                    }
+                                                }
+                                            });
+                                        }
+                                    }
+                                });
+                                // open when ready
+                                $('#toSignModal').modal('open');
+                            }
+                        }
+                        
+                    } else {
+                        M.toast({html: "Empty input data..."});
+                    }
+
+
+                });
+                $(document).on('click', '#clearImport', function(){
+
+                    $('#importData').val('');
+
+                });
+            });
+        </script>
+
+
+        <a id="tools" class="btn-flat btn waves-effect waves-light waves-block">
+            Tools
+        </a>
+        
+        <div id="logo" class="row center-align no-padding">
+            <div id="start-menu-title" class="start-menu col s12">
+                <h1 id="brand">PolySig</h1>
+            </div>
+        </div>
+
+        <div id="toolsMenu" class="center-align">
+            <div class="row toolButtons">
+                <div class="col s12">
+                    <h2>Tools <a id="toolsClose" class="right exit">&#10005;</a></h2>
+                </div>
+            </div>
+            <div class="row toolButtons">
+                <div class="col s12">
+                    <a id="genBtn" class="waves-effect waves-light btn waves-block">Generate Key</a> 
+                </div>
+                <div class="col s12">
+                    <a id="importDataBtn" class="waves-effect waves-light btn waves-block">Import Data Packages</a>    
+                </div>
+            </div>
+            <div id="generateTool" class="section hide">
+                <div class="row exitWrapper">
+                    <div class="col s2">
+                        <span><a id="genClose" class="left exit">&#10005;</a></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12">
+                        <a id="newKey" class="btn-flat waves-light waves-effect polyBtn">Generate Key</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12 input-field">
+                        <input type="text" disabled id="pubKey" class="center-align">
+                        <label for"pubKey">New Public Key</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12">
+                        <a id="copyCoin" class="btn-flat waves-effect waves-block waves-light polyBtn">Copy</a>
+                    </div>
+                </div>
+            </div>
+            <div id="importDataTool" class="section hide">
+   
+            </div>
+        </div>
+        
+        <div id="mainMenu" class="valign-wrapper">
+            <!-- Main -->
+            <div id="s-menu" class="center-align" style="width: 100%;">
+                <div class="row center-align">
+                    <div id="btnWrap1" class="col s6 offset-s3 scale-transition scale-out">
+                        <a id="createBtn" class="btn-flat waves-block waves-effect waves-light polyBtn">
+                            Create
+                        </a>
+                    </div>
+                </div>
+                <div class="row center-align">
+                    <div id="btnWrap2" class="col s6 offset-s3 scale-transition scale-out">
+                        <div id="provideBtn" class="btn-flat waves-block waves-effect waves-light polyBtn">
+                            Contracts
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Create - Stage 1 -->
+            <div id="s-create" class="container" style="display: none;">
+                <div id="stages" class="row">
+                    <div class="col s12 center-align">
+                        <h3>Stage 1/4</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="row right" style="position: absolute; right: 3px; top:10px;">
+                        <div class="col s12">
+                            <div id="homeBtn2" class="btn-flat waves-effect waves-light backBtn" style="vertical-align: middle">
+                                <i id="forward" class="material-icons left no-padding">arrow_back</i>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="create-menu-title" class="col s-12">
+                        <h1>
+                            <i id="info" class="tiny material-icons" style="margin: 0;">info</i> Let's choose how many participant(s) we want in this contract.
+                        </h1>
+                    </div>
+                </div>
+                <div id="signee" class="row">
+                    <div class="input-field col s12 m6">
+                        <i class="material-icons prefix">lock</i>
+                        <input id="users" type="number" class="validate">
+                        <label for="users">No. of Signee</label>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <i class="material-icons prefix">lock_open</i>
+                        <input id="minimum" type="number" class="validate">
+                        <label for="minimum">Minimum signatures</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s10 offset-s1 center-align">
+                        <a id="proceedBtn" class="btn-flat waves-effect waves-light modal-trigger polyBtn" href="#modalCreate">
+                            <i id="forward" class="material-icons right no-padding">arrow_forward</i>Proceed
+                        </a>
+                    </div>
+                </div>
+               
+            </div>
+            <!-- Set Users - Stage 2 -->
+            <div id="s-stage1" class="container hide">
+                <div id="stages" class="row">
+                    <div class="col s12 center-align">
+                        <h3>Stage 2/4</h3>
+                    </div>
+                </div>
+                <div class="row center-align">
+                    <div class="row right" style="position: absolute; right: 3px; top:10px;">
+                        <div class="col s12">
+                            <div id="homeBtn3" class="btn-flat waves-effect waves-light backBtn" style="vertical-align: middle">
+                                <i id="forward" class="material-icons left no-padding">arrow_back</i>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="create-menu-title" class="col s-12">
+                        <h1>
+                            <i id="info" class="tiny material-icons" style="margin: 0;">info</i> Fill out your and your participant(s) details.
+                        </h1>
+                    </div>
+                </div>
+                <div class="row center-align">
+                    <div id="participants" class="col s12">
+                        <ul class="collection">
+                            
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s10 offset-s1 center-align">
+                        <a id="proceedBtnStage1" class="btn-flat waves-effect waves-light polyBtn">
+                            <i id="forward" class="material-icons right no-padding">arrow_forward</i>Proceed
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- Copy Package - Stage 3 -->
+            <div id="s-stage1-2" class="container hide center-align">
+                <div id="stages" class="row">
+                    <div class="col s12 center-align">
+                        <h3>Stage 3/4</h3>
+                    </div>
+                </div>
+                <div class="row center-align">
+                    <div id="create-menu-title" class="col s-12">
+                        <h1>
+                            <i id="info" class="tiny material-icons" style="margin: 0;">info</i> This is how our multi-signature address is generated... COPY Package below and send it to your participant(s) so they can track this contract with you.
+                        </h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div id="multiSigScript" class="col s12">
+                        
+                    </div>
+                </div>
+
+                <div id="copyPackageWrapper" class="row center-align hide">
+                    <div class='col s12'>
+                        <a id='copyAddress' class='btn-flat waves-effect waves-light polyBtn'>Copy Package</a>
+                    </div>
+                </div>
+                <div id="packageHelper" class="row">
+                    <div class="col s12">
+                        <ul class="collapsible z-depth-0">
+                            <li>
+                              <div class="collapsible-header">Help</div>
+                              <div class="collapsible-body"><span>After sending your participant(s) this package, of a bunch of gibberish text, they should copy paste it in their import tool found in tools.</span></div>
+                              <div class="collapsible-body"><span>TOOLS -> Import Data Package</span></div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row center-align">
+                    <div class="col s12 center-align">
+                        <a id="homeBtn4" class="btn-flat waves-effect waves-light backBtn" style="vertical-align: middle">
+                            <i id="forward" class="material-icons left no-padding">arrow_back</i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- ENTER AMOUNT, SHARE PACKAGE - STAGE 3.5 -->
+            <div id="s-stage3-5" class="container hide center-align">
+                <div id="stages" class="row">
+                    <div class="col s12 center-align">
+                        <h3>Stage 3.5/4</h3>
+                    </div>
+                </div>
+                <div class="row center-align">
+                    <div id="create-menu-title" class="col s-12">
+                        <h1>
+                            <i id="info" class="tiny material-icons" style="margin: 0;">info</i> Now that all your participant(s) are tracking this contract, let us continue...
+                        </h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12">
+                        <div id="toSendWrapper">
+                            <div>
+                                <p>How much Minima would you like to spend in this contract?</p>
+                                <div class="input-field">
+                                    <input id="toSend" type="number"/>
+                                    <label for="toSend">Total amount to spend</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="continueBtnWrapper" class="row center-align">
+                    <div class="col s12">
+                        <a id="endStageBtn1" class="btn-flat waves-effect waves-light polyBtn">Continue</a>
+                    </div>
+                </div>
+            </div>
+            <!-- POST TRANSACTION WHEN READY - STAGE 4-->
+            <div id="s-stage4" class="container hide center-align">
+                <div id="stages" class="row">
+                    <div class="col s12 center-align">
+                        <h3>Stage 4/4</h3>
+                    </div>
+                </div>
+                <div class="row center-align">
+                    <div id="create-menu-title" class="col s-12">
+                        <h1>
+                            <i id="info" class="tiny material-icons" style="margin: 0;">info</i> This is your contract, post when ready!
+                        </h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div id="contractWrap" class="col s12">
+
+                    </div>
+                </div>
+                <div id="postContractWrapper" class="row center-align">
+                    <div>
+                        <a id="postBtn" class="btn-flat waves-effect waves-light polyBtn">Post Contract</a>    
+                    </div>
+                </div>
+            </div>
+            <!-- Posted  -->
+            <div id="s-contracts" class="container hide center-align">
+                <div class="row">
+                    <div class="col s12">
+                        <div id="contracts">
+                            <ul class="collection with-header">
+                                <li class="collection-header">Contract Activities</li>
+                                <div id="contract">
+
+                                </div>
+                                <div id="contract-details" class="hide">
+                                    
+                                </div>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row center-align">
+                    <div class="col s12">
+                        <div id="homeBtn5" class="btn-flat waves-effect waves-light backBtn" style="vertical-align: middle">
+                            <i id="forward" class="material-icons left no-padding">arrow_back</i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+    <!-- Confirm Signee Modal -->
+    <div id="modalCreate" class="modal">
+        <div class="modal-content">
+            <h4 id="m-contractHeader"></h4>
+            <p id="m-contractType"></p>
+        </div>
+        <div class="modal-footer">
+            <div class="modal-action modal-close waves-effect waves-red btn-flat ">Cancel</div>
+            <div id="confirm" class="hide modal-action modal-close waves-effect waves-green btn-flat">Confirm</div>
+        </div>
+    </div>
+    <!-- Modal For toScript -->
+    <div id="toScriptModal" class="modal bottom-sheet">
+        <div class="modal-content">
+            <h4></h4>
+            <div class="row">
+                <div class="col s12">
+                    <ul class="collection with-header">
+                        <li class="collection-header">Import Details</li>
+                        <li class="collection-item">
+                            <div>PARTICIPATING USERS<a id="users" class="secondary-content"> </a></div>
+                        </li>
+                        <li class="collection-item">
+                            <div>SCRIPT ADDRESS<a id="scriptAddr" class="secondary-content"> </a></div>
+                        </li>
+                        <li class="collection-item">
+                            <div>SIGNEES<a id="signees" class="secondary-content"> </a></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="modal-close waves-effect waves-green btn-flat">Cancel</div>
+            <div id="impConfirmBtn" class="modal-close waves-effect waves-green btn-flat">Add</div>
+        </div>
+    </div>
+    <!-- Modal For toSign -->
+    <div id="toSignModal" class="modal bottom-sheet">
+        <div class="modal-content">
+            <h4></h4>
+            <div class="row">
+                <div class="col s12">
+                    <ul class="collection with-header">
+                        <li class="collection-header">Import Details</li>
+                        <li class="collection-item">
+                            <div>PARTICIPATING USERS<a id="users" class="secondary-content"> </a></div>
+                        </li>
+                        <li class="collection-item">
+                            <div>USERS KEYS<a id="usersKeys" class="secondary-content"> </a></div>                            
+                        </li>
+                        <li class="collection-item">
+                            <div>SCRIPT ADDRESS<a id="scriptAddr" class="secondary-content"> </a></div>
+                        </li>
+                        <li class="collection-item">
+                            <div>WANTS TO SPEND<a id="spend" class="secondary-content"> </a></div>
+                        </li>
+                        <li class="collection-item">
+                            <div>RECIPIENT ADDRESS<a id="recipAddr" class="secondary-content"></a></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="modal-close waves-effect waves-green btn-flat">Cancel</div>
+            <div id="impSignBtn" class="modal-close waves-effect waves-green btn-flat">Sign</div>
+        </div>
+    </div>
+    <!-- dd-edit -->
+    <ul id='dd-edit' class='dropdown-content'>
+        <li id="deleteForeverBtn"><div><i class="material-icons">delete_forever</i>Toggle</div></li>
+    </ul>
+    <!-- dd-edit-deleteModal -->
+    <div id="dd-editModal" class="modal">
+        <div class="modal-content">
+            <h4></h4>
+            <p></p>
+        </div>
+        <div class="modal-footer">
+            <div class="modal-action modal-close waves-effect waves-red btn-flat ">Cancel</div>
+            <div id="confirm" class="modal-action modal-close waves-effect waves-green btn-flat">Confirm</div>
+        </div>
+    </div>
+
+        <script src="js/minima.js" type="text/javascript"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/decimal.js/9.0.0/decimal.min.js" integrity="sha512-zPQm8HS4Phjo9pUbbk+HPH3rSWu5H03NFvBpPf6D9EU2xasj0ZxhYAc/lvv/HVDWMSE1Autj19i6nZOfiVQbFQ==" crossorigin="anonymous"></script>
+
+    </body>
+</html>

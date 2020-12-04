@@ -1,0 +1,27 @@
+{
+  "block": {
+    "miniDapp": "block.minidapp",
+    "icon": "block/assets/blockicon.svg",
+    "conf": "block/minidapp.conf"
+  },
+  "coinmaster": {
+    "miniDapp": "coinmaster.minidapp",
+    "icon": "coinmaster/assets/coin.svg",
+    "conf": "coinmaster/minidapp.conf"
+  },
+  "futurecash": {
+    "miniDapp": "futurecash.minidapp",
+    "icon": "futurecash/futurecash.svg",
+    "conf": "futurecash/minidapp.conf"
+  },
+  "polysig": {
+    "miniDapp": "polysig.minidapp",
+    "icon": "polysig/assets/polysig.svg",
+    "conf": "polysig/minidapp.conf"
+  },
+  "wallet": {
+    "miniDapp": "wallet.minidapp",
+    "icon": "wallet/assets/JS/logo.png",
+    "conf": "wallet/minidapp.conf"
+  }
+}
