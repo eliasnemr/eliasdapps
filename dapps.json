@@ -1,7 +1,7 @@
 {
  "polysig": {
       "miniDapp": "polysig.minidapp",
-      "icon": "polysig/assets/polysig.png",
+      "icon": "polysig/assets/polysig.svg",
       "conf": "polysig/minidapp.conf"
   },
   "block": {
@@ -16,7 +16,7 @@
   },
     "coinmaster": {
       "miniDapp": "coinmaster.minidapp",
-      "icon": "coinmaster/assets/coin.png",
+      "icon": "coinmaster/assets/coin.svg",
       "conf": "coinmaster/minidapp.conf"
   },
   "futurecash": {
