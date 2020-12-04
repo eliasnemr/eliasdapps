@@ -1,0 +1,608 @@
+/** Default Minima font - Manrope master */
+@font-face {
+  font-family: manrope-bold;
+  src: url("./fonts/manrope-bold.otf");
+}
+@font-face {
+  font-family: manrope-light;
+  src: url("./fonts/manrope-light.otf");
+}
+@font-face {
+  font-family: manrope-regular;
+  src: url("./fonts/manrope-regular.otf");
+}
+#menu {
+  background-color: #F0F0FA;
+  width: 70%;
+  max-width: 700px;
+}
+#menu #b-title-wrap {
+  margin-bottom: 1%;
+}
+#menu #menu-content {
+  width: 100%;
+  height: 55vh;
+  overflow: scroll;
+}
+#menu .menu-header {
+  position: relative;
+  top: 0;
+}
+#menu .menu-footer {
+  position: relative;
+  bottom: 0;
+}
+#menu #yourbalance {
+  margin-bottom: 4%;
+}
+
+
+@media only screen and (max-width: 514px) {
+  #futuredata .row .col {
+    font-size: 1.0rem !important;
+  }
+}
+@media only screen and (max-width: 600px) {
+  #menu {
+    height: 100%;
+    width: 100%;
+  }
+  #menu #menu-content {
+    height: 70vh;
+  }
+}
+
+@media only screen and (max-width: 696px) {
+  #mycash #futuretable #table-header , #menu #buttons .menuBtn, .collect {
+    font-size: 1.0rem !important;
+  }
+  #sendcash .genBtn, #sendcash .genBtn2, #sendcash .sendBtn, #sendcash .pastekey,#sendcash .copykey {
+    font-size: 1.0rem !important;
+  }
+  #futuredata .row .col {
+    font-size: 0.9rem !important;
+  }
+}
+@media only screen and (max-width: 614px) {
+  #mycash #futuretable #table-header , #menu #buttons .menuBtn, .collect {
+    font-size: 0.9rem !important;
+  }
+  #sendcash .genBtn, #sendcash .genBtn2, #sendcash .sendBtn, #sendcash .pastekey {
+    font-size: 0.9rem !important;
+  }
+}
+
+@media only screen and (max-width: 390px) {
+  #sendcash #sendform .pastekey, #sendcash .sendBtn {
+    font-size: 0.7rem !important;
+  }
+}
+@media only screen and (max-width: 336px) {
+  #sendcash #sendform .pastekey, #sendcash .sendBtn {
+    font-size: 0.5rem !important;
+  }
+}
+@media only screen and (max-width: 376px) {
+  #mycash #futuretable #table-header , #menu #buttons .menuBtn, .collect {
+    font-size: 0.8rem !important;
+  }
+  #mycash #futuretable #table-header , #sendcash .genBtn, #sendcash .genBtn2, #sendcash .sendBtn, #sendcash .pastekey, #sendcash .copykey {
+    font-size: 0.8rem !important;
+  }
+  #futuredata .row .col {
+    font-size: 0.8rem !important;
+  }
+}
+@media only screen and (max-width: 344px) {
+  #mycash #futuretable #table-header , #menu #buttons .menuBtn, .collect {
+    font-size: 0.7rem !important;
+  }
+  #sendcash .genBtn, #sendcash .genBtn2, #sendcash .sendBtn, #sendcash .pastekey, #sendcash .copykey {
+    font-size: 0.7rem !important;
+  }
+}
+@media only screen and (max-width: 310px) {
+  #mycash #futuretable #table-header , #menu #buttons .menuBtn, .collect {
+    font-size: 0.6rem !important;
+  }
+  #sendcash .genBtn, #sendcash .genBtn2, #sendcash .sendBtn, #sendcash .pastekey, #sendcash .copykey {
+    font-size: 0.6rem !important;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent; /* make scrollbar transparent */
+}
+body {
+  background-color: #031B32;
+  font-family: manrope-regular;
+  display: webkit box;
+  display: webkit flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+#buttons {
+  padding-left: 3.5%;
+  padding-right: 3.5%;
+  margin-bottom: 0 !important;
+}
+#aboutwrapper {
+  padding-right: 0 !important;
+}
+#sendcashwrapper {
+  padding-right: 0 !important;
+}
+#myfuturewrapper {
+  padding-right: 1.5% !important;
+}
+#menu #buttons .col .menuBtn {
+  margin-top: 2%;
+  white-space: pre-wrap;
+  overflow: hidden;
+}
+#menu .card-title h4 {
+  font-family: manrope-bold !important;
+}
+#menu .menuBtn, #menu .menuBtn2 {
+  font-family: manrope-bold !important;
+  font-size: 1.0rem !important;
+  text-transform: none !important;
+  background-color: #031B32 !important;
+  color: #fff !important;
+}
+#menu .menuBtn:hover, #menu .menuBtn2:hover {
+  background-color: #F65130 !important;
+}
+#menu #menu-content {
+  background: transparent !important;
+}
+#menu .menuBtn.active {
+  background-color: #F65130 !important;
+}
+#menu #menu-content .card-content {
+  padding: 0 !important;
+}
+#b-title-wrap {
+  margin-top: 5%;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-bottom: 0;
+  background-color: #031B32 !important;
+}
+#b-title-wrap {
+  font-family: manrope-bold !important;
+  padding-top: 3%;
+  padding-left: 5%;
+  padding-bottom: 1.5%;
+}
+#b-title-wrap .row {
+  padding-right: 0 !important;
+}
+#b-title-wrap #icon {
+  width: 75px;
+  height: 4vh;
+  float: right;
+  right: 7%;
+}
+@media only screen and (max-width: 399px) {
+  #icon {
+    width: 25px !important;
+    height: 0vh;
+  }
+}
+@media only screen and (max-width: 355px) {
+  #icon {
+    display: none;
+  }
+}
+#b-title-wrap  h4 {
+  color: #fff !important;
+  text-align: left;
+  font-weight: 800;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+#b-title-wrap h4 span {
+  color: #F65130 !important;
+  font-weight: 800;
+}
+#b-title-wrap  h4 #demo {
+  color: #fff !important;
+  font-size: 1.2rem;
+  font-weight: 800;
+  padding-left: 1%;
+}
+#intro {
+  text-align: left;
+  padding: 1% 5% 0 5%;
+}
+#intro #title {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+.material-icons {
+  display: inline-flex;
+  vertical-align: top;
+  font-size: 2.3rem;
+  color: #317AFF;
+}
+.info-icons {
+  color: #F65130!important;
+}
+.firstcollection li div.collapsible-header h5 {
+  line-height: 31px;
+  margin-left: 1%;
+  float: left;
+}
+.secondcollection li div.collapsible-header h5 {
+  line-height: 31px;
+  margin-left: 1%;
+  float: left;
+}
+.firstcollection li div.collapsible-body p, .secondcollection li div.collapsible-body p, .thirdcollection li div.collapsible-body p, .fourthcollection li div.collapsible-body p  {
+  padding: 1%;
+}
+.thirdcollection li div.collapsible-header h5 {
+  line-height: 31px;
+  margin-left: 1%;
+}
+.fourthcollection li div.collapsible-header h5 {
+  line-height: 31px;
+  margin-left: 1%;
+}
+.dropdown {
+  float: right;
+  font-size: 2.3rem !important;
+  position: absolute;
+  right:0;
+  bottom:18px;
+  color: #317AFF;
+}
+
+.iconadd {
+  display:inline-block;
+}
+.iconremove {
+  display:none !important;
+}
+li.active .collapsible-header .material-icons.iconadd {
+  display:none !important;
+}
+li.active .collapsible-header .material-icons.iconremove {
+  display: inline-block !important;
+}
+
+#intro .row div.col {
+  padding-left: 0;
+  padding-right: 0;
+}
+#intro h2 {
+  margin-top: 1%;
+  margin-bottom: 1%;
+  font-family: manrope-bold !important;
+  font-size: 2.0rem;
+}
+#intro h5 {
+  font-family: manrope-bold !important;
+  font-size: 1.3rem;
+}
+#intro p {
+  font-size: 1.3rem;
+  font-weight: 300;
+  text-align: left;
+}
+ul.collapsible {
+  margin: 0;
+}
+.collapsible {
+  padding: 0;
+}
+.collapsible .collapsible-header {
+  padding: 1%;
+}
+#sendcash #myaddress-wrap {
+  margin-top: 1%;
+  margin-bottom: 5%;
+  padding-bottom: 2%;
+  border-bottom: 2px solid #455968;
+}
+#sendcash .col {
+  margin-right: 0;
+}
+#sendcash #myaddress {
+  font-size: 1.0rem;
+  padding: 2%;
+  margin-bottom: 2%;
+  word-wrap: break-word;
+  white-space: normal;
+  background-color: #fff !important;
+  color: #548FFF !important;
+}
+#sendcash #myaddress {
+  text-align: left;
+}
+#sendcash .genBtn {
+  font-family: manrope-bold !important;
+  font-size: 1.2rem;
+  text-transform: none !important;
+  color: #fff !important;
+  text-overflow: ellipsis;
+  white-space: pre-wrap;
+  word-break: keep-all;
+  width: 100%;
+  background-color: #317AFF !important;
+}
+#sendcash .copykey {
+  width: 100%;
+  text-transform: none;
+  border: 1px solid #317AFF !important;
+  color: #317AFF;
+  font-family: manrope-bold;
+}
+#sendcash .copykey:hover, #sendcash .pastekey:hover {
+  background-color: transparent !important;
+}
+#copyWrapper.offset-s1 {
+  margin-left: 1%;
+}
+#sendcash .copyKey {
+  width: 122%;
+}
+
+#sendcash .pastekey {
+  width: 100%;
+  text-transform: none;
+  border: 1px solid #317AFF !important;
+  color: #317AFF;
+  font-family: manrope-bold;
+  white-space: pre-wrap;
+  overflow: hidden;
+}
+#sendcash #genBtn-wrap .col {
+  padding: 0;
+}
+#sendcash #genBtn-wrap .col p {
+  font-weight: 400;
+  height: auto;
+}
+#sendcash #genBtn-wrap .col {
+  height: 40px;
+}
+
+#menu .menu-footer {
+  border-top: 2px solid #455969 !important;
+  border-top-color: #455969 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  max-height: 30px;
+  width:100%;
+}
+.menu-footer #yourbalance, .menu-footer #blocktime {
+  padding-top: 5%;
+  font-size: 1.0rem;
+  letter-spacing: 0.02em;
+}
+.menu-footer .baldiv {
+  font-family: manrope-bold !important;
+  font-size: 1.2rem !important;
+  padding-left: 10%;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  text-align: left !important;
+  font-variant-numeric: oldstyle-nums;
+}
+.menu-footer .timediv {
+  font-family: manrope-bold !important;
+  font-size: 1.2rem !important;
+  padding-right: 10%;
+  font-weight: 600;
+  text-align: right !important;
+  font-variant-numeric: oldstyle-nums;
+}
+#sendcash {
+  padding: 0% 5% 0 5%;
+}
+#sendcash #sendform {
+  padding: 0 0 0 15%;
+}
+#sendcash .col {
+  padding-right: 0 !important;
+  padding-left: 0 !important;
+
+}
+#sendcash h6 {
+  font-family: manrope-bold;
+  font-size: 1.2rem !important;
+  position: relative;
+  top :0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  padding-top: 8%;
+}
+#sendcash #title-dt {
+  padding-top: 0%;
+  padding-bottom: 5%;
+}
+@media only screen and (max-width: 369px) {
+  #sendcash h6 {
+    font-size: 0.8rem !important;
+  }
+}
+#sendcash .collection {
+  background: inherit !important;
+  background-color: transparent !important;
+}
+#sendcash .collection .collection-item {
+  background: inherit !important;
+  border: none !important;
+}
+#sendcash input { 
+  padding-left: 2%;
+  background-color: #fff !important;
+  height: 36px;
+  word-break: break-all;
+  white-space: normal;
+  border: none !important;
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+  box-sizing: border-box;  
+}
+#sendcash .collection .collection-item div {
+  font-weight: 600;
+}
+#sendcash .sendBtn {
+  background-color: #317AFF !important;
+  color: #fff !important;
+  width:98%;
+  text-transform: none;
+  font-size: 1.2rem;
+  font-family: manrope-bold !important;
+  margin-left: 3%;
+  white-space: pre-wrap;
+  overflow: hidden;
+}
+#mycash {
+  padding-left: 3.5%;
+  padding-right: 3.3%;
+  padding-bottom: 5%;
+}
+#mycash #futuretable {
+  margin-top: 1%;
+}
+#mycash #futuretable #table-header .col {
+  font-size: 1.0rem;
+  text-align: center;
+  font-family: manrope-bold !important;
+  color: #fff !important;  
+}
+
+#mycash #futuretable #table-header .col div {
+  background-color: #91919D;
+  color: #fff;
+  font-family: manrope-bold;
+  text-transform: none;
+}
+#th-amount {
+  padding-right: 0;
+}
+#th-time {
+  padding-right: 0;
+}
+#futuredata .row {
+  padding-left: 1.5%;
+  padding-right: 1.5%;
+}
+#futuredata .row .col {
+  background-color: #FFFFFF;
+  font-family: manrope-regular;
+  font-size: 1.2rem;
+  font-variant-numeric: tabular-nums;
+  font-size: 1.2rem;
+  height: 30px;
+
+  white-space: nowrap;
+  overflow: hidden;
+
+  flex-direction: column;
+  display:flex;
+  align-items: center !important;
+}
+#td-collect {
+  padding-right: 0;
+  height: auto;
+}
+#td-amount, #td-time {
+  border-right: 1px solid #F0F0FA;
+}
+#td-amount .wrap {
+  text-align: right;
+  width: 100%;
+}
+
+.collect {
+  margin-left: 2%;
+  font-family: manrope-bold !important;
+  max-height: auto;
+  text-transform: none !important;
+  width: 100%;
+  height: 29px;
+  line-height: 0;
+}
+.progress {
+  cursor: pointer;
+  margin-top: 6%;
+  width: 80%;
+}
+
+#futurecashbtn {
+  cursor: pointer;
+}
+#mycash .collect {
+  background-color: #317AFF !important;
+  color: #fff;
+}
+#mycash button {
+  width:100%;
+}
+#modalSendFunds h4 {
+  font-size: 1.3rem;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+#modalSendFunds p {
+  font-size: 1.1rem;
+}
+#modalSendFunds #yesBtn {
+  color: #548FFF !important;
+  font-size:1.2rem;
+}
+#modalSendFunds a {
+  color: #F65130;
+}
+
+
+
+
+/** Toast */
+.success {
+  background-color: #548FFF !important;
+}
+.ready {
+  background-color: #548FFF !important;
+  font-family: manrope-bold;
+}
+.miningstarted {
+  background-color: #548FFF !important;
+  font-family: manrope-bold;
+  height: 150px;
+}
+.miningstop {
+  background-color: rgb(246,81,48) !important;
+  font-family: manrope-bold;
+  height: 150px;
+}
+.danger {
+  background-color: rgb(246, 81, 48) !important;
+  font-family: manrope-bold;
+}
+/** Date picker/time picker */
+
+.datepicker-date-display {
+  background-color: #031B32 !important;
+}
+.datepicker-canvas-bg {
+  fill: #031B32 !important;
+}
+
+.timepicker-digital-display {
+  background-color: #031B32 !important;
+}
+
