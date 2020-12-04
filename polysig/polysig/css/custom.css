@@ -1,0 +1,733 @@
+*,
+*::after,
+*::before {
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+/** Font Families */
+@font-face {
+    font-family: RobotoCondensed-Bold;
+    src: url("../fonts/Roboto_Condensed/RobotoCondensed-Bold.ttf");
+}
+@font-face {
+    font-family: CF;
+    src: url("../fonts/CF.ttf");
+}
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* make scrollbar transparent */
+}
+a {
+    margin: 0 !important;
+    cursor: pointer;
+}
+#stages h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+#toolsMenu {
+    position: fixed;
+    bottom: -1000px;
+    z-index: 10;
+    width: 100%;
+    height: 90%;
+    overflow-y: scroll;
+    padding: 5%;
+    background: rgb(26,29,45) !important;
+    transition: bottom .5s ease-in;
+}
+#toolsMenu.active {
+    bottom: 0;
+}
+#toolsMenu a {
+    margin-bottom: 5px !important;
+}
+#genBtn, #importDataBtn {
+    background-color: rgba(42, 59, 74) !important;
+    color: #fff;
+    font-weight: 800;
+    opacity: 0.7;
+}
+#toolsMenu #genBtn:hover, #importDataBtn:hover {
+    opacity: 0.7;
+    transform: scale(1.01);
+}
+.toolButtons .col h2 {
+    font-weight: 300;
+    color: #fff;
+    opacity: 0.8;
+    margin: 0;
+    padding: 0;
+}
+body {
+    height: 100% !important;
+    width: 100% !important;
+    background-color: rgb(218,220,207);
+}
+input {
+    color: rgba(158,158,158, 1.0) !important;
+    font-weight: 900;
+}
+#brand {
+    font-size: 3.0rem;
+    font-weight: 130;
+    font-family: CF;
+    cursor: default;
+}
+
+.polyBtn {
+    background-color: rgb(26,28,45);
+    color: rgb(217,218,224);
+}
+.polyBtn:hover {
+    color: rgba(255, 255, 255, 0.7);
+    transform: scale(1.01);
+}
+.backBtn {
+    color: #000;
+    position: absolute; 
+    right: 10px; 
+    top:10px;
+}
+.backBtn i {
+    font-size: 2.0rem;
+}
+.backBtn:hover {
+    transform: scale(0.9);
+}
+#s-menu, #s-help, #s-create, #s-inputs {
+    background: transparent;
+}
+#start-menu-title h1 {
+    font-size: 2.0rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    padding-bottom: 2px;
+}
+#create-menu-title h1 {
+    font-family: RobotoCondensed-Bold !important;
+    font-size: 1.6rem;
+    padding-bottom: 2px;
+    color: #000 !important;
+}
+#create-menu-title h1 i {
+    color: #313939 !important;
+    font-size: 1.35rem;
+}
+#titles {
+    color: rgb(217,218,224) !important;
+    font-size: 1.7rem;
+    font-weight: 120;
+    position: relative;
+    border-bottom: 1px solid rgb(180,109,225);
+    margin-bottom: 10px;
+}
+
+#descr {
+    font-size: 1.0rem;
+    opacity: 0.7;
+}
+#forward {
+    margin:0;
+    padding:0;
+}
+.nav-wrapper {
+    background-color: rgb(246,115,121);
+}
+.nav-wrapper .col a {
+    color: rgb(217,218,224);
+}
+#addInput i {
+    padding: 0;
+    margin: 0;
+}
+#addInput {
+    font-size: 1.0rem;
+    font-weight: 200;
+    color: rgb(38,166,154)
+}
+#minusInput {
+    color: rgb(215,84,89) !important;
+}
+#electronicKey {
+    filter: invert(409%) sepia(79%) saturate(2476%) hue-rotate(86deg) brightness(90%) contrast(119%);
+}
+.script-header h4 {
+    font-size: 0.8rem !important;
+
+}
+.script-header {
+    white-space: normal;
+    opacity: 0.8;
+}
+.script-Wrapper {
+    white-space: normal;
+    word-break: break-all;
+}
+.collection li {
+    white-space: normal;
+    word-break: break-all;
+}
+.script-header h4 {
+    color: rgb(218,220,207);
+    font-size: 2.0rem;
+
+}
+#scriptWrapper {
+    background: transparent !important;
+}
+#scriptWrapper p {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: rgb(65,67,55);
+    word-wrap: break-word;
+}
+#scriptWrapper a {
+    background-color: rgb(111,170,84);
+    opacity: 1.0;
+    font-size: 1.0rem;
+    font-weight: 600;
+    color: #DADCCF;
+}
+#scriptWrapper input {
+    color: rgb(65,67,55) !important;
+}
+#scriptWrapper i {
+    color: #F65A35;
+    font-size: 3.0rem;
+}
+
+#toSendWrapper {
+    border: none !important;
+}
+#toSendWrapper {
+    background: transparent !important;
+}
+#toSendWrapper h4 {
+    color: #878787 !important;
+}
+#toSendWrapper p {
+    color: #878787 !important;
+    font-size: 1.5rem;
+}
+
+#return {
+    color: rgb(86,138,119);
+    font-weight: 600;
+}
+#signee {
+    padding: 15px;
+}
+#tools {
+    z-index: 99999;
+    position: absolute;
+    top: 12px;
+    left: 5px;
+    font-weight: 800;
+    color: #000;
+}
+#tools:hover {
+    opacity: 0.7;
+    background-color: rgba(138,121,139, 0.7);
+}
+
+.contract-card {
+    border: none !important;
+    background-color: rgb(218,220,207);
+}
+.contract-card .collection .collection-item {
+    background-color: rgb(218,220,207);
+}
+.contract-card .card-title {
+    background-color:rgb(198,162,156)!important;
+    z-index: -10;
+    color: #fff !important;
+    font-family: CF !important;
+    letter-spacing: -0.02em;
+}
+.contract-card .collection {
+    border: none !important;
+    overflow-y: scroll !important;
+}
+.contract-card .collection .collection-item {
+    overflow-y: auto;
+    border-bottom: 1px solid gray;
+}
+.contract-card .collection .collection-item div {
+    font-size: 1.1rem;
+    font-weight: 800;
+    word-break: break-all;
+    white-space: normal;
+    float: left;
+    text-transform: uppercase;
+}
+.contract-card .collection .collection-item a {
+    word-break: break-all !important;
+    white-space: normal !important;
+}
+.contract-card .collection .collection-item #users {
+    font-size: 1.0rem;
+    color: rgb(128,142,153);
+    font-weight: 600;
+}
+.contract-card .collection-keys {
+    overflow-y: auto;
+    max-height: 300px;
+    height: 300px;
+}
+.contract-card .card-image img {
+    height: 80px;
+}
+.contract-header {
+    font-family: RobotoCondensed-Bold !important;
+    font-weight: 80;
+    letter-spacing: -0.02em;
+    font-size: 1.5rem;
+    background: transparent !important;
+    color: #000 !important;
+}
+.contract-card .card-action a {
+    color: rgb(174,71,77) !important;
+    font-weight: 600;
+}
+.contract-card .card-action a:hover {
+    transform: scale(1.1);
+    opacity: 0.7;
+}
+.contract-item a {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+.contract-amnt span {
+    float: left;
+    color: rgb(174,71,77);
+    font-weight: 700;
+}
+.contract-amnt img {
+    width: 40px !important;
+    float: left;
+    padding-right: 3px;
+}
+.contract-amnt h4 {
+    font-family: RobotoCondensed-Bold !important;
+    font-size: 2.5rem;
+    color: #329A4E;
+    margin: 0;
+    padding: 0;
+}
+.contract-amnt p {
+    font-size: 1.0rem;
+    color: #000;
+    opacity: 0.7;
+    border-bottom: 3px solid rgb(174,71,77);
+}
+.contract-item h4 {
+    font-weight: 800;
+    font-size: 1.5rem;
+}
+.contract-item p {
+    background: rgba(180,166,238, 0.1) !important;
+    color: black;
+    font-weight: 900; 
+    font-size: 1.5rem;
+    border: none !important;
+    font-family: RobotoCondensed-Bold !important;
+}
+.contract-item input {
+    color: black !important;
+    text-align: center;
+}
+.contract-item i {
+    position: absolute;
+    right: 5px;
+    color: rgb(9,191,144) !important;
+}
+.card-content {
+    opacity: .6;
+    z-index: -10;
+    font-size: 32px;
+}
+/** Modals */
+#modalCreate, #dd-editModal {
+    background-color: rgba(25,40,47, 1.0);
+    color: rgb(218,220,207);
+}
+#modalCreate .modal-footer, #dd-editModal .modal-footer {
+    background-color: rgba(25,40,47, 1.0) !important;
+}
+#modalCreate .modal-footer div, #dd-editModal .modal-footer div {
+    color: rgb(218,220,207); 
+}
+#importedDataModal {
+    z-index: 99999;
+}
+.toast {
+    color: rgb(218,220,207);
+    background-color: rgb(173,74,83);
+}
+.card-reveal {
+    background: rgba(180,166,238, 0.8) !important;
+}
+.card-reveal {
+    height: auto;
+    overflow-y: scroll;
+}
+.card-reveal span {
+    font-weight: 800 !important;
+    opacity: 0.8 !important;
+}
+#chosenCoinsWrapper .collection-item {
+    background-color: rgb(39,84,87) !important;
+}
+.signature-collection {
+    height: 200px;
+    overflow-y: scroll;
+}
+#exportContract, #exportSignedContract {
+    color: #f2f2f2 !important;
+}
+#copySignedContract {
+    color: rgb(38,166,154) !important;
+}
+#exportContract:hover, #exportSignedContract:hover, #copySignedContract:hover {
+    transform: scale(1.2);
+}
+.success {
+    background-color: rgb(37,84,87) !important;
+}
+.copy, #copyKey {
+    cursor: pointer;
+    color: rgb(38,166,154) !important;
+}
+
+#tokenCoinsWrapper ul {
+    border-top: 1px solid rgb(158,158,158) !important;
+}
+#tokenCoinsWrapper .collection-header {
+    background-color: rgb(41,58,74) !important;
+    border: none !important;
+}
+#tokenCoinsWrapper h2 {
+    margin: 0 !important;
+    padding: 0 !important;
+    color: rgb(38,166,154);
+}
+#generateTool, #importDataTool {
+    background: rgb(41,58,74);
+}
+#importDataTool #clearImport {
+    color: #BB2422 !important;
+}
+#generateTool h4, #importDataTool h4 {
+    color: rgb(215,218,220) !important;
+    font-size: 1.0rem;
+    font-weight: 500;
+    float: left;
+    padding-top: 0;
+}
+#generateTool .exit, #importDataTool .exit {
+    margin-right: 2% !important;
+    font-weight: 700 !important;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: rgb(217,220,207);
+    opacity: 0.7;
+}
+#generateTool .exitWrapper {
+    margin: 0;
+}
+#generateTool #newKey {
+    background-color: rgb(134, 45, 89);
+}
+#toScriptModal, #toSignModal {
+    z-index: 99999;
+    background-color: rgb(218,220,207);
+}
+#toScriptModal .modal-content .collection-header, #toSignModal .modal-content .collection-header {
+    font-size: 1.3rem !important;
+    font-weight: 600;
+}
+#toScriptModal .modal-content .collection-item, #toSignModal .modal-content .collection-item {
+    font-size: 1.0rem !important;
+    font-weight: 600;
+    white-space: pre-wrap;
+}
+#toScriptModal .modal-footer, #toSignModal .modal-footer {
+    background-color: rgb(26,28,45);
+}
+#toScriptModal .modal-footer div, #toSignModal .modal-footer div {
+    color: rgb(218,220,207);
+}
+#toScriptModal .modal-footer div:hover, #toSignModal .modal-footer div:hover {
+    opacity: 0.6;
+    transform: scale(1.1);
+}
+.exit {
+    color: rgb(217,220,207);
+    opacity: 0.7;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.contract .details, .contract-spend, .contract-exp, .contract-imp {
+    background-color: rgb(239,241,235);
+}
+.contract .details .collection {
+    border: none !important;
+}
+.contract .details .collection-item div {
+    float: left !important;
+    font-size: 1.2rem;
+    color: rgb(86,88,82);
+    font-weight: 700;
+}
+.contract .details .collection-item a {
+    font-size: 1.0rem;
+    float: right;
+}
+.contract .details .collection-item {
+    position: relative !important;
+    padding-bottom: 20px !important;
+    padding-top: 0px !important;
+}
+.contract .card-content .backContract {
+    float: right !important;
+    color: #000 !important;
+    cursor: pointer;
+}
+.contract .card-content .backContract i {
+    font-size: 2.5rem;
+    color: #000;
+    font-weight: 800;
+}
+.postTransaction {
+    font-size: 1.5rem;
+}
+
+
+#contracts .card {
+    background: transparent!important;
+}
+#contracts .collection-header {
+    background: transparent !important;
+    font-family: RobotoCondensed-Bold !important;
+    color: #000 !important;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    border: none !important;
+}
+#contracts .collection-item {
+    background-color: transparent;
+    padding: 0;
+    margin: 0;
+    margin-top: 7.5px;
+    padding-top: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+#contracts {
+    max-height: 823px;
+    height: 823px;
+    overflow-y: scroll;
+}
+#contracts #amnt {
+    font-weight: 600 !important;
+    font-size: 1.3rem;
+    color: #BD8642;
+}
+#contracts #title {
+    color: #BD8642;
+    font-weight: 500;
+}
+#contracts .card-content {
+    background-color: #fff;
+}
+#contracts .collection-item p {
+    font-weight: 100;
+}
+#contracts .card-title {
+    color: #000;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    font-family: RobotoCondensed-Bold !important;
+}
+#contracts a {
+    font-weight: 800;
+    margin: 0;
+    padding: 0;
+}
+#timestamp {
+    font-size: 1.0rem;
+    font-weight: 300 !important;
+    color: #000;
+}
+#contractType {
+    font-weight: 350 !important;
+    padding-bottom: 10px;
+    font-size: 1.3rem;
+    color: #E2761A !important;
+}
+.c-details-header {
+    margin: 0 !important;
+    opacity: 0.8;
+    border: none !important;
+    color: #000 !important;
+    font-weight: 160 !important;
+    font-size: 1.3rem;
+}
+.c-details-item {
+    background-color: rgb(59,69,97) !important;
+    font-size: 1.0rem;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 1px solid grey !important;
+    color: #f2f2f2 !important;
+    font-weight: 300 !important;
+}
+
+#coinsModalCreate {
+    background-color: rgba(25,40,47, 1.0);
+    color: rgb(218,220,207);
+}
+#aCoinsWrapper #coin {
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: #fff;
+}
+#coinsModalCreate #m-contractHeader {
+    color: rgb(44,95,107);
+}
+#coinsModalCreate .modal-footer {
+    background: rgb(44,95,107) !important;
+    height: 45px;
+}
+#coinsModalCreate .modal-footer a {
+    color: rgb(218,220,207); 
+}
+#coinsModalCreate #aConfirmBtn {
+    font-weight: 800;
+}
+#aCoinsWrapper {
+    max-height: 300px;
+    overflow-y: scroll;
+}
+#aCoinsWrapper ul {
+    border: none !important;
+}
+#aCoinsWrapper li {
+    background-color: rgba(25,40,47, 0.1) !important;
+    white-space: pre-wrap;
+}
+#aCoinsWrapper .secondary-content {
+    font-weight: 400;
+    font-size: 1.0rem;
+}
+
+#toolsClose {
+    font-size: 30px;
+    padding: 2px;
+    background-color: none !important;
+    float: right;
+}
+
+#participants ul {
+    max-height: 700px;
+    overflow-y: auto;
+}
+#participants .card-image i {
+    font-size: 3.0rem;
+    color: #DADCCF;
+}
+.user-item .card {
+    background-color: #F5F5F5 !important;
+}
+.user-item {
+    background-color: transparent !important;
+}
+hr {
+    border-color: rgba(138,121,139, 0.7) !important;
+}
+
+#tutorial {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background: rgb(135,72,184);
+    background: linear-gradient(0deg, rgba(135,72,184,1) 0%, rgba(98,83,185,1) 33%, rgba(30,55,82,1) 100%, rgba(98,83,185,1) 100%);
+    z-index: 11;
+}
+#tutorial h4 {
+    color: #CCFFFE;
+    opacity: 0.7;
+    font-size: 2.0rem !important;
+}
+#tutorial a.exit {
+    font-size: 2.0rem;
+    padding: 15px;
+}
+#tutorial p {
+    font-size: 1.1rem;
+    opacity: 0.7;
+    color: #C0CCD7;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+#tutorial i.next {
+    color:#C0CCD7;
+    opacity: 0.7;
+    font-size: 2.5rem;
+    cursor: pointer;
+}
+#circle-bread > span {
+    display:inline-block;
+    width:10px;
+    height:10px;
+    background:#C0CCD7;
+    border-radius:7px;
+    border:1px solid #C0CCD7;
+    border-top:1px solid #9DA7AF;
+    margin:0 3px;
+}
+#circle-bread span.active {
+    background: #FF425B;
+    border: 1px solid #CCFFFE;
+    border-bottom: 1px solid #CCFFFE;
+}
+#tutorial #tutorialBtn {
+    background: #FF7B48;
+    color: #fff;
+    font-weight: 400; 
+}
+
+
+
+.hideDeleteForever #deleteForever {
+    display: none !important;
+}
+.dropdown-content li {
+    text-align: center;
+    font-family: RobotoCondensed-Bold !important;
+    background-color: rgb(26,29,45);
+    color: rgb(185,185,190) !important;
+}
+.dropdown-content li div {
+    color: rgb(218,220,207) !important;
+}
+.dropdown-content li:hover div {
+    color: rgb(26,29,45) !important;
+}
+
+.collapsible .collapsible-header {
+    display: block;
+    height: 4em;
+    font-weight: 800;
+    font-size: 1.2rem;
+    font-family: RobotoCondensed-Bold !important;
+    color:  rgb(26,29,45) !important; 
+    background-color:rgb(218,220,207) !important;
+}
+.collapsible .collapsible-body {
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}
