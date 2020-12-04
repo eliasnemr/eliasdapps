@@ -21,7 +21,7 @@
   },
   "futurecash": {
     "miniDapp": "futurecash.minidapp",
-    "icon": "cash.png",
+    "icon": "futurecash.png",
     "conf": "minidapp.conf"
   } 
 }
