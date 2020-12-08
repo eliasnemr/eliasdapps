@@ -265,10 +265,10 @@
 						collectstring = "Ready in "+diff+"..";
 
 						// calculate progress
-						let percent = (Minima.block/diff * 100);
+						let percent = Minima.block/timecoin * 100.0;
 						
 						collectstring = '<div onclick="showBlock(\''+timecoin+'\')" class="progress">'+
-											'<div class="determinate" style="width: '+percent+'"></div>'+
+											'<div class="determinate" style="width: '+percent+'%"></div>'+
 										'</div>';
 					}
 
@@ -493,10 +493,10 @@
 							<p id="myaddress">No key generated yet.</p>
 						</div>
 						<div class="col s7">
-							<button onclick="newKey();" id="genBtn" class="btn-flat btn-small z-depth-0 genBtn">Generate key</button>
+							<button onclick="newKey();" id="genBtn" class="btn-flat btn-small z-depth-0 genBtn">Generate Key</button>
 						</div>
 						<div id="copyWrapper" class="col offset-s1 s4">
-							<div onclick="copyKey();" class="btn-flat btn-small z-depth-0 copykey">Copy key</div>
+							<div onclick="copyKey();" class="btn-flat btn-small z-depth-0 copykey">Copy Key</div>
 						</div>
 					</div>
 					<div id="sendform">
@@ -529,7 +529,7 @@
 						</div>
 						<div class="row">
 							<div class="col offset-s3 s5">
-								<div onclick="pastekey();" class="btn-flat btn-small z-depth-0 pastekey">Paste key</div>
+								<div onclick="pastekey();" class="btn-flat btn-small z-depth-0 pastekey">Paste Key</div>
 							</div>
 							<div style="width: 1 auto; padding-right:1%" class="col s4">
 								<div onclick="sendFunds()" data-target="modalSendFunds" class="btn-small z-depth-0 sendBtn modal-trigger left">Send Funds</div>

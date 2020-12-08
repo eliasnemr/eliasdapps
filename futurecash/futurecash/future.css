@@ -382,7 +382,7 @@ ul.collapsible {
   padding-top: 8%;
 }
 #sendcash #title-dt {
-  padding-top: 0%;
+  padding-top: 7%;
   padding-bottom: 5%;
 }
 #sendcash .collection {
@@ -571,7 +571,7 @@ ul.collapsible {
     font-size: 0.9rem;
   }
   #intro h5 {
-    font-size: 0.8rem !important;
+    font-size: 1.0rem !important;
   }
   #intro p {
     font-size: 0.9rem!important;
