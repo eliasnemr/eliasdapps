@@ -15,101 +15,72 @@
   background-color: #F0F0FA;
   width: 70%;
   max-width: 700px;
+  min-height: 70%;
 }
 #menu #b-title-wrap {
   margin-bottom: 1%;
 }
 #menu #menu-content {
   width: 100%;
-  height: 55vh;
+  height: calc(70% - 6vw - 3vw);
   overflow: scroll;
 }
 #menu .menu-header {
   position: relative;
   top: 0;
+  height: 5vw;
 }
 #menu .menu-footer {
   position: relative;
   bottom: 0;
+  border-top: 2px solid #455969 !important;
+  border-top-color: #455969 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  max-height: 3.6vw;
+  width:100%;
 }
 #menu #yourbalance {
   margin-bottom: 4%;
 }
 
-
-@media only screen and (max-width: 514px) {
-  #futuredata .row .col {
-    font-size: 1.0rem !important;
-  }
-}
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 500px) {
   #menu {
     height: 100%;
     width: 100%;
   }
+  #menu .menu-header {
+    height: 10vw;
+  }
+  #menu .menu-footer {
+    height: 30vw;
+  }
   #menu #menu-content {
-    height: 70vh;
+    height: calc(100% - 10vw - 30vw);
   }
 }
-
-@media only screen and (max-width: 696px) {
-  #mycash #futuretable #table-header , #menu #buttons .menuBtn, .collect {
-    font-size: 1.0rem !important;
+@media all and (max-width:423px) {
+  #menu .menu-header {
+    height: 10vw;
   }
-  #sendcash .genBtn, #sendcash .genBtn2, #sendcash .sendBtn, #sendcash .pastekey,#sendcash .copykey {
-    font-size: 1.0rem !important;
+  #menu .menu-footer {
+    height: 36vw;
   }
-  #futuredata .row .col {
-    font-size: 0.9rem !important;
-  }
-}
-@media only screen and (max-width: 614px) {
-  #mycash #futuretable #table-header , #menu #buttons .menuBtn, .collect {
-    font-size: 0.9rem !important;
-  }
-  #sendcash .genBtn, #sendcash .genBtn2, #sendcash .sendBtn, #sendcash .pastekey {
-    font-size: 0.9rem !important;
+  #menu #menu-content {
+    height: calc(100% - 10vw - 36vw);
   }
 }
-
-@media only screen and (max-width: 390px) {
-  #sendcash #sendform .pastekey, #sendcash .sendBtn {
-    font-size: 0.7rem !important;
+@media all and (max-width: 340px) {
+  #menu .menu-header {
+    height: 10vw;
+  }
+  #menu .menu-footer {
+    height: 40vw;
+  }
+  #menu #menu-content {
+    height: calc(100% - 10vw - 40vw);
   }
 }
-@media only screen and (max-width: 336px) {
-  #sendcash #sendform .pastekey, #sendcash .sendBtn {
-    font-size: 0.5rem !important;
-  }
-}
-@media only screen and (max-width: 376px) {
-  #mycash #futuretable #table-header , #menu #buttons .menuBtn, .collect {
-    font-size: 0.8rem !important;
-  }
-  #mycash #futuretable #table-header , #sendcash .genBtn, #sendcash .genBtn2, #sendcash .sendBtn, #sendcash .pastekey, #sendcash .copykey {
-    font-size: 0.8rem !important;
-  }
-  #futuredata .row .col {
-    font-size: 0.8rem !important;
-  }
-}
-@media only screen and (max-width: 344px) {
-  #mycash #futuretable #table-header , #menu #buttons .menuBtn, .collect {
-    font-size: 0.7rem !important;
-  }
-  #sendcash .genBtn, #sendcash .genBtn2, #sendcash .sendBtn, #sendcash .pastekey, #sendcash .copykey {
-    font-size: 0.7rem !important;
-  }
-}
-@media only screen and (max-width: 310px) {
-  #mycash #futuretable #table-header , #menu #buttons .menuBtn, .collect {
-    font-size: 0.6rem !important;
-  }
-  #sendcash .genBtn, #sendcash .genBtn2, #sendcash .sendBtn, #sendcash .pastekey, #sendcash .copykey {
-    font-size: 0.6rem !important;
-  }
-}
-
 ::-webkit-scrollbar {
   width: 0px;
   background: transparent; /* make scrollbar transparent */
@@ -128,19 +99,22 @@ body {
 }
 
 #buttons {
-  padding-left: 3.5%;
-  padding-right: 3.5%;
+  text-align: center;
+  margin-left: 3.5%;
+  margin-right: 3.5%;
   margin-bottom: 0 !important;
 }
-#aboutwrapper {
-  padding-right: 0 !important;
+#aboutwrapper, #th-amount {
+  padding-right:0!important;
+  padding-left:0!important;
 }
-#sendcashwrapper {
-  padding-right: 0 !important;
+#sendcashwrapper, #th-time {
+  padding-right:0!important;
 }
-#myfuturewrapper {
-  padding-right: 1.5% !important;
+#myfuturewrapper, #th-collect {
+  padding-right:0!important;
 }
+
 #menu #buttons .col .menuBtn {
   margin-top: 2%;
   white-space: pre-wrap;
@@ -151,7 +125,7 @@ body {
 }
 #menu .menuBtn, #menu .menuBtn2 {
   font-family: manrope-bold !important;
-  font-size: 1.0rem !important;
+  font-size: 2.2vw;
   text-transform: none !important;
   background-color: #031B32 !important;
   color: #fff !important;
@@ -170,8 +144,8 @@ body {
 }
 #b-title-wrap {
   margin-top: 5%;
-  margin-left: 5%;
-  margin-right: 5%;
+  margin-left: 3.5%;
+  margin-right: 3.5%;
   margin-bottom: 0;
   background-color: #031B32 !important;
 }
@@ -186,7 +160,7 @@ body {
 }
 #b-title-wrap #icon {
   width: 75px;
-  height: 4vh;
+  height: 30px;
   float: right;
   right: 7%;
 }
@@ -201,10 +175,10 @@ body {
     display: none;
   }
 }
-#b-title-wrap  h4 {
+#b-title-wrap h4 {
+  font-size: 3.2vw;
   color: #fff !important;
   text-align: left;
-  font-weight: 800;
   margin: 0 !important;
   padding: 0 !important;
 }
@@ -214,13 +188,13 @@ body {
 }
 #b-title-wrap  h4 #demo {
   color: #fff !important;
-  font-size: 1.2rem;
+  font-size: 1.4vw;
   font-weight: 800;
   padding-left: 1%;
 }
 #intro {
   text-align: left;
-  padding: 1% 5% 0 5%;
+  padding: 1% 3.5% 0 3.5%;
 }
 #intro #title {
   margin-bottom: 0;
@@ -239,22 +213,27 @@ body {
   line-height: 31px;
   margin-left: 1%;
   float: left;
+  font-size: 1.1rem!important;
 }
 .secondcollection li div.collapsible-header h5 {
   line-height: 31px;
   margin-left: 1%;
   float: left;
+  font-size: 1.1rem!important;
 }
 .firstcollection li div.collapsible-body p, .secondcollection li div.collapsible-body p, .thirdcollection li div.collapsible-body p, .fourthcollection li div.collapsible-body p  {
   padding: 1%;
+  font-family: manrope-regular;
 }
 .thirdcollection li div.collapsible-header h5 {
   line-height: 31px;
   margin-left: 1%;
+  font-size: 1.1rem!important;
 }
 .fourthcollection li div.collapsible-header h5 {
   line-height: 31px;
   margin-left: 1%;
+  font-size: 1.1rem!important;
 }
 .dropdown {
   float: right;
@@ -286,14 +265,13 @@ li.active .collapsible-header .material-icons.iconremove {
   margin-top: 1%;
   margin-bottom: 1%;
   font-family: manrope-bold !important;
-  font-size: 2.0rem;
 }
 #intro h5 {
   font-family: manrope-bold !important;
-  font-size: 1.3rem;
+  font-size: 1.0rem;
 }
 #intro p {
-  font-size: 1.3rem;
+  font-size: 1.0rem;
   font-weight: 300;
   text-align: left;
 }
@@ -329,7 +307,7 @@ ul.collapsible {
 }
 #sendcash .genBtn {
   font-family: manrope-bold !important;
-  font-size: 1.2rem;
+  font-size: 1.0rem;
   text-transform: none !important;
   color: #fff !important;
   text-overflow: ellipsis;
@@ -340,10 +318,17 @@ ul.collapsible {
 }
 #sendcash .copykey {
   width: 100%;
+  word-break: keep-all;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   text-transform: none;
   border: 1px solid #317AFF !important;
   color: #317AFF;
   font-family: manrope-bold;
+}
+#sendcash #copykey.col.s4 {
+  width: 40.33333%!important;
+  margin-left: 1%!important;
 }
 #sendcash .copykey:hover, #sendcash .pastekey:hover {
   background-color: transparent !important;
@@ -375,14 +360,6 @@ ul.collapsible {
   height: 40px;
 }
 
-#menu .menu-footer {
-  border-top: 2px solid #455969 !important;
-  border-top-color: #455969 !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  max-height: 30px;
-  width:100%;
-}
 .menu-footer #yourbalance, .menu-footer #blocktime {
   padding-top: 5%;
   font-size: 1.0rem;
@@ -390,7 +367,6 @@ ul.collapsible {
 }
 .menu-footer .baldiv {
   font-family: manrope-bold !important;
-  font-size: 1.2rem !important;
   padding-left: 10%;
   font-weight: 600;
   letter-spacing: -0.02em;
@@ -399,14 +375,13 @@ ul.collapsible {
 }
 .menu-footer .timediv {
   font-family: manrope-bold !important;
-  font-size: 1.2rem !important;
   padding-right: 10%;
   font-weight: 600;
   text-align: right !important;
   font-variant-numeric: oldstyle-nums;
 }
 #sendcash {
-  padding: 0% 5% 0 5%;
+  padding: 0% 3.5% 0 3.5%;
 }
 #sendcash #sendform {
   padding: 0 0 0 15%;
@@ -418,7 +393,7 @@ ul.collapsible {
 }
 #sendcash h6 {
   font-family: manrope-bold;
-  font-size: 1.2rem !important;
+  font-size: 2.1vw;
   position: relative;
   top :0;
   left: 0;
@@ -430,11 +405,6 @@ ul.collapsible {
 #sendcash #title-dt {
   padding-top: 0%;
   padding-bottom: 5%;
-}
-@media only screen and (max-width: 369px) {
-  #sendcash h6 {
-    font-size: 0.8rem !important;
-  }
 }
 #sendcash .collection {
   background: inherit !important;
@@ -463,25 +433,28 @@ ul.collapsible {
   color: #fff !important;
   width:98%;
   text-transform: none;
-  font-size: 1.2rem;
+  font-size: 1.0rem;
   font-family: manrope-bold !important;
   margin-left: 3%;
   white-space: pre-wrap;
   overflow: hidden;
 }
 #mycash {
-  padding-left: 3.5%;
-  padding-right: 3.3%;
+  margin-left: 3.5%;
+  margin-right: 3.5%;
   padding-bottom: 5%;
 }
 #mycash #futuretable {
   margin-top: 1%;
 }
-#mycash #futuretable #table-header .col {
+#mycash #futuretable #table-header.row .col .btn-flat {
   font-size: 1.0rem;
   text-align: center;
   font-family: manrope-bold !important;
   color: #fff !important;  
+  padding-left:0;
+  padding-right:0!important;
+  cursor: auto;
 }
 
 #mycash #futuretable #table-header .col div {
@@ -490,59 +463,48 @@ ul.collapsible {
   font-family: manrope-bold;
   text-transform: none;
 }
-#th-amount {
-  padding-right: 0;
-}
-#th-time {
-  padding-right: 0;
-}
-#futuredata .row {
-  padding-left: 1.5%;
-  padding-right: 1.5%;
-}
+
 #futuredata .row .col {
   background-color: #FFFFFF;
   font-family: manrope-regular;
-  font-size: 1.2rem;
+  font-size: 1.0rem;
   font-variant-numeric: tabular-nums;
-  font-size: 1.2rem;
-  height: 30px;
 
+  max-height: 25px;
   white-space: nowrap;
-  overflow: hidden;
-
-  flex-direction: column;
-  display:flex;
-  align-items: center !important;
-}
-#td-collect {
-  padding-right: 0;
-  height: auto;
+  text-overflow: ellipsis;
 }
 #td-amount, #td-time {
+  margin: auto;
+  text-align: center;
   border-right: 1px solid #F0F0FA;
+  height: 29px;
+  line-height: 25px;
+}
+#td-collect {
+  height: 25px;
 }
 #td-amount .wrap {
+  margin: auto;
+  display: inline;
   text-align: right;
   width: 100%;
 }
-
 .collect {
-  margin-left: 2%;
+  margin: auto;
   font-family: manrope-bold !important;
-  max-height: auto;
   text-transform: none !important;
-  width: 100%;
-  height: 29px;
-  line-height: 0;
+  height: inherit!important;
+  line-height: inherit;
 }
 .progress {
   cursor: pointer;
-  margin-top: 6%;
-  width: 80%;
+  height: 10px;
+  width: 100%;
 }
 
 #futurecashbtn {
+  margin: auto;
   cursor: pointer;
 }
 #mycash .collect {
@@ -553,12 +515,12 @@ ul.collapsible {
   width:100%;
 }
 #modalSendFunds h4 {
-  font-size: 1.3rem;
+  font-size: 1.0rem;
   font-weight: 400;
   letter-spacing: -0.02em;
 }
 #modalSendFunds p {
-  font-size: 1.1rem;
+  font-size: 1.0rem;
 }
 #modalSendFunds #yesBtn {
   color: #548FFF !important;
@@ -606,3 +568,62 @@ ul.collapsible {
   background-color: #031B32 !important;
 }
 
+
+
+
+
+
+@media all and (min-width: 979px) {
+  #menu .menuBtn, #menu .menuBtn2 {
+    font-size: 1.0rem;
+  }
+  #b-title-wrap h4 {
+    font-size: 2.1rem;
+  }
+  #b-title-wrap  h4 #demo {
+    font-size: 1.2rem;
+  }
+  #sendcash h6 {
+    font-size: 1.0rem;
+  }
+}
+@media all and (max-width: 500px) {
+  #menu .menuBtn, #menu .menuBtn2 {
+    font-size: 0.9rem;
+  }
+  #intro h5 {
+    font-size: 0.8rem !important;
+  }
+  #intro p {
+    font-size: 0.9rem!important;
+  }
+  #futuredata .row .col { 
+    font-size: 0.9rem!important;
+  }
+  #table-header .btn-flat {
+    font-size: 0.9rem!important;
+  }
+
+}
+@media all and (max-width: 393px) {
+  #futuredata .row .col { 
+    font-size: 0.8rem!important;
+  }
+  #menu .menuBtn, #menu .menuBtn2 {
+    font-size: 0.8rem;
+  }
+  #table-header .btn-flat {
+    font-size: 0.8rem!important;
+  }
+}
+@media all and (max-width: 663px) {
+  #b-title-wrap h4 {
+    font-size: 1.5rem;
+  }
+  #b-title-wrap  h4 #demo {
+    font-size: 1.0rem;
+  }
+  #sendcash h6 {
+    font-size: 1.0rem;
+  }
+}
