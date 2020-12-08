@@ -22,7 +22,7 @@
 }
 #menu #menu-content {
   width: 100%;
-  height: calc(70% - 6vw - 3vw);
+  height: calc(70% - 6vw - 3.5vw);
   overflow: scroll;
 }
 #menu .menu-header {
@@ -37,7 +37,7 @@
   border-top-color: #455969 !important;
   margin: 0 !important;
   padding: 0 !important;
-  max-height: 3.6vw;
+  min-height: 3.5vw;
   width:100%;
 }
 #menu #yourbalance {
@@ -53,32 +53,12 @@
     height: 10vw;
   }
   #menu .menu-footer {
+    min-height: 30vw;
     height: 30vw;
   }
   #menu #menu-content {
     height: calc(100% - 10vw - 30vw);
-  }
-}
-@media all and (max-width:423px) {
-  #menu .menu-header {
-    height: 10vw;
-  }
-  #menu .menu-footer {
-    height: 36vw;
-  }
-  #menu #menu-content {
-    height: calc(100% - 10vw - 36vw);
-  }
-}
-@media all and (max-width: 340px) {
-  #menu .menu-header {
-    height: 10vw;
-  }
-  #menu .menu-footer {
-    height: 40vw;
-  }
-  #menu #menu-content {
-    height: calc(100% - 10vw - 40vw);
+    max-height: 170vw;
   }
 }
 ::-webkit-scrollbar {
@@ -125,7 +105,7 @@ body {
 }
 #menu .menuBtn, #menu .menuBtn2 {
   font-family: manrope-bold !important;
-  font-size: 2.2vw;
+  font-size: 1.0rem;
   text-transform: none !important;
   background-color: #031B32 !important;
   color: #fff !important;
@@ -167,7 +147,6 @@ body {
 @media only screen and (max-width: 399px) {
   #icon {
     width: 25px !important;
-    height: 0vh;
   }
 }
 @media only screen and (max-width: 355px) {
@@ -176,7 +155,7 @@ body {
   }
 }
 #b-title-wrap h4 {
-  font-size: 3.2vw;
+  font-size: 2.1rem;
   color: #fff !important;
   text-align: left;
   margin: 0 !important;
@@ -188,7 +167,7 @@ body {
 }
 #b-title-wrap  h4 #demo {
   color: #fff !important;
-  font-size: 1.4vw;
+  font-size: 1.2rem;
   font-weight: 800;
   padding-left: 1%;
 }
@@ -367,11 +346,11 @@ ul.collapsible {
 }
 .menu-footer .baldiv {
   font-family: manrope-bold !important;
-  padding-left: 10%;
-  font-weight: 600;
-  letter-spacing: -0.02em;
+  margin-left: 10%;
   text-align: left !important;
   font-variant-numeric: oldstyle-nums;
+  white-space: pre-line;
+  text-overflow: ellipsis;
 }
 .menu-footer .timediv {
   font-family: manrope-bold !important;
@@ -393,7 +372,7 @@ ul.collapsible {
 }
 #sendcash h6 {
   font-family: manrope-bold;
-  font-size: 2.1vw;
+  font-size: 1.2rem;
   position: relative;
   top :0;
   left: 0;
@@ -618,10 +597,10 @@ ul.collapsible {
 }
 @media all and (max-width: 663px) {
   #b-title-wrap h4 {
-    font-size: 1.5rem;
+    font-size: 1.9rem;
   }
   #b-title-wrap  h4 #demo {
-    font-size: 1.0rem;
+    font-size: 1.1rem;
   }
   #sendcash h6 {
     font-size: 1.0rem;

@@ -61,27 +61,25 @@
 				document.execCommand('copy');
 				document.body.removeChild(el);
 	
-				M.toast({html: "Copied key to clipboard.", classes: "success"});
+				M.toast({html: "Key copied to clipboard.", classes: "success"});
 				return;
 			} else {
 				M.toast({html: "No key to copy!", classes: "danger"});
 			}
-
-
 		}
-
 		async function pastekey() {
-
-			const text = await navigator.clipboard.readText();
-			if (text.substring(0, 2) == '0x') {
-				document.getElementById("futurekey").value = text;
-				M.toast({html: "Pasted key!", classes: "success"});
-			} else {
-				M.toast({html:"Don't recognize key!", classes:"danger"});
-			}
-
-
-
+			try {
+				const text = await navigator.clipboard.readText();
+				if (text.substring(0, 2) == '0x') {
+					document.getElementById("futurekey").value = text;
+					M.toast({html: "Pasted key!", classes: "success"});
+				} else {
+					M.toast({html:"Don't recognize key!", classes:"danger"});
+				}
+			  }
+			  catch (rejectedValue) {
+				M.toast({html: "Your browser doesn't support clipboard functionality, please use your default clipboard.", classes:"danger"});
+			  }
 		}
 		function showBlock(block) {
 			M.toast({html: "Ready at block - "+block, classes:"ready"});
@@ -98,7 +96,14 @@
 		}
 		
 		function newKey(){
+			
+			document.getElementById("genBtn").disabled = true;
+			document.getElementById("genBtn").style.opacity = "0.3";
 			Minima.cmd("keys new", function(json){
+				setTimeout(function() {
+					document.getElementById("genBtn").disabled = false;
+					document.getElementById("genBtn").style.opacity = "1.0";
+				}, 2000);
 				document.getElementById("myaddress").innerHTML = ""+json.response.key.publickey;
 			});
 		}
@@ -201,6 +206,7 @@
 						document.getElementById("futuretime").value = "";
 						document.getElementById("futuredate").value = "";
 						document.getElementById("futurekey").value = "";
+						document.getElementById("myaddress").innerHTML = "No key generated yet.";
 						
 						//Create a random txn id..
 						var txnid = Math.floor(Math.random()*1000000000);
@@ -487,7 +493,7 @@
 							<p id="myaddress">No key generated yet.</p>
 						</div>
 						<div class="col s7">
-							<div onclick="newKey();" class="btn-flat btn-small z-depth-0 genBtn">Generate key</div>
+							<button onclick="newKey();" id="genBtn" class="btn-flat btn-small z-depth-0 genBtn">Generate key</button>
 						</div>
 						<div id="copyWrapper" class="col offset-s1 s4">
 							<div onclick="copyKey();" class="btn-flat btn-small z-depth-0 copykey">Copy key</div>
@@ -499,10 +505,10 @@
 								<h6 id="title-dt" style="margin-top: 0">Date & Time:</h6>
 							</div>
 							<div class="col s4">
-								<input size="40" class="datepicker" id="futuredate">
+								<input size="40" class="datepicker" placeholder="date" id="futuredate">
 							</div>
 							<div id="copykey" class="col s4">
-								<input size="40" type="text" class="timepicker" id="futuretime">
+								<input size="40" type="text" class="timepicker" placeholder="time" id="futuretime">
 							</div>
 						</div>
 						<div class="row">
@@ -510,7 +516,7 @@
 								<h6>Amount:</h6>
 							</div>
 							<div class="col s9">
-								<input size="40" type="number" id="amount">
+								<input size="40" type="number" placeholder="amount" id="amount">
 							</div>
 						</div>
 						<div class="row">
@@ -518,7 +524,7 @@
 								<h6>Key:</h6>
 							</div>
 							<div class="col s9">
-								<input size="40" type="text" id="futurekey">
+								<input size="40" type="text" placeholder="key" id="futurekey">
 							</div>
 						</div>
 						<div class="row">

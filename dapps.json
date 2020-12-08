@@ -1,16 +1,16 @@
 {
   "block": {
-    "miniDapp": "block.minidapp",
+    "miniDapp": "block0.9.2.minidapp",
     "icon": "block/assets/blockicon.svg",
     "conf": "block/minidapp.conf"
   },
   "coinmaster": {
-    "miniDapp": "coinmaster.minidapp",
+    "miniDapp": "coinmaster0.10.minidapp",
     "icon": "coinmaster/assets/coin.svg",
     "conf": "coinmaster/minidapp.conf"
   },
   "futurecash": {
-    "miniDapp": "futurecash.minidapp",
+    "miniDapp": "futurecash1.0.minidapp",
     "icon": "futurecash/futurecash.svg",
     "conf": "futurecash/minidapp.conf"
   },
@@ -21,7 +21,7 @@
   },
   "wallet": {
     "miniDapp": "wallet.minidapp",
-    "icon": "wallet/assets/JS/logo.png",
-    "conf": "wallet/minidapp.conf"
+    "icon": "minidapp/wallet/assets/JS/logo.png",
+    "conf": "minidapp/wallet/minidapp.conf"
   }
 }
