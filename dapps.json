@@ -20,8 +20,8 @@
     "conf": "polysig/minidapp.conf"
   },
   "wallet": {
-    "miniDapp": "wallet.minidapp",
-    "icon": "minidapp/wallet/assets/JS/logo.png",
+    "miniDapp": "wallet0.98.1.minidapp",
+    "icon": "minidapp/wallet/icon.svg",
     "conf": "minidapp/wallet/minidapp.conf"
   }
 }
