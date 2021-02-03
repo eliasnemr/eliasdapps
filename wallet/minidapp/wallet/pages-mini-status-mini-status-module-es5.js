@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-app>\r\n<ion-header class=\"ion-no-border\">\r\n  <ion-toolbar>\r\n    <ion-buttons slot=\"start\">\r\n      <ion-menu-button class=\"menu-icon\"></ion-menu-button>\r\n    </ion-buttons>\r\n    <ion-title class=\"large-text\">\r\n      Status\r\n    </ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content>\r\n\r\n  <ion-grid *ngIf=\"!status?.version\">\r\n    <ion-row>\r\n      \r\n      <ion-col style=\"display: flex; align-items:center; justify-content:center\" size=\"12\">\r\n        <ion-chip>\r\n          <ion-label>Status</ion-label>\r\n          <ion-icon name=\"close\" color=\"danger\"></ion-icon>\r\n        </ion-chip>\r\n      </ion-col>\r\n    </ion-row>\r\n  </ion-grid>\r\n\r\n  <ion-grid *ngIf=\"status?.version\">\r\n    <ion-row>\r\n      <ion-col size=\"12\">\r\n        <ion-chip>\r\n          <ion-label>Status</ion-label>\r\n          <ion-icon *ngIf=\"status?.version\" name=\"checkmark\" color=\"success\"></ion-icon>\r\n          <ion-icon *ngIf=\"!status?.version\" name=\"close\" color=\"danger\"></ion-icon>\r\n        </ion-chip>\r\n        <ion-chip>\r\n          <ion-label><span style=\"color:var(--ion-color-secondary)\">v</span>{{ status?.version}} </ion-label>\r\n        </ion-chip>\r\n      </ion-col>\r\n    </ion-row>\r\n    <ion-row>\r\n      <ion-col>\r\n        <ion-card class=\"borders\">\r\n          <ion-card-header>\r\n            Current Status\r\n          </ion-card-header>\r\n          <ion-card-content>\r\n            <ion-list lines=\"none\">\r\n              <ion-item>\r\n                <ion-col size-md=\"3\" size-sm=\"6\" class=\"title\">\r\n                  Uptime\r\n                </ion-col>\r\n                <ion-col style=\"white-space: normal!important;\" class=\"value\">\r\n                  {{ status?.uptime }}\r\n                </ion-col>\r\n              </ion-item>\r\n              <ion-item>\r\n                <ion-col size-md=\"3\" size-sm=\"6\" class=\"title\">\r\n                  Last Block No.\r\n                </ion-col>\r\n                <ion-col class=\"value\">\r\n                  {{ status?.lastblock }}\r\n                </ion-col>\r\n              </ion-item>\r\n              <ion-item>\r\n                <ion-col size-md=\"3\" size-sm=\"6\" class=\"title\">\r\n                  Configuration Path\r\n                </ion-col>\r\n                <ion-col style=\"white-space: normal!important;\" class=\"value\">\r\n                  {{ status?.conf }}\r\n                </ion-col>\r\n              </ion-item>\r\n              <ion-item>\r\n                <ion-col size-md=\"3\" size-sm=\"6\" class=\"title\">\r\n                  Host IP\r\n                </ion-col>\r\n                <ion-col style=\"white-space: normal!important;\" class=\"value\">\r\n                  {{ status?.host +':' }}{{ status?.minimaport }}\r\n                </ion-col>\r\n              </ion-item>\r\n              <ion-item>\r\n                <ion-col size-md=\"3\" size-sm=\"6\" class=\"title\">\r\n                  RPC Port\r\n                </ion-col>\r\n                <ion-col style=\"white-space: normal!important;\" class=\"value\">\r\n                  {{ status?.rpcport }}\r\n                </ion-col>\r\n              </ion-item>\r\n              <ion-item>\r\n                <ion-col size-md=\"3\" size-sm=\"6\" class=\"title\">\r\n                  MiniDAPP Server Port\r\n                </ion-col>\r\n                <ion-col style=\"white-space: normal!important;\" class=\"value\">\r\n                  {{ status?.minidappserver }}\r\n                </ion-col>\r\n              </ion-item>\r\n              <ion-item>\r\n                <ion-col size-md=\"3\" size-sm=\"6\" class=\"title\">\r\n                  Chainweight\r\n                </ion-col>\r\n                <ion-col style=\"white-space: normal!important;\" class=\"value\">\r\n                  {{ status?.chainweight }}\r\n                </ion-col>\r\n              </ion-item>\r\n              <ion-item>\r\n                <ion-col size-md=\"3\" size-sm=\"6\" class=\"title\">\r\n                  Chainlength\r\n                </ion-col>\r\n                <ion-col style=\"white-space: normal!important;\" class=\"value\">\r\n                  {{ status?.chainlength }}\r\n                </ion-col>\r\n              </ion-item>\r\n              <ion-item>\r\n                <ion-col size-md=\"3\" size-sm=\"6\" class=\"title\">\r\n                  Chainspeed\r\n                </ion-col>\r\n                <ion-col style=\"white-space: normal!important;\" class=\"value\">\r\n                  {{ status?.chainspeed }}\r\n                </ion-col>\r\n              </ion-item>\r\n              <ion-item>\r\n                <ion-col size-md=\"3\" size-sm=\"6\" class=\"title\">\r\n                  RAM Used\r\n                </ion-col>\r\n                <ion-col style=\"white-space: normal!important;\" class=\"value\">\r\n                  {{ status?.ram }}\r\n                </ion-col>\r\n              </ion-item>\r\n              <ion-item>\r\n                <ion-col size-md=\"3\" size-sm=\"6\" class=\"title\">\r\n                  IBD\r\n                </ion-col>\r\n                <ion-col style=\"white-space: normal!important;\" class=\"value\">\r\n                  {{ status?.IBD }}\r\n                </ion-col>\r\n              </ion-item>\r\n              <ion-item>\r\n                <ion-col size-md=\"3\" size-sm=\"6\" class=\"title\">\r\n                  TxPoW Database Length\r\n                </ion-col>\r\n                <ion-col style=\"white-space: normal!important;\" class=\"value\">\r\n                  {{ status?.txpowdb }}\r\n                </ion-col>\r\n              </ion-item>\r\n              <ion-item>\r\n                <ion-col size-md=\"3\" size-sm=\"6\" class=\"title\">\r\n                  Number of Connections\r\n                </ion-col>\r\n                <ion-col style=\"white-space: normal!important;\" class=\"value\">\r\n                  {{ status?.connections }}\r\n                </ion-col>\r\n              </ion-item>\r\n              <ion-item>\r\n                <ion-col size-md=\"3\" size-sm=\"6\" class=\"title\">\r\n                  Tip\r\n                </ion-col>\r\n                <ion-col class=\"value\">\r\n                  {{ status?.tip }}\r\n                </ion-col>\r\n              </ion-item>\r\n            </ion-list>\r\n          </ion-card-content>\r\n        </ion-card>\r\n      </ion-col>\r\n    </ion-row>\r\n  </ion-grid>\r\n\r\n</ion-content>\r\n</ion-app>"
+module.exports = "<ion-app>\n<ion-header class=\"ion-no-border\">\n  <ion-toolbar>\n    <ion-title class=\"large-text\">\n      <ion-item class=\"ion-no-padding\">\n        <ion-menu-button></ion-menu-button>\n        Status\n      </ion-item>\n      </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-item class=\"breadcrumb ion-no-padding\" lines=\"none\">\n  Current status \n  <ion-icon *ngIf=\"!status?.version\" src=\"assets/statusCross.svg\"></ion-icon>\n  <ion-icon *ngIf=\"status?.version\" src=\"assets/statusTick.svg\"></ion-icon>\n  <span *ngIf=\"status?.version\">v{{ status?.version}}</span>\n\n</ion-item>\n\n<ion-content>\n\n  <ion-list>\n    <ion-item class=\"ion-no-padding\">\n      <ion-label>\n        <h6 class=\"title\">Uptime</h6>\n        <p class=\"value\">{{ status?.uptime }}</p>\n      </ion-label>\n    </ion-item>\n\n    <ion-item class=\"ion-no-padding\">\n      <ion-label>\n        <h6 class=\"title\">Last Block</h6>\n        <p class=\"value\">{{ status?.lastblock }}</p>\n      </ion-label>\n    </ion-item>\n\n    <ion-item class=\"ion-no-padding\">\n      <ion-label>\n        <h6 class=\"title\">Host IP</h6>\n        <p class=\"value\">{{ status?.host }}</p>\n      </ion-label>\n    </ion-item>\n\n    <ion-item class=\"ion-no-padding\">\n      <ion-label>\n        <h6 class=\"title\">MiniDAPP Server Port</h6>\n        <p class=\"value\">{{ status?.minidappserver }}</p>\n      </ion-label>\n    </ion-item>\n\n    <ion-item class=\"ion-no-padding\">\n      <ion-label>\n        <h6 class=\"title\">RAM Usage</h6>\n        <p class=\"value\">{{ status?.ram }}</p>\n      </ion-label>\n    </ion-item>\n\n    <ion-item class=\"ion-no-padding\">\n      <ion-label>\n        <h6 class=\"title\">IBD</h6>\n        <p class=\"value\">{{ status?.IBD }}</p>\n      </ion-label>\n    </ion-item>\n\n    <ion-item class=\"ion-no-padding\">\n      <ion-label>\n        <h6 class=\"title\">Tip</h6>\n        <p class=\"value\">{{ status?.tip }}</p>\n      </ion-label>\n    </ion-item>\n  </ion-list>\n\n</ion-content>\n<ion-footer>\n  <ion-button (click)=\"giveMe50()\" class=\"gimme50 no-ripple\" fill=\"none\">\n    Gimme 50\n  </ion-button>\n</ion-footer>\n</ion-app>"
 
 /***/ }),
 
@@ -69,7 +69,7 @@ var MiniStatusPageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "* {\n  color: var(--ion-color-tertiary);\n}\n\nion-header ion-title {\n  font-family: manrope-bold;\n  font-size: 1.2rem;\n  padding-top: 5%;\n}\n\nion-chip {\n  background-color: var(--ion-color-chip);\n}\n\nion-chip ion-label {\n  font-family: manrope-bold;\n}\n\n.title {\n  font-family: manrope-bold;\n  font-size: 1rem;\n  float: left;\n  text-overflow: ellipsis;\n  max-width: inherit;\n  white-space: normal;\n  word-wrap: normal;\n}\n\n.value {\n  font-family: manrope-light;\n  text-align: left;\n  float: left;\n  white-space: nowrap;\n  text-overflow: ellipsis;\n  max-width: inherit;\n  overflow: hidden;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9lbGlhc25lbXIvcHJvamVjdHMvV0FMTEVUL21vYmlsZS1hcHAtZnJvbnQtZW5kL2FwcC9zcmMvYXBwL3BhZ2VzL21pbmktc3RhdHVzL21pbmktc3RhdHVzLnBhZ2Uuc2NzcyIsInNyYy9hcHAvcGFnZXMvbWluaS1zdGF0dXMvbWluaS1zdGF0dXMucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUNBO0VBQ0ksZ0NBQUE7QUNBSjs7QURFQTtFQUNJLHlCQUFBO0VBQ0EsaUJBQUE7RUFDQSxlQUFBO0FDQ0o7O0FEQ0E7RUFDSSx1Q0FBQTtBQ0VKOztBREFBO0VBQ0kseUJBQUE7QUNHSjs7QUREQTtFQUNJLHlCQUFBO0VBQ0EsZUFBQTtFQUNBLFdBQUE7RUFDQSx1QkFBQTtFQUNBLGtCQUFBO0VBQ0EsbUJBQUE7RUFDQSxpQkFBQTtBQ0lKOztBREZBO0VBQ0ksMEJBQUE7RUFDQSxnQkFBQTtFQUNBLFdBQUE7RUFDQSxtQkFBQTtFQUNBLHVCQUFBO0VBQ0Esa0JBQUE7RUFDQSxnQkFBQTtBQ0tKIiwiZmlsZSI6InNyYy9hcHAvcGFnZXMvbWluaS1zdGF0dXMvbWluaS1zdGF0dXMucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiXHJcbioge1xyXG4gICAgY29sb3I6IHZhcigtLWlvbi1jb2xvci10ZXJ0aWFyeSk7XHJcbn1cclxuaW9uLWhlYWRlciBpb24tdGl0bGUge1xyXG4gICAgZm9udC1mYW1pbHk6IG1hbnJvcGUtYm9sZDtcclxuICAgIGZvbnQtc2l6ZTogMS4ycmVtO1xyXG4gICAgcGFkZGluZy10b3A6IDUlO1xyXG59XHJcbmlvbi1jaGlwIHtcclxuICAgIGJhY2tncm91bmQtY29sb3I6IHZhcigtLWlvbi1jb2xvci1jaGlwKTtcclxufVxyXG5pb24tY2hpcCBpb24tbGFiZWwge1xyXG4gICAgZm9udC1mYW1pbHk6IG1hbnJvcGUtYm9sZDtcclxufVxyXG4udGl0bGUge1xyXG4gICAgZm9udC1mYW1pbHk6IG1hbnJvcGUtYm9sZDtcclxuICAgIGZvbnQtc2l6ZTogMS4wcmVtO1xyXG4gICAgZmxvYXQ6IGxlZnQ7XHJcbiAgICB0ZXh0LW92ZXJmbG93OiBlbGxpcHNpcztcclxuICAgIG1heC13aWR0aDogaW5oZXJpdDtcclxuICAgIHdoaXRlLXNwYWNlOiBub3JtYWw7XHJcbiAgICB3b3JkLXdyYXA6IG5vcm1hbDtcclxufVxyXG4udmFsdWUge1xyXG4gICAgZm9udC1mYW1pbHk6IG1hbnJvcGUtbGlnaHQ7XHJcbiAgICB0ZXh0LWFsaWduOiBsZWZ0O1xyXG4gICAgZmxvYXQ6bGVmdDtcclxuICAgIHdoaXRlLXNwYWNlOiBub3dyYXA7XHJcbiAgICB0ZXh0LW92ZXJmbG93OiBlbGxpcHNpcztcclxuICAgIG1heC13aWR0aDogaW5oZXJpdDtcclxuICAgIG92ZXJmbG93OiBoaWRkZW47XHJcbn0iLCIqIHtcbiAgY29sb3I6IHZhcigtLWlvbi1jb2xvci10ZXJ0aWFyeSk7XG59XG5cbmlvbi1oZWFkZXIgaW9uLXRpdGxlIHtcbiAgZm9udC1mYW1pbHk6IG1hbnJvcGUtYm9sZDtcbiAgZm9udC1zaXplOiAxLjJyZW07XG4gIHBhZGRpbmctdG9wOiA1JTtcbn1cblxuaW9uLWNoaXAge1xuICBiYWNrZ3JvdW5kLWNvbG9yOiB2YXIoLS1pb24tY29sb3ItY2hpcCk7XG59XG5cbmlvbi1jaGlwIGlvbi1sYWJlbCB7XG4gIGZvbnQtZmFtaWx5OiBtYW5yb3BlLWJvbGQ7XG59XG5cbi50aXRsZSB7XG4gIGZvbnQtZmFtaWx5OiBtYW5yb3BlLWJvbGQ7XG4gIGZvbnQtc2l6ZTogMXJlbTtcbiAgZmxvYXQ6IGxlZnQ7XG4gIHRleHQtb3ZlcmZsb3c6IGVsbGlwc2lzO1xuICBtYXgtd2lkdGg6IGluaGVyaXQ7XG4gIHdoaXRlLXNwYWNlOiBub3JtYWw7XG4gIHdvcmQtd3JhcDogbm9ybWFsO1xufVxuXG4udmFsdWUge1xuICBmb250LWZhbWlseTogbWFucm9wZS1saWdodDtcbiAgdGV4dC1hbGlnbjogbGVmdDtcbiAgZmxvYXQ6IGxlZnQ7XG4gIHdoaXRlLXNwYWNlOiBub3dyYXA7XG4gIHRleHQtb3ZlcmZsb3c6IGVsbGlwc2lzO1xuICBtYXgtd2lkdGg6IGluaGVyaXQ7XG4gIG92ZXJmbG93OiBoaWRkZW47XG59Il19 */"
+module.exports = "* {\n  color: var(--ion-color-tertiary);\n}\n\nion-icon {\n  margin-left: 7px;\n  margin-right: 7px;\n  width: 20px;\n  height: 20px;\n}\n\nion-chip {\n  background-color: var(--ion-color-chip);\n}\n\nion-chip ion-label {\n  font-family: manrope-bold;\n}\n\nion-list ion-item {\n  margin-left: 27px;\n  margin-right: 30px;\n}\n\n.title {\n  font-family: manrope-bold;\n  font-size: 1rem;\n  text-overflow: ellipsis;\n  max-width: inherit;\n  white-space: normal;\n  word-wrap: normal;\n}\n\n.value {\n  font-family: manrope-regular;\n  text-align: left;\n  white-space: nowrap;\n  text-overflow: ellipsis;\n  max-width: inherit;\n  overflow: hidden;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9lbGlhc25lbXIvcHJvamVjdHMvV2FsbGV0L21vYmlsZS1hcHAtZnJvbnQtZW5kL2FwcC9zcmMvYXBwL3BhZ2VzL21pbmktc3RhdHVzL21pbmktc3RhdHVzLnBhZ2Uuc2NzcyIsInNyYy9hcHAvcGFnZXMvbWluaS1zdGF0dXMvbWluaS1zdGF0dXMucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUNBO0VBQ0ksZ0NBQUE7QUNBSjs7QURFQTtFQUNJLGdCQUFBO0VBQ0EsaUJBQUE7RUFDQSxXQUFBO0VBQ0EsWUFBQTtBQ0NKOztBRENBO0VBQ0ksdUNBQUE7QUNFSjs7QURBQTtFQUNJLHlCQUFBO0FDR0o7O0FEREE7RUFDSSxpQkFBQTtFQUNBLGtCQUFBO0FDSUo7O0FERkE7RUFDSSx5QkFBQTtFQUNBLGVBQUE7RUFDQSx1QkFBQTtFQUNBLGtCQUFBO0VBQ0EsbUJBQUE7RUFDQSxpQkFBQTtBQ0tKOztBREhBO0VBQ0ksNEJBQUE7RUFDQSxnQkFBQTtFQUNBLG1CQUFBO0VBQ0EsdUJBQUE7RUFDQSxrQkFBQTtFQUNBLGdCQUFBO0FDTUoiLCJmaWxlIjoic3JjL2FwcC9wYWdlcy9taW5pLXN0YXR1cy9taW5pLXN0YXR1cy5wYWdlLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJcbioge1xuICAgIGNvbG9yOiB2YXIoLS1pb24tY29sb3ItdGVydGlhcnkpO1xufVxuaW9uLWljb24ge1xuICAgIG1hcmdpbi1sZWZ0OiA3cHg7XG4gICAgbWFyZ2luLXJpZ2h0OiA3cHg7XG4gICAgd2lkdGg6IDIwcHg7XG4gICAgaGVpZ2h0OiAyMHB4O1xufVxuaW9uLWNoaXAge1xuICAgIGJhY2tncm91bmQtY29sb3I6IHZhcigtLWlvbi1jb2xvci1jaGlwKTtcbn1cbmlvbi1jaGlwIGlvbi1sYWJlbCB7XG4gICAgZm9udC1mYW1pbHk6IG1hbnJvcGUtYm9sZDtcbn1cbmlvbi1saXN0IGlvbi1pdGVtIHtcbiAgICBtYXJnaW4tbGVmdDogMjdweDtcbiAgICBtYXJnaW4tcmlnaHQ6IDMwcHg7XG59XG4udGl0bGUge1xuICAgIGZvbnQtZmFtaWx5OiBtYW5yb3BlLWJvbGQ7XG4gICAgZm9udC1zaXplOiAxLjByZW07XG4gICAgdGV4dC1vdmVyZmxvdzogZWxsaXBzaXM7XG4gICAgbWF4LXdpZHRoOiBpbmhlcml0O1xuICAgIHdoaXRlLXNwYWNlOiBub3JtYWw7XG4gICAgd29yZC13cmFwOiBub3JtYWw7XG59XG4udmFsdWUge1xuICAgIGZvbnQtZmFtaWx5OiBtYW5yb3BlLXJlZ3VsYXI7XG4gICAgdGV4dC1hbGlnbjogbGVmdDtcbiAgICB3aGl0ZS1zcGFjZTogbm93cmFwO1xuICAgIHRleHQtb3ZlcmZsb3c6IGVsbGlwc2lzO1xuICAgIG1heC13aWR0aDogaW5oZXJpdDtcbiAgICBvdmVyZmxvdzogaGlkZGVuO1xufSIsIioge1xuICBjb2xvcjogdmFyKC0taW9uLWNvbG9yLXRlcnRpYXJ5KTtcbn1cblxuaW9uLWljb24ge1xuICBtYXJnaW4tbGVmdDogN3B4O1xuICBtYXJnaW4tcmlnaHQ6IDdweDtcbiAgd2lkdGg6IDIwcHg7XG4gIGhlaWdodDogMjBweDtcbn1cblxuaW9uLWNoaXAge1xuICBiYWNrZ3JvdW5kLWNvbG9yOiB2YXIoLS1pb24tY29sb3ItY2hpcCk7XG59XG5cbmlvbi1jaGlwIGlvbi1sYWJlbCB7XG4gIGZvbnQtZmFtaWx5OiBtYW5yb3BlLWJvbGQ7XG59XG5cbmlvbi1saXN0IGlvbi1pdGVtIHtcbiAgbWFyZ2luLWxlZnQ6IDI3cHg7XG4gIG1hcmdpbi1yaWdodDogMzBweDtcbn1cblxuLnRpdGxlIHtcbiAgZm9udC1mYW1pbHk6IG1hbnJvcGUtYm9sZDtcbiAgZm9udC1zaXplOiAxcmVtO1xuICB0ZXh0LW92ZXJmbG93OiBlbGxpcHNpcztcbiAgbWF4LXdpZHRoOiBpbmhlcml0O1xuICB3aGl0ZS1zcGFjZTogbm9ybWFsO1xuICB3b3JkLXdyYXA6IG5vcm1hbDtcbn1cblxuLnZhbHVlIHtcbiAgZm9udC1mYW1pbHk6IG1hbnJvcGUtcmVndWxhcjtcbiAgdGV4dC1hbGlnbjogbGVmdDtcbiAgd2hpdGUtc3BhY2U6IG5vd3JhcDtcbiAgdGV4dC1vdmVyZmxvdzogZWxsaXBzaXM7XG4gIG1heC13aWR0aDogaW5oZXJpdDtcbiAgb3ZlcmZsb3c6IGhpZGRlbjtcbn0iXX0= */"
 
 /***/ }),
 
@@ -84,16 +84,22 @@ module.exports = "* {\n  color: var(--ion-color-tertiary);\n}\n\nion-header ion-
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MiniStatusPage", function() { return MiniStatusPage; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
-/* harmony import */ var _service_status_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../../service/status.service */ "./src/app/service/status.service.ts");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _service_minima_api_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../../service/minima-api.service */ "./src/app/service/minima-api.service.ts");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/fesm5/ionic-angular.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+/* harmony import */ var _service_status_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../../service/status.service */ "./src/app/service/status.service.ts");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+
+
 
 
 
 
 var MiniStatusPage = /** @class */ (function () {
-    function MiniStatusPage(service) {
+    function MiniStatusPage(service, alertController, api) {
         this.service = service;
+        this.alertController = alertController;
+        this.api = api;
     }
     MiniStatusPage.prototype.ngOnInit = function () { };
     MiniStatusPage.prototype.ionViewWillEnter = function () {
@@ -104,10 +110,43 @@ var MiniStatusPage = /** @class */ (function () {
             this.statusSubscription.unsubscribe(); // unsubs
         }
     };
+    MiniStatusPage.prototype.presentAlert = function (hdr, message, subtitle) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var alert;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.alertController.create({
+                            cssClass: 'alertContainer',
+                            header: hdr,
+                            subHeader: subtitle,
+                            message: message,
+                            buttons: ['OK']
+                        })];
+                    case 1:
+                        alert = _a.sent();
+                        return [4 /*yield*/, alert.present()];
+                    case 2:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    MiniStatusPage.prototype.giveMe50 = function () {
+        var _this = this;
+        this.api.giveMe50().then(function (res) {
+            if (res.status === true) {
+                _this.presentAlert('Gimme50', 'Successful', 'Status');
+            }
+            else {
+                _this.presentAlert('Gimme50', res.message, 'Status');
+            }
+        });
+    };
     MiniStatusPage.prototype.updateStatus = function () {
         var _this = this;
         this.statusSubscription = this.service.updatedStatus
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])(function (responseData) {
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (responseData) {
             responseData.uptime = responseData.uptime.replace(/0 Years|0 Months|0 Weeks|0 Days|0 Hours|0 Minutes|0 Seconds|0 Milliseconds/gi, " ");
             responseData.uptime = responseData.uptime.replace(/1 Minutes/gi, "1 Minute");
             responseData.uptime = responseData.uptime.replace(/1 Seconds/gi, "1 Second");
@@ -124,15 +163,17 @@ var MiniStatusPage = /** @class */ (function () {
         });
     };
     MiniStatusPage.ctorParameters = function () { return [
-        { type: _service_status_service__WEBPACK_IMPORTED_MODULE_2__["StatusService"] }
+        { type: _service_status_service__WEBPACK_IMPORTED_MODULE_4__["StatusService"] },
+        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["AlertController"] },
+        { type: _service_minima_api_service__WEBPACK_IMPORTED_MODULE_1__["MinimaApiService"] }
     ]; };
     MiniStatusPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["Component"])({
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_5__["Component"])({
             selector: 'app-mini-status',
             template: __webpack_require__(/*! raw-loader!./mini-status.page.html */ "./node_modules/raw-loader/index.js!./src/app/pages/mini-status/mini-status.page.html"),
             styles: [__webpack_require__(/*! ./mini-status.page.scss */ "./src/app/pages/mini-status/mini-status.page.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_service_status_service__WEBPACK_IMPORTED_MODULE_2__["StatusService"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_service_status_service__WEBPACK_IMPORTED_MODULE_4__["StatusService"], _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["AlertController"], _service_minima_api_service__WEBPACK_IMPORTED_MODULE_1__["MinimaApiService"]])
     ], MiniStatusPage);
     return MiniStatusPage;
 }());
