@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-app>\n<ion-header class=\"ion-no-border\">\n  <ion-toolbar>\n    <ion-title>\n      <ion-item lines=\"none\" class=\"ion-no-padding\">\n        <ion-menu-button></ion-menu-button>\n        Terminal\n      </ion-item>\n      <ion-item class=\"breadcrumb ion-no-padding\" lines=\"none\">\n        Minima terminal\n      </ion-item>\n    </ion-title>\n      <ion-label \n      (click)=\"presentPopover($event)\" \n      fill=\"clear\"\n      lines=\"none\" \n      slot=\"end\"\n      class=\"resize-tool-btn\">aA</ion-label>\n  </ion-toolbar>\n</ion-header>\n\n\n\n<ion-content #ionContent>\n  <!-- Terminal -->\n  <textarea\n  #terminal\n  background=\"transparent\"\n  class=\"terminal\"\n  [ngStyle] = \"{'font-size': getFontSize()}\" \n  autocapitalize=\"false\"\n  spellcheck=\"false\"\n  autocorrect=\"off\"></textarea>\n</ion-content>\n<ion-footer class=\"border-t\">\n  <ion-button (click)=\"giveMe50()\" class=\"gimme50 no-ripple\" fill=\"none\">\n    Gimme 50\n  </ion-button>\n</ion-footer>\n</ion-app>\n\n\n"
+module.exports = "<ion-app>\n<ion-header class=\"ion-no-border\">\n  <ion-toolbar>\n    <ion-title>\n      <ion-item lines=\"none\" class=\"ion-no-padding\">\n        <ion-icon class=\"menu-btn\" (click)=\"openMenu()\" name=\"menu\"></ion-icon>\n        Terminal\n      </ion-item>\n      <ion-item class=\"breadcrumb ion-no-padding\" lines=\"none\">\n        Minima terminal\n      </ion-item>\n    </ion-title>\n      <ion-label \n      (click)=\"presentPopover($event)\" \n      fill=\"clear\"\n      lines=\"none\" \n      slot=\"end\"\n      class=\"resize-tool-btn\">aA</ion-label>\n  </ion-toolbar>\n</ion-header>\n\n\n\n<ion-content #ionContent>\n  <!-- Terminal -->\n  <textarea\n  #terminal\n  background=\"transparent\"\n  class=\"terminal\"\n  [ngStyle] = \"{'font-size': getFontSize()}\" \n  autocapitalize=\"false\"\n  spellcheck=\"false\"\n  autocorrect=\"off\"></textarea>\n</ion-content>\n<ion-footer class=\"border-t\">\n  <ion-button (click)=\"giveMe50()\" class=\"gimme50 no-ripple\" fill=\"none\">\n    Gimme 50\n  </ion-button>\n</ion-footer>\n</ion-app>\n\n\n"
 
 /***/ }),
 
@@ -101,7 +101,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var MiniTermPage = /** @class */ (function () {
-    function MiniTermPage(api, alertController, loadingController, navCtrl, renderer, popoverController, userTerminal) {
+    function MiniTermPage(menu, api, alertController, loadingController, navCtrl, renderer, popoverController, userTerminal) {
+        this.menu = menu;
         this.api = api;
         this.alertController = alertController;
         this.loadingController = loadingController;
@@ -137,6 +138,9 @@ var MiniTermPage = /** @class */ (function () {
                     }
                 }
             });
+    };
+    MiniTermPage.prototype.openMenu = function () {
+        this.menu.open();
     };
     MiniTermPage.prototype.ionViewWillEnter = function () { };
     MiniTermPage.prototype.ionViewWillLeave = function () {
@@ -310,6 +314,7 @@ var MiniTermPage = /** @class */ (function () {
         });
     };
     MiniTermPage.ctorParameters = function () { return [
+        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["MenuController"] },
         { type: _service_minima_api_service__WEBPACK_IMPORTED_MODULE_1__["MinimaApiService"] },
         { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["AlertController"] },
         { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["LoadingController"] },
@@ -332,7 +337,8 @@ var MiniTermPage = /** @class */ (function () {
             template: __webpack_require__(/*! raw-loader!./mini-term.page.html */ "./node_modules/raw-loader/index.js!./src/app/pages/mini-term/mini-term.page.html"),
             styles: [__webpack_require__(/*! ./mini-term.page.scss */ "./src/app/pages/mini-term/mini-term.page.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_service_minima_api_service__WEBPACK_IMPORTED_MODULE_1__["MinimaApiService"],
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_4__["MenuController"],
+            _service_minima_api_service__WEBPACK_IMPORTED_MODULE_1__["MinimaApiService"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["AlertController"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["LoadingController"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["NavController"], _angular_core__WEBPACK_IMPORTED_MODULE_3__["Renderer2"],
