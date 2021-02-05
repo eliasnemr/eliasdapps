@@ -869,7 +869,7 @@ var QRCode;
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-app>\n<ion-header class=\"ion-no-border\">\n  <ion-toolbar>\n    <ion-title>\n      <ion-item id=\"title\" lines=\"none\" class=\"ion-no-padding\">\n        <ion-icon class=\"menu-btn\" (click)=\"openMenu()\" name=\"menu\"></ion-icon>\n        Receive\n      </ion-item>\n      <ion-item id=\"subtitle\" class=\"breadcrumb ion-no-padding\" lines=\"none\" *ngIf=\"qrCode.length > 0\">\n        Your wallet address\n      </ion-item>\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n\n\n<ion-content>\n  \n  <ion-grid *ngIf=\"this.qrCode.length == 0\">\n    <ion-row>\n      <ion-col style=\"display: flex; align-items:center; justify-content:center\" size=\"12\">\n        <ion-label>Fetching an address...</ion-label>\n      </ion-col>\n      <ion-col style=\"display: flex; align-items:center; justify-content:center\" size=\"12\">\n        <ion-spinner name=\"crescent\"></ion-spinner>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n\n  <ion-grid class=\"ion-no-padding\" *ngIf=\"qrCode.length > 0\">\n    <!-- <ion-row>\n      <ion-col size=\"6\">\n        <div class=\"qr-box\">\n          <qrcode [qrdata]=\"qrCode\" [level]=\"'Q'\"></qrcode>\n        </div>\n      </ion-col>\n    </ion-row> -->\n    <ion-row>\n      <ion-col size=\"12\">\n        <p class=\"qrcode-box\">\n          {{ qrCode }}\n        </p>\n      </ion-col>\n    </ion-row>\n    <ion-row style=\"margin-top: 7px\">\n      <ion-col size=\"12\">\n        <ion-button (click)=\"copyToClipboard()\" class=\"copy-btn\" fill=\"clear\">\n          Copy Address\n        </ion-button>\n        <ion-button (click)=\"generateAddress(qrCode)\" #generateAddressBtn class=\"gen-btn\" fill=\"none\">\n          Generate Address\n        </ion-button>\n      </ion-col>\n      \n    </ion-row>\n    <ion-row>\n      <p class=\"notes\">You can use this address as many times as you wish.</p>\n      <p class=\"notes\">This address can be used for any Minima token or Minima custom token transaction.</p>\n      <p class=\"notes\">Click 'Generate Address' to create a new address when needed.</p>\n    </ion-row>\n\n  </ion-grid>\n</ion-content>\n\n\n\n<ion-footer class=\"border-t\">\n  <ion-button (click)=\"giveMe50()\" class=\"gimme50 no-ripple\" fill=\"none\">\n    Gimme 50\n  </ion-button>\n</ion-footer>\n</ion-app>"
+module.exports = "<ion-app>\n<ion-header class=\"ion-no-border\">\n  <ion-toolbar>\n    <ion-title>\n      <ion-item id=\"title\" lines=\"none\" class=\"ion-no-padding\">\n        <ion-icon class=\"menu-btn\" (click)=\"openMenu()\" name=\"menu\"></ion-icon>\n        Receive\n      </ion-item>\n      <ion-item id=\"subtitle\" class=\"breadcrumb ion-no-padding\" lines=\"none\" *ngIf=\"qrCode.length > 0\">\n        Your wallet address\n      </ion-item>\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n\n\n<ion-content>\n  \n  <ion-grid *ngIf=\"this.qrCode.length == 0\">\n    <ion-row>\n      <ion-col style=\"display: flex; align-items:center; justify-content:center\" size=\"12\">\n        <ion-label>Fetching an address...</ion-label>\n      </ion-col>\n      <ion-col style=\"display: flex; align-items:center; justify-content:center\" size=\"12\">\n        <ion-spinner name=\"crescent\"></ion-spinner>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n\n  <ion-grid class=\"ion-no-padding\" *ngIf=\"qrCode.length > 0\">\n    <!-- <ion-row>\n      <ion-col size=\"6\">\n        <div class=\"qr-box\">\n          <qrcode [qrdata]=\"qrCode\" [level]=\"'Q'\"></qrcode>\n        </div>\n      </ion-col>\n    </ion-row> -->\n    <ion-row>\n      <ion-col size=\"12\">\n        <p class=\"qrcode-box\">\n          {{ qrCode }}\n        </p>\n      </ion-col>\n    </ion-row>\n    <ion-row style=\"margin-top: 7px\">\n      <ion-col size=\"12\">\n        <ion-button (click)=\"copyToClipPWA()\" class=\"copy-btn\" fill=\"clear\">\n          Copy Address\n        </ion-button>\n        <ion-button (click)=\"generateAddress(qrCode)\" #generateAddressBtn class=\"gen-btn\" fill=\"none\">\n          Generate Address\n        </ion-button>\n      </ion-col>\n      \n    </ion-row>\n    <ion-row>\n      <p class=\"notes\">You can use this address as many times as you wish.</p>\n      <p class=\"notes\">This address can be used for any Minima token or Minima custom token transaction.</p>\n      <p class=\"notes\">Click 'Generate Address' to create a new address when needed.</p>\n    </ion-row>\n\n  </ion-grid>\n</ion-content>\n\n\n\n<ion-footer class=\"border-t\">\n  <ion-button (click)=\"giveMe50()\" class=\"gimme50 no-ripple\" fill=\"none\">\n    Gimme 50\n  </ion-button>\n</ion-footer>\n</ion-app>"
 
 /***/ }),
 
@@ -953,11 +953,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _service_userconfig_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../../service/userconfig.service */ "./src/app/service/userconfig.service.ts");
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/fesm5/ionic-angular.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _ionic_native_clipboard_ngx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic-native/clipboard/ngx */ "./node_modules/@ionic-native/clipboard/ngx/index.js");
-/* harmony import */ var _service_minima_api_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../service/minima-api.service */ "./src/app/service/minima-api.service.ts");
-/* harmony import */ var minima__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! minima */ "./node_modules/minima/dist/minima.js");
-/* harmony import */ var minima__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(minima__WEBPACK_IMPORTED_MODULE_6__);
-
+/* harmony import */ var _service_minima_api_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../service/minima-api.service */ "./src/app/service/minima-api.service.ts");
+/* harmony import */ var minima__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! minima */ "./node_modules/minima/dist/minima.js");
+/* harmony import */ var minima__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(minima__WEBPACK_IMPORTED_MODULE_5__);
 
 
 
@@ -965,9 +963,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var MyAddressPage = /** @class */ (function () {
-    function MyAddressPage(menu, clipboard, api, platform, ngZone, userConfigService, alertController, toastController) {
+    function MyAddressPage(menu, api, platform, ngZone, userConfigService, alertController, toastController) {
         this.menu = menu;
-        this.clipboard = clipboard;
         this.api = api;
         this.platform = platform;
         this.ngZone = ngZone;
@@ -986,7 +983,7 @@ var MyAddressPage = /** @class */ (function () {
     MyAddressPage.prototype.ngOnInit = function () { };
     MyAddressPage.prototype.ionViewWillEnter = function () {
         var _this = this;
-        minima__WEBPACK_IMPORTED_MODULE_6__["Minima"].file.load('lastAddress.txt', function (res) {
+        minima__WEBPACK_IMPORTED_MODULE_5__["Minima"].file.load('lastAddress.txt', function (res) {
             if (res.success) {
                 var data = JSON.parse(res.data);
                 if (data.address.length === 0) {
@@ -1030,7 +1027,7 @@ var MyAddressPage = /** @class */ (function () {
                     _this.isEmpty = true;
                     var data = { address: _this.qrCode };
                     var send = JSON.stringify(data);
-                    minima__WEBPACK_IMPORTED_MODULE_6__["Minima"].file.save(send, 'lastAddress.txt', function (res) {
+                    minima__WEBPACK_IMPORTED_MODULE_5__["Minima"].file.save(send, 'lastAddress.txt', function (res) {
                         if (res.success) { }
                     });
                 }
@@ -1071,7 +1068,7 @@ var MyAddressPage = /** @class */ (function () {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.toastController.create({
                             message: msg,
-                            duration: 4000,
+                            duration: 1000,
                             color: type,
                             keyboardClose: true,
                             translucent: true,
@@ -1108,7 +1105,7 @@ var MyAddressPage = /** @class */ (function () {
             this.copyToClipPWA();
         }
         else {
-            this.clipboard.copy(this.qrCode);
+            //this.clipboard.copy(this.qrCode);
             this.presentToast('Copied to Clipboard', 'primary', 'bottom');
         }
     };
@@ -1132,8 +1129,7 @@ var MyAddressPage = /** @class */ (function () {
     };
     MyAddressPage.ctorParameters = function () { return [
         { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["MenuController"] },
-        { type: _ionic_native_clipboard_ngx__WEBPACK_IMPORTED_MODULE_4__["Clipboard"] },
-        { type: _service_minima_api_service__WEBPACK_IMPORTED_MODULE_5__["MinimaApiService"] },
+        { type: _service_minima_api_service__WEBPACK_IMPORTED_MODULE_4__["MinimaApiService"] },
         { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["Platform"] },
         { type: _angular_core__WEBPACK_IMPORTED_MODULE_3__["NgZone"] },
         { type: _service_userconfig_service__WEBPACK_IMPORTED_MODULE_1__["UserConfigService"] },
@@ -1151,8 +1147,7 @@ var MyAddressPage = /** @class */ (function () {
             styles: [__webpack_require__(/*! ./my-address.page.scss */ "./src/app/pages/my-address/my-address.page.scss")]
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["MenuController"],
-            _ionic_native_clipboard_ngx__WEBPACK_IMPORTED_MODULE_4__["Clipboard"],
-            _service_minima_api_service__WEBPACK_IMPORTED_MODULE_5__["MinimaApiService"],
+            _service_minima_api_service__WEBPACK_IMPORTED_MODULE_4__["MinimaApiService"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["Platform"],
             _angular_core__WEBPACK_IMPORTED_MODULE_3__["NgZone"],
             _service_userconfig_service__WEBPACK_IMPORTED_MODULE_1__["UserConfigService"],
