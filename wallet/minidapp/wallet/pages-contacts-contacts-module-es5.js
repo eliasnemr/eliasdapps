@@ -233,6 +233,7 @@ var ContactsPage = /** @class */ (function () {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.toastController.create({
                             message: msg,
+                            duration: 1000,
                             color: clr,
                             position: posn,
                             buttons: ['cancel']

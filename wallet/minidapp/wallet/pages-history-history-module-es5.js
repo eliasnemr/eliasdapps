@@ -94,13 +94,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/fesm5/ionic-angular.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _components_pop_filter_pop_filter_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./../../components/pop-filter/pop-filter.component */ "./src/app/components/pop-filter/pop-filter.component.ts");
-/* harmony import */ var _service_history_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../service/history.service */ "./src/app/service/history.service.ts");
-/* harmony import */ var _providers_user_data__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./../../providers/user-data */ "./src/app/providers/user-data.ts");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
-
+/* harmony import */ var _service_history_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../service/history.service */ "./src/app/service/history.service.ts");
+/* harmony import */ var _providers_user_data__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./../../providers/user-data */ "./src/app/providers/user-data.ts");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
 
 
 
@@ -216,25 +214,6 @@ var HistoryPage = /** @class */ (function () {
             });
         });
     };
-    HistoryPage.prototype.presentFilterSettings = function (ev) {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            var popover;
-            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.popoverController.create({
-                            component: _components_pop_filter_pop_filter_component__WEBPACK_IMPORTED_MODULE_5__["PopFilterComponent"],
-                            event: ev,
-                            translucent: true,
-                            animated: true
-                        })];
-                    case 1:
-                        popover = _a.sent();
-                        return [4 /*yield*/, popover.present()];
-                    case 2: return [2 /*return*/, _a.sent()];
-                }
-            });
-        });
-    };
     HistoryPage.prototype.updateHistory = function () {
         if (this.historyList) {
             this.historyList.closeSlidingItems();
@@ -253,13 +232,13 @@ var HistoryPage = /** @class */ (function () {
     };
     HistoryPage.prototype.pullInHistorySummary = function () {
         var _this = this;
-        this.historyService.data.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_9__["map"])(function (res) {
+        this.historyService.data.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_8__["map"])(function (res) {
             res.history.forEach(function (txpow) {
                 var name = txpow.values[0].name;
-                txpow.values[0].time = moment__WEBPACK_IMPORTED_MODULE_8__(txpow.txpow.header.timesecs * 1000).format('hh:mm A');
-                txpow.values[0].day = moment__WEBPACK_IMPORTED_MODULE_8__(txpow.txpow.header.timesecs * 1000).format("DD");
-                txpow.values[0].month = moment__WEBPACK_IMPORTED_MODULE_8__(txpow.txpow.header.timesecs * 1000).format("MMM");
-                txpow.values[0].year = moment__WEBPACK_IMPORTED_MODULE_8__(txpow.txpow.header.timesecs * 1000).format("YYYY");
+                txpow.values[0].time = moment__WEBPACK_IMPORTED_MODULE_7__(txpow.txpow.header.timesecs * 1000).format('hh:mm A');
+                txpow.values[0].day = moment__WEBPACK_IMPORTED_MODULE_7__(txpow.txpow.header.timesecs * 1000).format("DD");
+                txpow.values[0].month = moment__WEBPACK_IMPORTED_MODULE_7__(txpow.txpow.header.timesecs * 1000).format("MMM");
+                txpow.values[0].year = moment__WEBPACK_IMPORTED_MODULE_7__(txpow.txpow.header.timesecs * 1000).format("YYYY");
                 if (name && !name.name && name.substring(0, 1) === '{') {
                     txpow.values[0].name = JSON.parse(name);
                 }
@@ -313,8 +292,8 @@ var HistoryPage = /** @class */ (function () {
         { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["MenuController"] },
         { type: _service_minima_api_service__WEBPACK_IMPORTED_MODULE_1__["MinimaApiService"] },
         { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["AlertController"] },
-        { type: _service_history_service__WEBPACK_IMPORTED_MODULE_6__["HistoryService"] },
-        { type: _providers_user_data__WEBPACK_IMPORTED_MODULE_7__["UserHistorySavedData"] },
+        { type: _service_history_service__WEBPACK_IMPORTED_MODULE_5__["HistoryService"] },
+        { type: _providers_user_data__WEBPACK_IMPORTED_MODULE_6__["UserHistorySavedData"] },
         { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ModalController"] },
         { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["AlertController"] },
         { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ToastController"] },
@@ -335,8 +314,8 @@ var HistoryPage = /** @class */ (function () {
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_3__["MenuController"],
             _service_minima_api_service__WEBPACK_IMPORTED_MODULE_1__["MinimaApiService"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["AlertController"],
-            _service_history_service__WEBPACK_IMPORTED_MODULE_6__["HistoryService"],
-            _providers_user_data__WEBPACK_IMPORTED_MODULE_7__["UserHistorySavedData"],
+            _service_history_service__WEBPACK_IMPORTED_MODULE_5__["HistoryService"],
+            _providers_user_data__WEBPACK_IMPORTED_MODULE_6__["UserHistorySavedData"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ModalController"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["AlertController"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ToastController"],

@@ -203,6 +203,7 @@ let ContactsPage = class ContactsPage {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
             const toast = yield this.toastController.create({
                 message: msg,
+                duration: 1000,
                 color: clr,
                 position: posn,
                 buttons: ['cancel']

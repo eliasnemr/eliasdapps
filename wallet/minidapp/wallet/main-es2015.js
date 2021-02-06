@@ -283,28 +283,6 @@ module.exports = "<ion-header class=\"ion-no-border\">\n  <ion-toolbar>\n    <io
 
 /***/ }),
 
-/***/ "./node_modules/raw-loader/index.js!./src/app/components/pop-filter/pop-filter.component.html":
-/*!*******************************************************************************************!*\
-  !*** ./node_modules/raw-loader!./src/app/components/pop-filter/pop-filter.component.html ***!
-  \*******************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<ion-list>\n  <ion-list-header>\n    Filter Settings\n  </ion-list-header>\n\n  <ion-item>\n    <ion-label>Order by</ion-label>\n    <ion-select (ionChange)=\"change($event)\" [compareWith]=\"compareWithFn\" value=\"{{userConfig.historyOrderByMode}}\">\n    <ion-select-option value=\"1\">Latest transaction</ion-select-option>\n    <ion-select-option value=\"2\">Earliest transaction</ion-select-option>\n    </ion-select>\n  </ion-item>\n</ion-list>\n"
-
-/***/ }),
-
-/***/ "./node_modules/raw-loader/index.js!./src/app/components/pop-settings/pop-settings.component.html":
-/*!***********************************************************************************************!*\
-  !*** ./node_modules/raw-loader!./src/app/components/pop-settings/pop-settings.component.html ***!
-  \***********************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "\n  <ion-list>\n    <ion-list-header>Balance Settings</ion-list-header>\n    <ion-item>\n      <ion-label>Display Mode</ion-label>\n      <ion-select (ionChange)=\"change($event)\" [compareWith]=\"compareWithFn\" value=\"{{user.tokenDisplayMode}}\">\n      <ion-select-option value=\"1\">Grid View</ion-select-option>\n      <ion-select-option value=\"2\">List View</ion-select-option>\n      </ion-select>\n    </ion-item>      \n  </ion-list>"
-
-/***/ }),
-
 /***/ "./node_modules/raw-loader/index.js!./src/app/components/pop-term/pop-term.component.html":
 /*!***************************************************************************************!*\
   !*** ./node_modules/raw-loader!./src/app/components/pop-term/pop-term.component.html ***!
@@ -334,11 +312,11 @@ __webpack_require__.r(__webpack_exports__);
 
 const routes = [
     { path: '', redirectTo: 'balance', pathMatch: 'full' },
-    { path: 'balance', loadChildren: () => __webpack_require__.e(/*! import() | pages-balance-balance-module */ "pages-balance-balance-module").then(__webpack_require__.bind(null, /*! ./pages/balance/balance.module */ "./src/app/pages/balance/balance.module.ts")).then(m => m.BalancePageModule) },
+    { path: 'balance', loadChildren: () => Promise.all(/*! import() | pages-balance-balance-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-balance-balance-module")]).then(__webpack_require__.bind(null, /*! ./pages/balance/balance.module */ "./src/app/pages/balance/balance.module.ts")).then(m => m.BalancePageModule) },
     { path: 'send-funds', loadChildren: () => __webpack_require__.e(/*! import() | pages-send-funds-send-funds-module */ "pages-send-funds-send-funds-module").then(__webpack_require__.bind(null, /*! ./pages/send-funds/send-funds.module */ "./src/app/pages/send-funds/send-funds.module.ts")).then(m => m.SendFundsPageModule) },
     { path: 'send-funds/:id', loadChildren: () => __webpack_require__.e(/*! import() | pages-send-funds-send-funds-module */ "pages-send-funds-send-funds-module").then(__webpack_require__.bind(null, /*! ./pages/send-funds/send-funds.module */ "./src/app/pages/send-funds/send-funds.module.ts")).then(m => m.SendFundsPageModule) },
     { path: 'status', loadChildren: () => __webpack_require__.e(/*! import() | pages-mini-status-mini-status-module */ "pages-mini-status-mini-status-module").then(__webpack_require__.bind(null, /*! ./pages/mini-status/mini-status.module */ "./src/app/pages/mini-status/mini-status.module.ts")).then(m => m.MiniStatusPageModule) },
-    { path: 'my-address', loadChildren: () => __webpack_require__.e(/*! import() | pages-my-address-my-address-module */ "pages-my-address-my-address-module").then(__webpack_require__.bind(null, /*! ./pages/my-address/my-address.module */ "./src/app/pages/my-address/my-address.module.ts")).then(m => m.MyAddressPageModule) },
+    { path: 'my-address', loadChildren: () => Promise.all(/*! import() | pages-my-address-my-address-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-my-address-my-address-module")]).then(__webpack_require__.bind(null, /*! ./pages/my-address/my-address.module */ "./src/app/pages/my-address/my-address.module.ts")).then(m => m.MyAddressPageModule) },
     { path: 'code', loadChildren: () => __webpack_require__.e(/*! import() | pages-send-funds-send-funds-module */ "pages-send-funds-send-funds-module").then(__webpack_require__.bind(null, /*! ./pages/send-funds/send-funds.module */ "./src/app/pages/send-funds/send-funds.module.ts")).then(m => m.SendFundsPageModule) },
     { path: 'mini-term', loadChildren: () => __webpack_require__.e(/*! import() | pages-mini-term-mini-term-module */ "pages-mini-term-mini-term-module").then(__webpack_require__.bind(null, /*! ./pages/mini-term/mini-term.module */ "./src/app/pages/mini-term/mini-term.module.ts")).then(m => m.MiniTermPageModule) },
     { path: 'mini-status', loadChildren: () => __webpack_require__.e(/*! import() | pages-mini-status-mini-status-module */ "pages-mini-status-mini-status-module").then(__webpack_require__.bind(null, /*! ./pages/mini-status/mini-status.module */ "./src/app/pages/mini-status/mini-status.module.ts")).then(m => m.MiniStatusPageModule) },
@@ -352,8 +330,8 @@ const routes = [
             .then(m => m.ViewTokensPageModule) },
     { path: 'contacts-modal', loadChildren: () => __webpack_require__.e(/*! import() | components-contacts-modal-contacts-modal-module */ "components-contacts-modal-contacts-modal-module").then(__webpack_require__.bind(null, /*! ./components/contacts-modal/contacts-modal.module */ "./src/app/components/contacts-modal/contacts-modal.module.ts"))
             .then(m => m.ContactsModalPageModule) },
-    { path: 'contacts', loadChildren: () => __webpack_require__.e(/*! import() | pages-contacts-contacts-module */ "pages-contacts-contacts-module").then(__webpack_require__.bind(null, /*! ./pages/contacts/contacts.module */ "./src/app/pages/contacts/contacts.module.ts")).then(m => m.ContactsPageModule) },
-    { path: '**', loadChildren: () => __webpack_require__.e(/*! import() | pages-balance-balance-module */ "pages-balance-balance-module").then(__webpack_require__.bind(null, /*! ./pages/balance/balance.module */ "./src/app/pages/balance/balance.module.ts")).then(m => m.BalancePageModule) },
+    { path: 'contacts', loadChildren: () => Promise.all(/*! import() | pages-contacts-contacts-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-contacts-contacts-module")]).then(__webpack_require__.bind(null, /*! ./pages/contacts/contacts.module */ "./src/app/pages/contacts/contacts.module.ts")).then(m => m.ContactsPageModule) },
+    { path: '**', loadChildren: () => Promise.all(/*! import() | pages-balance-balance-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-balance-balance-module")]).then(__webpack_require__.bind(null, /*! ./pages/balance/balance.module */ "./src/app/pages/balance/balance.module.ts")).then(m => m.BalancePageModule) },
 ];
 let AppRoutingModule = class AppRoutingModule {
 };
@@ -572,17 +550,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_native_qr_scanner_ngx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @ionic-native/qr-scanner/ngx */ "./node_modules/@ionic-native/qr-scanner/ngx/index.js");
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm2015/common.js");
 /* harmony import */ var _components_pop_term_pop_term_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/pop-term/pop-term.component */ "./src/app/components/pop-term/pop-term.component.ts");
-/* harmony import */ var _components_pop_settings_pop_settings_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/pop-settings/pop-settings.component */ "./src/app/components/pop-settings/pop-settings.component.ts");
-/* harmony import */ var _components_pop_filter_pop_filter_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/pop-filter/pop-filter.component */ "./src/app/components/pop-filter/pop-filter.component.ts");
-/* harmony import */ var _components_contacts_modal_contacts_modal_page__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/contacts-modal/contacts-modal.page */ "./src/app/components/contacts-modal/contacts-modal.page.ts");
+/* harmony import */ var _components_contacts_modal_contacts_modal_page__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/contacts-modal/contacts-modal.page */ "./src/app/components/contacts-modal/contacts-modal.page.ts");
 /**
  * Created By Elias Nemr
  * 01/11/19
  * Minima Global
  * WALLET
  */
-
-
 
 
 
@@ -604,11 +578,9 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         declarations: [
             _app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"],
             _components_pop_term_pop_term_component__WEBPACK_IMPORTED_MODULE_12__["PopTermComponent"],
-            _components_pop_settings_pop_settings_component__WEBPACK_IMPORTED_MODULE_13__["PopSettingsComponent"],
-            _components_pop_filter_pop_filter_component__WEBPACK_IMPORTED_MODULE_14__["PopFilterComponent"],
-            _components_contacts_modal_contacts_modal_page__WEBPACK_IMPORTED_MODULE_15__["ContactsModalPage"]
+            _components_contacts_modal_contacts_modal_page__WEBPACK_IMPORTED_MODULE_13__["ContactsModalPage"]
         ],
-        entryComponents: [_components_pop_settings_pop_settings_component__WEBPACK_IMPORTED_MODULE_13__["PopSettingsComponent"], _components_pop_filter_pop_filter_component__WEBPACK_IMPORTED_MODULE_14__["PopFilterComponent"], _components_pop_term_pop_term_component__WEBPACK_IMPORTED_MODULE_12__["PopTermComponent"], _components_contacts_modal_contacts_modal_page__WEBPACK_IMPORTED_MODULE_15__["ContactsModalPage"]],
+        entryComponents: [_components_pop_term_pop_term_component__WEBPACK_IMPORTED_MODULE_12__["PopTermComponent"], _components_contacts_modal_contacts_modal_page__WEBPACK_IMPORTED_MODULE_13__["ContactsModalPage"]],
         imports: [
             _app_routing_module__WEBPACK_IMPORTED_MODULE_8__["AppRoutingModule"],
             _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormsModule"],
@@ -777,128 +749,6 @@ ContactsModalPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormBuilder"],
         _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ToastController"]])
 ], ContactsModalPage);
-
-
-
-/***/ }),
-
-/***/ "./src/app/components/pop-filter/pop-filter.component.scss":
-/*!*****************************************************************!*\
-  !*** ./src/app/components/pop-filter/pop-filter.component.scss ***!
-  \*****************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "ion-list ion-item ion-label {\n  white-space: normal;\n  font-size: 0.7rem !important;\n  font-family: manrope-bold;\n}\n\nion-list ion-item ion-select {\n  font-size: 0.7rem !important;\n  line-height: 23px;\n}\n\nion-list-header {\n  text-transform: none;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9lbGlhc25lbXIvcHJvamVjdHMvV2FsbGV0L21vYmlsZS1hcHAtZnJvbnQtZW5kL2FwcC9zcmMvYXBwL2NvbXBvbmVudHMvcG9wLWZpbHRlci9wb3AtZmlsdGVyLmNvbXBvbmVudC5zY3NzIiwic3JjL2FwcC9jb21wb25lbnRzL3BvcC1maWx0ZXIvcG9wLWZpbHRlci5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLG1CQUFBO0VBQ0EsNEJBQUE7RUFDQSx5QkFBQTtBQ0NGOztBRENBO0VBQ0UsNEJBQUE7RUFDQSxpQkFBQTtBQ0VGOztBREFBO0VBQ0Usb0JBQUE7QUNHRiIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvcG9wLWZpbHRlci9wb3AtZmlsdGVyLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiaW9uLWxpc3QgaW9uLWl0ZW0gaW9uLWxhYmVsIHtcbiAgd2hpdGUtc3BhY2U6IG5vcm1hbDtcbiAgZm9udC1zaXplOiAwLjdyZW0gIWltcG9ydGFudDtcbiAgZm9udC1mYW1pbHk6IG1hbnJvcGUtYm9sZDtcbn1cbmlvbi1saXN0IGlvbi1pdGVtIGlvbi1zZWxlY3Qge1xuICBmb250LXNpemU6IDAuN3JlbSAhaW1wb3J0YW50O1xuICBsaW5lLWhlaWdodDogMjNweDtcbn1cbmlvbi1saXN0LWhlYWRlciB7XG4gIHRleHQtdHJhbnNmb3JtOiBub25lO1xufVxuIiwiaW9uLWxpc3QgaW9uLWl0ZW0gaW9uLWxhYmVsIHtcbiAgd2hpdGUtc3BhY2U6IG5vcm1hbDtcbiAgZm9udC1zaXplOiAwLjdyZW0gIWltcG9ydGFudDtcbiAgZm9udC1mYW1pbHk6IG1hbnJvcGUtYm9sZDtcbn1cblxuaW9uLWxpc3QgaW9uLWl0ZW0gaW9uLXNlbGVjdCB7XG4gIGZvbnQtc2l6ZTogMC43cmVtICFpbXBvcnRhbnQ7XG4gIGxpbmUtaGVpZ2h0OiAyM3B4O1xufVxuXG5pb24tbGlzdC1oZWFkZXIge1xuICB0ZXh0LXRyYW5zZm9ybTogbm9uZTtcbn0iXX0= */"
-
-/***/ }),
-
-/***/ "./src/app/components/pop-filter/pop-filter.component.ts":
-/*!***************************************************************!*\
-  !*** ./src/app/components/pop-filter/pop-filter.component.ts ***!
-  \***************************************************************/
-/*! exports provided: PopFilterComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PopFilterComponent", function() { return PopFilterComponent; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _service_userconfig_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../../service/userconfig.service */ "./src/app/service/userconfig.service.ts");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-
-
-
-let PopFilterComponent = class PopFilterComponent {
-    constructor(userConfigService) {
-        this.userConfigService = userConfigService;
-        // set default value from observable
-        this.userConfig.historyOrderByMode = this.userConfigService.userConfig.value.historyOrderByMode;
-    }
-    ngOnInit() { }
-    compareWithFn(o1, o2) {
-        return o1 == o2;
-    }
-    change(ev) {
-        let temp = this.userConfigService.userConfig.value;
-        temp.historyOrderByMode = ev.detail.value;
-        this.userConfigService.userConfig.next(temp);
-        this.userConfigService.saveUserConfig(this.userConfigService.userConfig.value);
-    }
-};
-PopFilterComponent.ctorParameters = () => [
-    { type: _service_userconfig_service__WEBPACK_IMPORTED_MODULE_1__["UserConfigService"] }
-];
-PopFilterComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Component"])({
-        selector: 'app-pop-filter',
-        template: __webpack_require__(/*! raw-loader!./pop-filter.component.html */ "./node_modules/raw-loader/index.js!./src/app/components/pop-filter/pop-filter.component.html"),
-        styles: [__webpack_require__(/*! ./pop-filter.component.scss */ "./src/app/components/pop-filter/pop-filter.component.scss")]
-    }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_service_userconfig_service__WEBPACK_IMPORTED_MODULE_1__["UserConfigService"]])
-], PopFilterComponent);
-
-
-
-/***/ }),
-
-/***/ "./src/app/components/pop-settings/pop-settings.component.scss":
-/*!*********************************************************************!*\
-  !*** ./src/app/components/pop-settings/pop-settings.component.scss ***!
-  \*********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "ion-list ion-item ion-label {\n  white-space: normal;\n  font-size: 0.7rem !important;\n  font-family: manrope-bold;\n}\n\nion-list ion-item ion-select {\n  font-size: 0.7rem !important;\n  line-height: 23px;\n}\n\nion-list-header {\n  text-transform: none;\n}\n\nion-select-option {\n  color: var(--ion-color-primary);\n}\n\n[aria-checked=true].sc-ion-alert-md .alert-radio-label.sc-ion-alert-md {\n  color: var(--ion-color-tertiary);\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9lbGlhc25lbXIvcHJvamVjdHMvV2FsbGV0L21vYmlsZS1hcHAtZnJvbnQtZW5kL2FwcC9zcmMvYXBwL2NvbXBvbmVudHMvcG9wLXNldHRpbmdzL3BvcC1zZXR0aW5ncy5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvY29tcG9uZW50cy9wb3Atc2V0dGluZ3MvcG9wLXNldHRpbmdzLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksbUJBQUE7RUFDQSw0QkFBQTtFQUNBLHlCQUFBO0FDQ0o7O0FEQ0E7RUFDSSw0QkFBQTtFQUNBLGlCQUFBO0FDRUo7O0FEQUE7RUFDSSxvQkFBQTtBQ0dKOztBRERBO0VBQ0ksK0JBQUE7QUNJSjs7QURGQTtFQUNJLGdDQUFBO0FDS0oiLCJmaWxlIjoic3JjL2FwcC9jb21wb25lbnRzL3BvcC1zZXR0aW5ncy9wb3Atc2V0dGluZ3MuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJpb24tbGlzdCBpb24taXRlbSBpb24tbGFiZWwge1xuICAgIHdoaXRlLXNwYWNlOiBub3JtYWw7XG4gICAgZm9udC1zaXplOiAwLjdyZW0gIWltcG9ydGFudDtcbiAgICBmb250LWZhbWlseTogbWFucm9wZS1ib2xkO1xufVxuaW9uLWxpc3QgaW9uLWl0ZW0gaW9uLXNlbGVjdCB7XG4gICAgZm9udC1zaXplOiAwLjdyZW0gIWltcG9ydGFudDtcbiAgICBsaW5lLWhlaWdodDogMjNweDtcbn1cbmlvbi1saXN0LWhlYWRlciB7XG4gICAgdGV4dC10cmFuc2Zvcm06IG5vbmU7XG59XG5pb24tc2VsZWN0LW9wdGlvbiB7XG4gICAgY29sb3I6IHZhcigtLWlvbi1jb2xvci1wcmltYXJ5KTtcbn0gXG5bYXJpYS1jaGVja2VkPXRydWVdLnNjLWlvbi1hbGVydC1tZCAuYWxlcnQtcmFkaW8tbGFiZWwuc2MtaW9uLWFsZXJ0LW1kIHtcbiAgICBjb2xvcjogdmFyKC0taW9uLWNvbG9yLXRlcnRpYXJ5KTtcbn0iLCJpb24tbGlzdCBpb24taXRlbSBpb24tbGFiZWwge1xuICB3aGl0ZS1zcGFjZTogbm9ybWFsO1xuICBmb250LXNpemU6IDAuN3JlbSAhaW1wb3J0YW50O1xuICBmb250LWZhbWlseTogbWFucm9wZS1ib2xkO1xufVxuXG5pb24tbGlzdCBpb24taXRlbSBpb24tc2VsZWN0IHtcbiAgZm9udC1zaXplOiAwLjdyZW0gIWltcG9ydGFudDtcbiAgbGluZS1oZWlnaHQ6IDIzcHg7XG59XG5cbmlvbi1saXN0LWhlYWRlciB7XG4gIHRleHQtdHJhbnNmb3JtOiBub25lO1xufVxuXG5pb24tc2VsZWN0LW9wdGlvbiB7XG4gIGNvbG9yOiB2YXIoLS1pb24tY29sb3ItcHJpbWFyeSk7XG59XG5cblthcmlhLWNoZWNrZWQ9dHJ1ZV0uc2MtaW9uLWFsZXJ0LW1kIC5hbGVydC1yYWRpby1sYWJlbC5zYy1pb24tYWxlcnQtbWQge1xuICBjb2xvcjogdmFyKC0taW9uLWNvbG9yLXRlcnRpYXJ5KTtcbn0iXX0= */"
-
-/***/ }),
-
-/***/ "./src/app/components/pop-settings/pop-settings.component.ts":
-/*!*******************************************************************!*\
-  !*** ./src/app/components/pop-settings/pop-settings.component.ts ***!
-  \*******************************************************************/
-/*! exports provided: PopSettingsComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PopSettingsComponent", function() { return PopSettingsComponent; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _service_userconfig_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../../service/userconfig.service */ "./src/app/service/userconfig.service.ts");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-
-
-
-let PopSettingsComponent = class PopSettingsComponent {
-    constructor(userConfigService) {
-        this.userConfigService = userConfigService;
-        // set default value from observable
-        this.userConfigService.userConfig.subscribe((val) => {
-            this.user = val;
-        });
-    }
-    ngOnInit() { }
-    compareWithFn(o1, o2) {
-        return o1 === o2;
-    }
-    change(ev) {
-        // tslint:disable-next-line: radix
-        this.user.tokenDisplayMode = parseInt(ev.detail.value);
-        this.userConfigService.userConfig.next(this.user);
-        this.userConfigService.saveUserConfig(this.user);
-    }
-};
-PopSettingsComponent.ctorParameters = () => [
-    { type: _service_userconfig_service__WEBPACK_IMPORTED_MODULE_1__["UserConfigService"] }
-];
-PopSettingsComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Component"])({
-        selector: 'app-pop-settings',
-        template: __webpack_require__(/*! raw-loader!./pop-settings.component.html */ "./node_modules/raw-loader/index.js!./src/app/components/pop-settings/pop-settings.component.html"),
-        styles: [__webpack_require__(/*! ./pop-settings.component.scss */ "./src/app/components/pop-settings/pop-settings.component.scss")]
-    }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_service_userconfig_service__WEBPACK_IMPORTED_MODULE_1__["UserConfigService"]])
-], PopSettingsComponent);
 
 
 
@@ -1167,77 +1017,6 @@ StatusService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     }),
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
 ], StatusService);
-
-
-
-/***/ }),
-
-/***/ "./src/app/service/userconfig.service.ts":
-/*!***********************************************!*\
-  !*** ./src/app/service/userconfig.service.ts ***!
-  \***********************************************/
-/*! exports provided: UserConfigService */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UserConfigService", function() { return UserConfigService; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm2015/index.js");
-/* harmony import */ var minima__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! minima */ "./node_modules/minima/dist/minima.js");
-/* harmony import */ var minima__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(minima__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-
-
-
-
-let UserConfigService = class UserConfigService {
-    constructor() {
-        this.defaultConfig = {
-            systemMode: 'light',
-            terminalFontSize: '12',
-            tokenDisplayMode: 1,
-            historyOrderByMode: 1,
-            historySaved: '',
-            tips: { balance: false, contacts: false, address: false }
-        };
-        this.userConfig = new rxjs__WEBPACK_IMPORTED_MODULE_1__["BehaviorSubject"](this.defaultConfig);
-        this.createUserConfig(this.defaultConfig);
-    }
-    createUserConfig(defaultConfig) {
-        minima__WEBPACK_IMPORTED_MODULE_2__["Minima"].file.load('UserConfig.txt', (res) => {
-            if (!res.success && !res.exists) {
-                minima__WEBPACK_IMPORTED_MODULE_2__["Minima"].file.save(JSON.stringify(defaultConfig), 'UserConfig.txt', (resp) => {
-                    if (resp.success) {
-                        console.log('User Configuration File has been created with default values.');
-                    }
-                });
-            }
-            else { // if userConfig exists, update with latest values
-                this.userConfig.next(JSON.parse(res.data));
-            }
-        });
-    }
-    saveUserConfig(currentValue) {
-        minima__WEBPACK_IMPORTED_MODULE_2__["Minima"].file.load('UserConfig.txt', (res) => {
-            if (res.success) {
-                if (res.data !== JSON.stringify(currentValue)) {
-                    minima__WEBPACK_IMPORTED_MODULE_2__["Minima"].file.save(JSON.stringify(currentValue), 'UserConfig.txt', (res) => {
-                        if (res.success) {
-                            //  console.log('Updated UserConfig!');
-                        }
-                    });
-                }
-            }
-        });
-    }
-};
-UserConfigService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["Injectable"])({
-        providedIn: 'root'
-    }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
-], UserConfigService);
 
 
 
