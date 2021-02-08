@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>BLOCK</title>
+  
+  <!-- CSS. -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/custom.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link rel="icon" type="image/png" href="assets/blockicon.png"/>
+  <link href="https://unpkg.com/tabulator-tables@4.7.1/dist/css/tabulator.min.css" rel="stylesheet">
+  <!-- Scripts. -->
+  <script type="text/javascript" src="https://unpkg.com/tabulator-tables@4.7.1/dist/js/tabulator.min.js"></script>
+  <script src="js/jquery-3.5.1.min.js"></script>
+  <script src="js/moment.js"></script>
+  <script src="js/Minima/minima.js"></script>
+
+
+</head>
+
+<body>
+  <script>
+    function loadMore(rows) {
+      var pageSize = table.getPageSize(); 
+    
+      pageSize = pageSize+rows;
+      search_table.setPageSize(pageSize);
+    }
+
+    var search_table;
+    window.addEventListener("load", function(res){
+      
+      $(document).ready(function(){
+
+        $(document).on('click', '#backBtn1', function(){
+
+          window.history.back();
+
+        });
+
+          Minima.init(function(msg){
+
+              if(msg.event == "connected") {
+
+                  // check if table rows > 10
+                  setTimeout(function() {
+                    if (search_table && search_table.getDataCount() > 10) {
+                      $('#loadMoreBtn').removeClass('disabled');
+                    }
+                  }, 1000)
+        
+                  // dark mode
+                  Minima.file.load("userPreference.txt", function(res){
+                    if(res.success){
+                      var preference = JSON.parse(res.data);
+                
+                      if(preference.mode == "dark"){
+                        $('body').addClass("dark");
+                      } else if(preference.mode == "light"){
+                        $('body').removeClass("dark");  
+                      }
+                    }
+                
+                  });
+
+                  var query = Minima.form.getParams("query");
+                  var results = []; var search = [];
+                  Minima.sql("SELECT * FROM txpowlist WHERE TXPOW LIKE '%"+query+"%' ORDER BY RELAYED", function(res){
+                      search = [];
+                      $.each(res.response.rows, function(i, el){
+                          search.push(el);
+                      });
+
+                      if(res.response.status && res.response.rows.length > 1) {
+                        
+                          $('#goback-wrap').remove();
+                          $('#results-table').removeClass('hide');
+                          $('#navbar-search').text("Showing "+res.response.rows.length+" results..");
+
+                      } else if(res.response.status && res.response.rows.length == 1){
+                        
+                          $('#goback-wrap').remove();
+                          $('#results-table').removeClass('hide');
+                          $('#navbar-search').text("Showing "+res.response.rows.length+" result..");
+                        
+                      } else if(res.response.count == 0 || !res.response.status) {
+                        $('#navbar-search').text("No results found..");
+
+                        var markup = '<div id="notfound" class="row center">'+ 
+                                      '<div class="col s12">'+
+                                        '<p>No results found for this query!<p>'+
+                                      '</div>'+
+                                    '</div>'+
+                                    '<br>'+
+                                    '<div id="notfound" class="row center">'+
+                                      '<div class="col s12">'+
+                                        '<a id="backBtn1" class="backBtn btn-small btn-flat">Back To Explorer<p>'+
+                                      '</div>'+
+                                    '</div>';
+
+                        $('#content').append(markup);
+                        $('#results-table-col').addClass('hide');
+
+                        return false;
+                      }
+
+                      search_table = new Tabulator("#results-table", {
+                          pagination: "local",  
+                          layout:"fitDataTable",
+                          //maxHeight: "660",
+                          paginationSize: 10,
+                          layout: "fitColumns",
+                          resizableColumns: false,
+                          responsiveLayout: "hide",
+                          headerSort: false,
+                          index: "HEIGHT",
+                          columns: [
+                              {title:"txpow", field:"TXPOW", visible:false},
+                              {title: "Height", field: "HEIGHT", sorter: "number", responsive:0,  width: '100', cssClass: "height-column"},
+                              {title: "Hash", field: "HASH", hozAlign:"left", formatter:function(cell, formatterParams){
+                                  var hash = cell.getData();
+                                  hash = hash.HASH;
+                                  return hash;
+                              }},
+                              {title: "isblock", field:"isblock", visible: false},
+                              {title: "TXNS", field:"TXNS", width:70, headerHozAlign: "right", hozAlign:'right', widthShrink:3, responsive:3},
+                              {title: "Relayed", field:"RELAYED", width: 110, headerHozAlign: "right", responsive:1, hozAlign:'right', formatter:function(cell, formatterParams){
+                                  var time = cell.getData();
+                                  time = moment(time.RELAYED*1000).format("HH:mm:ss");
+                                  return time;
+                              }},
+                          ],
+                          rowClick: function(e, row) {
+                              var clicked_row = row._row.data;
+                              window.location.href = './details.html?txpow='+clicked_row.HASH;
+                              return false;
+                          }
+                      });
+                      // set the data
+                      search_table.setData(search);
+
+                  });
+
+              }
+
+          });
+      });
+
+    });
+</script>
+  <header>
+    <div id="header" style="margin-bottom:0!important" class="row">
+      <div id="blockicon" class="col m7 s12">
+        <img class="left" src="assets/block2.svg" alt="logo">
+        <div id="title" class="left">
+          <p>The Minima <br> Blockchain Explorer</p>
+        </div>
+      </div>
+    
+      <div id="titleR" class="col m5 hide-on-small-and-down">
+        <img class="right" src="assets/minimaMark.svg" alt="white-logo">
+        <p>Testnet <br> <span>Powered By Minima</span></p>
+      </div>
+    </div>
+
+    <div style="flex-direction: row!important; padding-left: 10%;" id="nav-wrapper" class="row">
+      <div class="col">
+        <div class="nav-wrapper">
+          <a href="index.html" class="breadcrumb explorer">Explorer</a>
+          <a href="index.html" class="breadcrumb explorer" id="navbar-search"></a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div id="content">
+      <div class="row">
+        <div id="results-table-col" class="col s12" style="padding-right: 0">
+          <div id="results-table"></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col offset-m8 offset-s7 s3">
+          <div id="loadMoreBtn" onclick="loadMore(10)" class="disabled btn-small btn-flat backBtn">Load More</div>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <footer>
+    <div class="row">
+      <div style="padding-left: 4%" class="hide-on-small-and-down col l6 s12">
+        <div class="row">
+          <div class="col s5">
+            <img style="margin-left:5%" width="180" src="assets/minilogoblacklandscape.svg">
+          </div>
+        </div>     
+      </div>
+      <div class="col l2 s12">
+
+      </div>
+      <div style="padding-right: 10%;" id="socials-s" class="col l4 s12 hide-on-med-and-up socials">
+        <a href="https://minima.global/" target="_" id="lastsocial"><img src="assets/social1.svg" style="width:40px;" alt="website"></a>
+        <a href="https://github.com/minima-global" target="_"><img src="assets/social2.svg" style="width:40px;" alt="github"></a>
+        <a href="https://t.me/Minima_Global" target="_"><img src="assets/social3.svg" style="width:40px;" alt="telegram"></a>
+        <a href="https://medium.com/minima-global" target="_"><img src="assets/social4.svg" style="width:40px;" alt="medium"></a>
+        <a href="https://twitter.com/Minima_Global" target="_"><img src="assets/social5.svg" style="width:40px;" alt="twitter"></a>
+        <a href="https://www.youtube.com/channel/UCDe2j57uQrUVtVizFbDpsoQ" target="_"><img src="assets/social6.svg" style="width:40px;" alt="youtube"></a>
+      </div>
+      <div style="padding-right: 6%;" id="socials-b" class="col l4 s12 hide-on-small-only socials">
+        <a href="https://minima.global/" target="_" id="lastsocial"><img src="assets/social1.svg" style="width:40px;" alt="website"></a>
+        <a href="https://github.com/minima-global" target="_"><img src="assets/social2.svg" style="width:40px;" alt="github"></a>
+        <a href="https://t.me/Minima_Global" target="_"><img src="assets/social3.svg" style="width:40px;" alt="telegram"></a>
+        <a href="https://medium.com/minima-global" target="_"><img src="assets/social4.svg" style="width:40px;" alt="medium"></a>
+        <a href="https://twitter.com/Minima_Global" target="_"><img src="assets/social5.svg" style="width:40px;" alt="twitter"></a>
+        <a href="https://www.youtube.com/channel/UCDe2j57uQrUVtVizFbDpsoQ" target="_"><img src="assets/social6.svg" style="width:40px;" alt="youtube"></a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/bin/materialize.js"></script>
+
+  </body>
+</html>
