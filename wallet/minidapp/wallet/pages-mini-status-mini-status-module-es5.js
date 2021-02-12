@@ -89,6 +89,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
 /* harmony import */ var _service_status_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../../service/status.service */ "./src/app/service/status.service.ts");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var minima__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! minima */ "./node_modules/minima/dist/minima.js");
+/* harmony import */ var minima__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(minima__WEBPACK_IMPORTED_MODULE_6__);
+
 
 
 
@@ -104,6 +107,10 @@ var MiniStatusPage = /** @class */ (function () {
     }
     MiniStatusPage.prototype.ngOnInit = function () { };
     MiniStatusPage.prototype.ionViewWillEnter = function () {
+        var _this = this;
+        minima__WEBPACK_IMPORTED_MODULE_6__["Minima"].cmd('status full', function (res) {
+            _this.service.updatedStatus.next(res.response);
+        });
         this.updateStatus();
     };
     MiniStatusPage.prototype.ionViewWillLeave = function () {
@@ -271,6 +278,7 @@ var MinimaApiService = /** @class */ (function () {
             "txnpost " + txnidentifier + ";" +
             // Clear the txn
             "txndelete " + txnidentifier + ";";
+        // send 1 0xFF 0x00 '254:0x1000#255:[This is a message]'
         return this.req(customTXN);
     };
     MinimaApiService.prototype.webLink = function (data) {

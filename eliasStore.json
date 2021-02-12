@@ -2,11 +2,11 @@
   "El Nemre Cafe": {
     "url": "https://raw.githubusercontent.com/eliasnemr/eliasdapps/main/",
     "description": "Coffee beans",
-    "icon": "eliasStore.png"
+    "icon": "elias.png"
   },
   "El Nemre Back Office": {
     "url": "https://raw.githubusercontent.com/eliasnemr/eliasdapps/development/",
     "description": "Break time",
-    "icon": "eliasStore.png"
+    "icon": "elias.png"
   }
 }

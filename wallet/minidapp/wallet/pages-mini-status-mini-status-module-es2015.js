@@ -86,6 +86,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
 /* harmony import */ var _service_status_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../../service/status.service */ "./src/app/service/status.service.ts");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var minima__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! minima */ "./node_modules/minima/dist/minima.js");
+/* harmony import */ var minima__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(minima__WEBPACK_IMPORTED_MODULE_6__);
+
 
 
 
@@ -101,6 +104,9 @@ let MiniStatusPage = class MiniStatusPage {
     }
     ngOnInit() { }
     ionViewWillEnter() {
+        minima__WEBPACK_IMPORTED_MODULE_6__["Minima"].cmd('status full', (res) => {
+            this.service.updatedStatus.next(res.response);
+        });
         this.updateStatus();
     }
     ionViewWillLeave() {
@@ -238,6 +244,7 @@ let MinimaApiService = class MinimaApiService {
             "txnpost " + txnidentifier + ";" +
             // Clear the txn
             "txndelete " + txnidentifier + ";";
+        // send 1 0xFF 0x00 '254:0x1000#255:[This is a message]'
         return this.req(customTXN);
     }
     webLink(data) {
