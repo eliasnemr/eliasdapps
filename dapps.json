@@ -1,7 +1,7 @@
 {
   "wallet": {
-    "miniDapp": "wallet1.00.00.minidapp",
+    "miniDapp": "wallet1.0.0.minidapp",
     "icon": "minidapp/wallet/assets/minima-logo-box.svg",
-    "conf": "minidapp/wallet/assets/minidapp.conf"
+    "conf": "minidapp/wallet/minidapp.conf"
   }
 }
