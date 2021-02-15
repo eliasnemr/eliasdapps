@@ -10,7 +10,7 @@
     "conf": "coinmaster/minidapp.conf"
   },
   "futurecash": {
-    "miniDapp": "futurecash1.0.minidapp",
+    "miniDapp": "futurecash1.0.1.minidapp",
     "icon": "futurecash/futurecash.svg",
     "conf": "futurecash/minidapp.conf"
   },
