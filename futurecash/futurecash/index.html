@@ -231,10 +231,10 @@
 			Minima.cmd("coins relevant address:"+timeaddress , function(json){
 
 				let cashtable =	'<div id="futuretable">'+
-									'<div id="table-header" class="row">'+
-										'<div id="th-amount" class="col s4"><div class="btn-small z-depth-0 waves-block">Amount </div></div>'+
-										'<div id="th-time" class="col s4"><div class="btn-small z-depth-0 waves-block"> Time </div></div>'+
-										'<div id="th-collect" class="col s4"><div class="btn-small z-depth-0 waves-block"> Collect </div></div>'+
+									'<div id="table-header" class="z-depth-0 row">'+
+										'<div id="th-amount" class="col s4"><div class="btn-flat z-depth-0 waves-block">Amount</div></div>'+
+										'<div id="th-time" class="col s4"><div class="btn-flat z-depth-0 waves-block">Time</div></div>'+
+										'<div id="th-collect" class="col s4"><div class="btn-flat z-depth-0 waves-block">Collect</div></div>'+
 									'</div>'+
 									'<div id="futuredata">';
 								
@@ -248,7 +248,7 @@
 					var timecoin   = parseInt(Minima.util.getStateVariable(coinproof.prevstate,1), 10);
 					var datecoin   = parseInt(Minima.util.getStateVariable(coinproof.prevstate, 2), 10);
 					var date = "";
-					date = new Date(datecoin);
+					
 					var amountcoin = coinproof.coin.amount;
 					
 					var collectstring = "";
@@ -274,8 +274,8 @@
 						hour: 'numeric',
 						minute: 'numeric',
 					  });
-					date = dateTimeFormat.format(date);
-					date = moment(date).format("MMM DD, YY - HH:mm")
+
+					date = moment(datecoin).format("MMM DD, YY - HH:mm");
 					
 					if(coinproof.coin.address == timeaddress){
 						cashtable+= '<div class="row">'+
@@ -289,7 +289,7 @@
 				if(coinlen == 0){
 					
 					cashtable+= '<div class="row">'+
-									'<div class="col s12"> No money yet!</div>'+
+									'<div class="col s12 center-align"><p> No money yet! </p></div>'+
 								'</div>';
 								
 				}
@@ -369,7 +369,8 @@
 			 		Minima.cmd("extrascript \""+timescript+"\"", function(resp){
 					 	//Set the time address
 				 		timeaddress = resp.response.address.hexaddress;
-				 		
+						 
+						
 				 		//Run it once..
 				 		cashFunction();
 			 		});
@@ -392,8 +393,7 @@
 		
 	</script>
 	
-
-	<div id="menu" class="container center-align">
+	<div id="menu" class="container">
 		<div class="menu-header">
 			<div id="b-title-wrap" class="z-depth-0 row">
 
@@ -408,7 +408,7 @@
 			</div>
 
 
-			<div id="buttons" class="row">
+			<div id="buttons" class="z-depth-0 row">
 				<div id="aboutwrapper" class="col s4">
 					<div onclick="showPage(0)" id="introBtn" class="btn-flat waves-block menuBtn active">About</div>
 				</div>
@@ -501,7 +501,7 @@
 							<div class="col s4">
 								<input size="40" class="datepicker" id="futuredate">
 							</div>
-							<div class="col s5">
+							<div id="copykey" class="col s4">
 								<input size="40" type="text" class="timepicker" id="futuretime">
 							</div>
 						</div>
