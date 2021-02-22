@@ -1,6 +1,11 @@
 {
+  "futurecash": {
+    "miniDapp": "futurecash1.0.minidapp",
+    "icon": "futurecash/futurecash.svg",
+    "conf": "futurecash/minidapp.conf"
+  },
   "wallet": {
-    "miniDapp": "wallet1.0.1.minidapp",
+    "miniDapp": "wallet1.0.2.minidapp",
     "icon": "minidapp/wallet/assets/minima-logo-box.svg",
     "conf": "minidapp/wallet/minidapp.conf"
   }
