@@ -1,6 +1,6 @@
 {
-  "futurecash": {
-    "miniDapp": "futurecash1.0.minidapp",
+  "futurecash1": {
+    "miniDapp": "futurecash11.0.minidapp",
     "icon": "futurecash/futurecash.svg",
     "conf": "futurecash/minidapp.conf"
   },
