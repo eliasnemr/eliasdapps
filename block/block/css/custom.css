@@ -1,4 +1,3 @@
-/* :) :) :) DEFAULT FONTS :) :) :) */
 @font-face {
   font-family: manrope-regular;
   src: url('./fonts/manrope-regular.otf');
@@ -11,106 +10,15 @@
   font-family: manrope-light; 
   src: url('./fonts/manrope-light.otf')
 }
-/* :) :) :) make scrollbar transparent :) :) :) */
 ::-webkit-scrollbar {
   width: 0px;
-  background: transparent; 
-}
-/* :) :) :) :) :) :) Main tags :) :) :) :) :) :) :) :) :) */
-body {
-  font-family: manrope-regular !important;
-  background-color: #F0F0F9;
-}
-/** footer */
-footer {
-  bottom: 0;
-  width: 100%;
-  padding: 5% 5% 5% 5%;
-  height: 160px;
-  background-color: #031D32 !important;
-}
-#footer-logo-col {
-  padding-left: 5%;
-}
-#testnet {
-  padding-left: 5%;
-  color: #317AFF;
-  vertical-align: middle;
-}
-#socials-s {
-  padding-top: 5%;
-}
-.socials a {
-  float:right;
-  padding-right: 3.5%;
-  cursor: pointer;
-}
-.socials a:hover {
-  transform: scale(1.1);
+  background: transparent; /* make scrollbar transparent */
 }
 
-/** header */
-header {
-  position: relative;
-  margin-bottom: 0.5%;
-  width: 100%;
-  height: 160px;
-  background-color: #031D32 !important;
-}
-header .row {
-  margin-bottom:0!important;
-}
-header #header {
-  background-color: #031D32;
-  padding-top: 2%!important;
-  margin-bottom:0!important;
-  margin-left: 10%;
-  margin-right: 10%;
-}
-header #blockicon img {
-  margin-right: 3%;
-  width: 167px;
-}
-header #title p {
-  font-size: 0.90rem;
-  width: 30px;
-  color: #fff;
-  font-family: manrope-bold;
-  margin-left: 10%;
-  white-space: nowrap;
-}
-header #titleR {
-  position: relative;
-  padding-right:0;
-}
-header #titleR img {
-  width: 36px;
-  height:62px;
-}
-header #titleR p {
-  float:right;
-  margin-right:5%;
-  text-align: right;
-  font-size: 1.0rem;
-  color: #317AFF;
-  line-height: 18.9px;
-}
-header #titleR p span {
-  color: #fff!important;
-  font-size: 0.8rem;
-}
-#page-container {
-  position: relative;
-  min-height: 90%;
-}
-main {
-  min-height: calc(100vh - 160px - 160px);
-  margin: 0 auto;
-  width: 80vw;
-}
 .backdrop {
   opacity: 0.2;
 }
+
 /** Mini Custom styling */
   .explorer {
     font-family: manrope-bold !important;
@@ -121,18 +29,14 @@ main {
   .nav-wrapper {
     background-color: #91919D;
   }
-  #nav-wrapper .wrapper {
-    margin-left: 10%;
-    margin-right: 10%;
-    float: right;
-  }
   #nav-wrapper {
-    position: absolute;
-    bottom: 0;
     width: 100%;
+    display: inline-flex;
+    flex-direction: row-reverse;
     background-color: #91919D;
     line-height: 35px;
-
+    padding-right:8%;
+    padding-bottom:0!important;
   }
   #nav-wrapper .row {
     margin-bottom:0;
@@ -159,8 +63,6 @@ main {
   .switch label .lever {
     height: 12px;
     background-color: #F0F0F9;
-    margin-right:0;
-
   }
   .dropdown-trigger label {
     vertical-align: middle;
@@ -205,16 +107,6 @@ main {
   #backbtn {
     margin-left: 10px;
   }
-  #loadMoreBtn {
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    font-family:manrope-bold;
-    text-transform: none;
-  }
-  #loadMoreBtn.disabled {
-    background-color: #031D32!important;
-    opacity: 0.2!important;
-  }
   #header {
     font-weight: 300;
     font-size: 44px;
@@ -241,6 +133,13 @@ main {
   nav {
     background-color: #031D32;
   }
+  #content {
+    z-index: -1;
+    overflow: auto;
+    padding-bottom: 200px;
+    padding-top: 200px;
+    margin: 0 10% 0 10%;
+  }
   #example-table {
     overflow: auto;
   }
@@ -255,8 +154,6 @@ main {
     height: 35px;
     text-align: left;
     padding-left: 1%;
-    text-overflow: ellipsis;
-    font-size: 1.0rem;
   }
   #search-wrapper .search {
     position: absolute;
@@ -265,7 +162,7 @@ main {
   }
   #content h5 {
     font-family: manrope-bold !important;
-    font-size: 1.0rem;
+    font-size: 1.2rem;
     padding:0;
     margin:0;
     margin-top: 0;
@@ -283,9 +180,24 @@ main {
     text-transform: none;
   }
 
-  @media only screen and (max-width: 1120) {
-    #header.row {
-      padding-top:3%!important;
+
+  @media only screen and (min-width: 1200px) {
+    .table-section {
+      margin-left: 150px;
+      margin-right: 150px;
+    }
+    .my-search-wrap {
+      margin-left: 150px;
+      margin-right: 150px;
+    }
+    footer {
+      padding: 5% 5% 7% 5% !important;
+    }
+
+  }
+  @media only screen and (min-width: 1300px) {
+    #content {
+      padding-top: 225px;
     }
   }
   @media only screen and (min-width: 993px) {
@@ -301,39 +213,6 @@ main {
     .my-search-wrap {
       margin-left: 150px;
       margin-right: 150px;
-    }
-  }
-  @media only screen and (max-width: 650px) {
-    #header.row {
-      padding-top: 7%!important;
-    }
-  } 
-  @media only screen and (max-width:450px) {
-    #header.row {
-      padding-top: 7%!important;
-    }
-    header {
-      margin-bottom: 5%;
-      height: 140px!important;
-    }
-    footer {
-      height: 140px!important;
-    }
-    main {
-      min-height: calc(100vh - 140px - 140px);
-    } 
-
-    .socials a {
-      padding-right: 7.5%;
-    }
-    #lastsocial {
-      padding-right:1.5%;
-    }
-    #blockicon img {
-      width: 130px!important;
-    }
-    #blockicon #title p {
-      font-size: 0.8rem!important;
     }
   }
 
@@ -362,7 +241,7 @@ main {
     border: 0 !important; 
   }
   .tabulator-col-title {
-    font-size: 1.0rem;
+    font-size: 1.2rem;
     font-family: manrope-bold;
     text-transform: none;
   }
@@ -391,15 +270,11 @@ main {
   .tabulator {
     font-size: 1.5rem !important;
   }
-  .disabled {
-    background-color: #9B9CA8!important;
-  }
   #search-title-col {
     padding-top: 1%;
   }
   #example-table .tabulator-footer, #results-table .tabulator-footer {
     background-color: #F0F0F9 !important;
-    display: none!important;
   }
   #example-table .tabulator-footer button, #results-table .tabulator-footer button {
     border: none;
@@ -434,6 +309,23 @@ main {
   }
   [role="columnheader"][tabulator-field="TXNS"] * {
     text-align: right;
+  }
+
+
+  #wrapper {
+    min-height: 100%;
+    position: relative;
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: manrope-regular !important;
+    background-color: #F0F0F9;
+  }
+  body h5 {
+    font-family: EXO_Bold !important;
   }
 
   input {
@@ -561,8 +453,10 @@ main {
     border-color: #2D2D31 !important;
   }
   .pulse {
-    padding-bottom: 40px; 
+    padding-bottom: 40px;
+    
   }
+  
   #results-table .tabulator-footer {
     display: block;
   }
@@ -625,5 +519,101 @@ main {
     font-family: manrope-bold;
     color: #fff;
   }
-  
+
+  html {
+    height: 100%;
+    right:0;
+  }
+  /** header */
+  header {
+    background-color: #031D32 !important;
+    z-index: 10;
+    position: absolute;
+    top:0;
+    height: 133px;
+    width: 100%;
+  }
+  header #header {
+    background-color: #031D32;
+    padding-top: 0!important;
+  }
+  header #header img {
+    margin-right: 5%;
+  }
+  header #brand {
+    padding-left: 2.1%;
+    padding-top: 2.5%;
+    padding-bottom:2%;
+    display:flex;
+    flex-direction: row;;
+  }
+  header #title p {
+    font-size: 1.0rem;
+    color: #fff;
+    font-family: manrope-bold;
+  }
+  header #title {
+    padding-left: 3%;
+  }
+  header #titleR {
+    padding-right: 10%;
+    padding-top: 3.5vh;
+    padding-bottom:2%;
+    display: flex;
+    flex-direction: row;
+    font-size: 1.2rem;
+    white-space: nowrap;
+  }
+  header #titleR p {
+    color: #317AFF!important;
+    text-align: right;
+    line-height: 1;
+    margin-right: 5%;
+  }
+  header #titleR img {
+    width: 33px;
+    height:auto;
+  }
+  header #titleR.right {
+    color:#317AFF!important;
+    font-size: 1.0rem!important;
+  }
+  header #titleR.right span {
+    color: #fff;
+    font-size: 0.8rem!important;
+  }
+  /** footer */
+  footer {
+    background-color: #031D32 !important;
+    z-index: 9999;
+    position: absolute;
+    width:100%;
+    bottom: 0;
+    padding: 5% 5% 5% 5%;
+    padding-bottom:0;
+    height: 166px;
+  }
+  #footer-logo-col {
+    padding-left: 5%;
+  }
+  #testnet {
+    padding-left: 5%;
+    color: #317AFF;
+    vertical-align: middle;
+  }
+  #socials-s {
+    padding-top: 5%;
+  }
+  .socials a {
+    float:right;
+    padding-right: 3.5%;
+    cursor: pointer;
+  }
+  .socials a:hover {
+    transform: scale(1.1);
+  }
+  #lastsocial {
+    padding-right: 0!important;
+  }
+
   
