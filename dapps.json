@@ -1,4 +1,9 @@
 {
+  "coinmasterpro": {
+    "miniDapp": "coinmasterpro0.0.1.minidapp",
+    "icon": "minidapp/CoinMasterPro/assets/coin.svg",
+    "conf": "minidapp/CoinMasterPro/minidapp.conf"
+  },
   "wallet": {
     "miniDapp": "wallet1.0.79.minidapp",
     "icon": "minidapp/wallet/assets/minima-logo-box.svg",
