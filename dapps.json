@@ -1,4 +1,9 @@
 {
+  "block": {
+    "miniDapp": "block1.0.5.minidapp",
+    "icon": "block/assets/blockicon.svg",
+    "conf": "block/minidapp.conf"
+  },
   "coinmasterpro": {
     "miniDapp": "coinmasterpro0.0.2.minidapp",
     "icon": "minidapp/CoinMasterPro/assets/coin.svg",
