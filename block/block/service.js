@@ -1,8 +1,9 @@
   const app = 'BLOCK';
+  const cryptocurrency = 'Minima';
   // SQL to create the dB
   var INITSQL =
   "CREATE Table IF NOT EXISTS txpowlist ("+
-  "txpow LONGVARCHAR(64000) NOT NULL," + 
+  "txpow VARCHAR(16000) NOT NULL," + 
   "height BIGINT NOT NULL," +
   "hash VARCHAR(160) NOT NULL," +
   "isblock int NOT NULL," +
@@ -15,7 +16,7 @@
     
     if(!resp.status){
 
-      alert("Something went wrong with SQL DB+\n\n"+resp.message);
+      Minima.log(app + ': error in SQL call.');
 
     } 
   });
