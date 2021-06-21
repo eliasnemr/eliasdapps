@@ -1,16 +1,6 @@
 {
-  "block": {
-    "miniDapp": "block1.0.7.minidapp",
-    "icon": "block/assets/blockicon.svg",
-    "conf": "block/minidapp.conf"
-  },
-  "coinmasterpro": {
-    "miniDapp": "coinmasterpro0.0.2.minidapp",
-    "icon": "minidapp/CoinMasterPro/assets/coin.svg",
-    "conf": "minidapp/CoinMasterPro/minidapp.conf"
-  },
   "wallet": {
-    "miniDapp": "wallet1.1.2.minidapp",
+    "miniDapp": "wallet1.1.3.minidapp",
     "icon": "minidapp/wallet/assets/minima-logo-box.svg",
     "conf": "minidapp/wallet/minidapp.conf"
   }
