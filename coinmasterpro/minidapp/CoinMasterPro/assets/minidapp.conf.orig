@@ -1,0 +1,10 @@
+{
+	"name":"CoinMasterPro",
+	"headline": "CoinMasterPro",
+	"description":"Manage your tokens.",
+	"version": "0.0.2",
+	"lastkey": "",
+	"background":"bg.svg",
+	"icon":"assets/coin.svg",
+	"category":"Finance"
+}

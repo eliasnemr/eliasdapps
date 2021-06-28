@@ -72,7 +72,7 @@
   }
   .dropdown-trigger label i {
     vertical-align: middle;
-    font-size: 2.5rem;
+    font-size: 20px;
   }
   #dropdown1 li a {
     color: #317AFF;
@@ -133,12 +133,21 @@
   nav {
     background-color: #031D32;
   }
-  #content {
-    z-index: -1;
-    overflow: auto;
+  div.content-wrap {
+    position: absolute;
+    top: 200px;
     padding-bottom: 200px;
-    padding-top: 200px;
-    margin: 0 10% 0 10%;
+    left: 35px;
+    right: 35px;
+  }
+  #content {
+    width: 100%;
+  }
+  @media only screen and (min-width: 992px) {
+    div.content-wrap {
+      left: 135px;
+      right: 135px;
+    }
   }
   #example-table {
     overflow: auto;
@@ -148,17 +157,22 @@
   }
   #search-wrapper input {
     display: block;
-    background-color: #fff !important;
+    background-color: #fff;
+    border-radius: 15px;
     border:none;
     line-height: 0;
     height: 35px;
     text-align: left;
-    padding-left: 1%;
+    padding-left: 15px;
   }
   #search-wrapper .search {
     position: absolute;
     top: 5px;
     right:0;
+  }
+  #search-wrapper input:focus {
+    outline: none;
+    border: none;
   }
   #content h5 {
     font-family: manrope-bold !important;
@@ -168,7 +182,7 @@
     margin-top: 0;
   }
   #notfound {
-    margin-top: 10%;
+    margin-top: 10px;
   }
   #notfound p {
     text-align: center;
@@ -189,20 +203,6 @@
     .my-search-wrap {
       margin-left: 150px;
       margin-right: 150px;
-    }
-    footer {
-      padding: 5% 5% 7% 5% !important;
-    }
-
-  }
-  @media only screen and (min-width: 1300px) {
-    #content {
-      padding-top: 225px;
-    }
-  }
-  @media only screen and (min-width: 993px) {
-    #socials-b  {
-      padding: 0;
     }
   }
   @media only screen and (min-width: 1500px) {
@@ -309,12 +309,6 @@
   }
   [role="columnheader"][tabulator-field="TXNS"] * {
     text-align: right;
-  }
-
-
-  #wrapper {
-    min-height: 100%;
-    position: relative;
   }
   
   body {
@@ -529,10 +523,16 @@
     background-color: #031D32 !important;
     z-index: 10;
     position: absolute;
-    top:0;
+    top: 0;
     height: 133px;
     width: 100%;
   }
+  /* header
+    div.container {
+      height: 100%;
+      display: flex;
+      align-items: center;
+    } */
   header #header {
     background-color: #031D32;
     padding-top: 0!important;
@@ -584,36 +584,85 @@
   }
   /** footer */
   footer {
-    background-color: #031D32 !important;
-    z-index: 9999;
-    position: absolute;
-    width:100%;
-    bottom: 0;
-    padding: 5% 5% 5% 5%;
-    padding-bottom:0;
+    position: fixed;
     height: 166px;
+    width: 100%;
+    z-index: 9999;
+    bottom: 0;
+    padding-bottom:0;
+    background-color: #031D32 !important;
   }
-  #footer-logo-col {
-    padding-left: 5%;
+  footer div.container {
+    height:100%;
+    display: flex;
+    align-items: center;
+  }
+  footer 
+    div.container 
+      div.row
+        div.col {
+          height: 40.73px;
+          padding-bottom: 50px;
+        }
+  footer 
+    div.container 
+      div.row
+        div.col
+          img {
+            width: 180px;
+            height: auto;
+          }
+    footer 
+    div.container 
+      div.row
+        div.col
+          a
+            img {
+              width: 34px;
+            }
+
+
+  footer .row {
+    width: 100%;
+  }
+  footer .row .col {
+    padding: 0;
   }
   #testnet {
     padding-left: 5%;
     color: #317AFF;
     vertical-align: middle;
   }
-  #socials-s {
-    padding-top: 5%;
-  }
-  .socials a {
-    float:right;
-    padding-right: 3.5%;
+  div.socials a {
     cursor: pointer;
+    padding: 10px;
   }
-  .socials a:hover {
-    transform: scale(1.1);
+  div.socials a:last-child {
+    padding-right: 0px;
+  }
+  div.socials a img {
+    width: 30px;
+  }
+  div.socials a:hover {
+    transform: scale(1.2);
   }
   #lastsocial {
     padding-right: 0!important;
+  }
+
+  #h2Size {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 15px;
+  }
+  #h2Size h6 {
+    margin: 0;
+    color: #0279FF;
+  }
+  #h2Size h6 span {
+    font-size: 14px;
+    color: #001C32;
   }
 
   

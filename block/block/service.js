@@ -1,38 +1,65 @@
-  const app = 'BLOCK';
+  const app = 'Block';
+  const cryptocurrency = 'Minima';
+  var loop = false;
   // SQL to create the dB
-  var INITSQL = "CREATE Table IF NOT EXISTS txpowlist ( txpow LONGVARCHAR(MAX) NOT NULL, height int NOT NULL, hash VARCHAR(160) NOT NULL, isblock int NOT NULL, relayed VARCHAR(160) NOT NULL, txns int NOT NULL)";
+  var INITSQL =
+  "CREATE Table IF NOT EXISTS txpowlist ("+
+  "txpow VARCHAR(16000) NOT NULL," + 
+  "height BIGINT NOT NULL," +
+  "hash VARCHAR(160) NOT NULL," +
+  "isblock int NOT NULL," +
+  "relayed BIGINT NOT NULL," +
+  "txns int NOT NULL" +
+  ")";
+  var INDEX = "CREATE INDEX IDXHASH ON txpowlist(hash)";
+  var INDEXHEIGHT = "CREATE INDEX IDXHEIGHT ON txpowlist(height DESC)";
   /** Create SQL Table */
   function createSQL(){
-    Minima.sql(INITSQL, function(resp){
-      //Minima.log("Created SQL"); 
-    
-    if(!resp.status){
-
-      alert("Something went wrong with SQL DB+\n\n"+resp.message);
-
-    } 
+    Minima.sql(INITSQL+";"+INDEX+";"+INDEXHEIGHT, function(resp){
+      if(!resp.status){
+        Minima.log(app + ': error in SQL call.');
+      } 
   });
   }
 
-  var INSERT = "INSERT INTO txpowlist VALUES ('"
+  var ADDBLOCKQUERY = "INSERT INTO txpowlist VALUES ('"
   function addTxPoW(txpow) {
     
     var isblock = 0;
-    if(txpow.isblock) {
+    if (txpow.isblock) {
       isblock = 1;
     }
+
+    if (!txpow.body) {
+      Minima.log('txpow body not found!');
+      return;
+    }
+
     // wipe out mmrproofs and signatures for lighter txpows.. 
     txpow.body.witness.signatures = {};
     txpow.body.witness.mmrproofs = {};
-
-    Minima.sql(INSERT+JSON.stringify(txpow)+"', '"+txpow.header.block+"', '"+txpow.txpowid+"', '"+isblock+"', '"+txpow.header.timemilli+"', '"+txpow.body.txnlist.length+"')", function(res){
+       
+    Minima.sql(ADDBLOCKQUERY +
+      encodeURIComponent(JSON.stringify(txpow)) + /** TXPOW */
+      "', " +
+      parseInt(txpow.header.block) + /** HEIGHT */
+      ", '" +
+      txpow.txpowid + /** HASH */
+      "', '" +
+      isblock + /** isblock */
+      "', " +
+      parseInt(txpow.header.timemilli) /** relayed */
+      + ", '"
+      + txpow.body.txnlist.length + /** txns */
+      "')", function(res){
       if(res.status == true) 
-      { 
-        Minima.log(app + ': timemilli'+txpow.header.timemilli);
-        //Minima.log("TxPoW Added To SQL Table.. ");
+      {
+        // Minima.log(app + ': timemilli'+txpow.header.timemilli);
+        // Minima.log("TxPoW Added To SQL Table.. ");
       }
     });
   }
+  
   function pruneData(height) {
     Minima.file.load("prune.txt", function(res){
       if(res.success) {
@@ -49,31 +76,40 @@
     });    
   }
 
-Minima.init(function(msg){
-    if(msg.event == 'connected') {
-      // create json to save in file for pruning
-      const prune = 
-      {
-          "status": true,
-          "period": 388800
-      };
-      Minima.file.save(JSON.stringify(prune), "prune.txt", function(res){
-        if(!res.success) {
-          Minima.log("File saving rejected!");
-        }            
-      });
+  Minima.init(function(msg){
+      if(msg.event == 'connected') {
+        // create json to save in file for pruning
+        const prune = 
+        {
+            "status": true,
+            "period": 388800
+        };
+        Minima.file.save(JSON.stringify(prune), "prune.txt", function(res){
+          if(!res.success) {
+            Minima.log("File saving rejected!");
+          }            
+        });
 
-      // init SQL DB for blocks
-      createSQL();
-  
-    } else if(msg.event == 'newtxpow') {
+        // init SQL DB for blocks
+        createSQL();
     
-      addTxPoW(msg.info.txpow);
+      } else if(msg.event == 'newtxpow') {
 
-      pruneData(msg.info.txpow.header.block);
+        if (loop == false) {
+          for (var i = 0; i <= 500000; i++) {
+            Minima.log('adding txpow..');
+            addTxPoW(msg.info.txpow);
+          }
+          loop = true;
+        }
+
+        addTxPoW(msg.info.txpow);
+
+
+        pruneData(msg.info.txpow.header.block);
         
-    } 
-});
+      }
+  });
  
 
 
