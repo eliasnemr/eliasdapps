@@ -1,4 +1,9 @@
 {
+  "MxSql": {
+    "miniDapp": "MxSql0.0.2.minidapp",
+    "icon": "minidapp/MxSql/assets/minima-logo-box.svg",
+    "conf": "minidapp/MxSql/minidapp.conf"
+  },
   "block": {
     "miniDapp": "block1.0.9.minidapp",
     "icon": "block/assets/blockicon.svg",
@@ -15,7 +20,7 @@
     "conf": "futurecash/minidapp.conf"
   },
   "wallet": {
-    "miniDapp": "wallet1.1.4.minidapp",
+    "miniDapp": "wallet1.1.5.minidapp",
     "icon": "minidapp/wallet/assets/minima-logo-box.svg",
     "conf": "minidapp/wallet/minidapp.conf"
   }
